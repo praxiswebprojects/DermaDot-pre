@@ -2,11 +2,12 @@
 
 :root {
   --ink: #0a0a0a;
-  --paper: #f7f7f5;
-  --white: #ffffff;
-  --soft: #ededeb;
-  --mid: #9a9a96;
-  --line: #d7d7d3;
+  --paper: #fbf6eb;
+  --white: #fffdf8;
+  --soft: #f0e8da;
+  --mid: #9b9388;
+  --line: #dcd2c3;
+  --bordeaux: #721b32;
   --font: var(--font-geist), Arial, sans-serif;
 }
 
@@ -97,19 +98,23 @@ a {
 .brand-mark::before {
   width: 22px;
   height: 22px;
-  border: 1px solid var(--mid);
+  border: 1px solid var(--bordeaux);
 }
 
 .brand-mark::after {
   width: 5px;
   height: 5px;
-  background: var(--ink);
+  background: var(--bordeaux);
 }
 
 .brand-name {
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.04em;
+}
+
+.brand-name::first-letter {
+  color: var(--bordeaux);
 }
 
 .lang-toggle {
@@ -136,7 +141,7 @@ a {
 }
 
 .lang-toggle .active {
-  color: var(--ink);
+  color: var(--bordeaux);
   font-weight: 700;
 }
 
@@ -176,7 +181,7 @@ a {
 }
 
 .nav-link.active {
-  color: var(--ink);
+  color: var(--bordeaux);
   font-weight: 650;
 }
 
@@ -186,7 +191,7 @@ a {
   bottom: -1px;
   left: 14px;
   height: 2px;
-  background: var(--ink);
+  background: var(--bordeaux);
   content: "";
 }
 
@@ -236,7 +241,7 @@ a {
 .eyebrow::before {
   width: 6px;
   height: 6px;
-  background: var(--ink);
+  background: var(--bordeaux);
   border-radius: 50%;
   content: "";
 }
@@ -255,6 +260,12 @@ h1 {
   font-weight: 520;
   letter-spacing: -0.075em;
   line-height: 0.88;
+}
+
+h1::first-letter,
+.section h2::first-letter,
+.footer-name::first-letter {
+  color: var(--bordeaux);
 }
 
 .hero-lede {
@@ -719,7 +730,7 @@ h1 {
 .appointment-only::before {
   width: 7px;
   height: 7px;
-  background: var(--ink);
+  background: var(--bordeaux);
   border-radius: 50%;
   content: "";
 }
