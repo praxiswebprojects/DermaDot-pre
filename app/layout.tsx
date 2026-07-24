@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "DermaDot — Scalp Micropigmentation",
       description: "Precision that looks natural. Confidence that feels yours.",
       type: "website",
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: "DermaDot — Precision that looks natural." }],
+      images: [{ url: imageUrl, width: 1536, height: 1024, alt: "DermaDot — Precision that looks natural." }],
     },
     twitter: {
       card: "summary_large_image",

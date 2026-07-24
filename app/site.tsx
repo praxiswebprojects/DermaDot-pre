@@ -54,48 +54,48 @@ const topicCards = [
 ];
 
 const faqItems = [
-  c("Τι ακριβώς είναι η μικροχρωμάτωση τριχωτού;", "What exactly is scalp micropigmentation?"),
-  c("Είναι το αποτέλεσμα φυσικό;", "Will the result look natural?"),
-  c("Πόσες συνεδρίες χρειάζονται;", "How many sessions will I need?"),
-  c("Πονάει η διαδικασία;", "Is the procedure painful?"),
-  c("Πόσο διαρκεί το αποτέλεσμα;", "How long does the result last?"),
-  c("Μπορεί να καλύψει ουλές;", "Can SMP camouflage scars?"),
-  c("Τι πρέπει να αποφεύγω μετά τη συνεδρία;", "What should I avoid after a session?"),
-  c("Είναι κατάλληλο για γυναίκες;", "Is SMP suitable for women?"),
+  c("Πονάει;", "Does it hurt?"),
+  c("Πόσο κοστίζει;", "How much does it cost?"),
+  c("Πόσο διαρκεί;", "How long does it last?"),
+  c("Ξεθωριάζει;", "Does it fade?"),
+  c("Χρειάζεται συντήρηση;", "Does it need maintenance?"),
+  c("Μπορώ να κάνω γυμναστική;", "Can I exercise?"),
+  c("Μπορώ να πάω στη θάλασσα;", "Can I swim in the sea?"),
+  c("Μπορώ να κάνω μεταμόσχευση μετά από SMP;", "Can I have a hair transplant after SMP?"),
 ];
 
 const faqAnswers = [
   c(
-    "Είναι μια μη χειρουργική τεχνική κατά την οποία εξειδικευμένες χρωστικές τοποθετούνται επιφανειακά στο δέρμα, δημιουργώντας την οπτική εντύπωση φυσικών θυλάκων τρίχας.",
-    "It is a non-surgical technique in which specialised pigments are placed superficially in the skin, creating the visual impression of natural hair follicles."
+    "Οι περισσότεροι πελάτες περιγράφουν ήπια έως μέτρια ενόχληση, η οποία είναι συνήθως καλά ανεκτή. Η αίσθηση διαφέρει ανά περιοχή και άτομο.",
+    "Most clients describe mild to moderate discomfort that is usually well tolerated. Sensation varies by area and from person to person."
   ),
   c(
-    "Ο στόχος μας είναι ένα διακριτικό αποτέλεσμα που σέβεται τον τόνο του δέρματος, το υπάρχον τριχωτό και τα χαρακτηριστικά του προσώπου. Η γραμμή σχεδιάζεται πάντα μαζί σας.",
-    "Our goal is a subtle result that respects your skin tone, existing hair and facial features. The hairline is always designed together with you."
+    "Το κόστος εξαρτάται από την έκταση της περιοχής, την εφαρμογή και τον αριθμό των συνεδριών. Μετά τη δωρεάν αξιολόγηση λαμβάνετε σαφή, εξατομικευμένη προσφορά.",
+    "Cost depends on the treatment area, application and number of sessions. After your free consultation, you receive a clear, personalised quote."
   ),
   c(
-    "Συνήθως προτείνονται 2–3 συνεδρίες, με χρόνο ανάμεσα τους ώστε να επουλωθεί το δέρμα και να αξιολογηθεί σωστά η πυκνότητα. Το ακριβές πλάνο είναι εξατομικευμένο.",
-    "Most plans involve 2–3 sessions, spaced to allow the skin to heal and the density to be assessed accurately. Your exact plan is individual."
+    "Το αποτέλεσμα διατηρείται συνήθως για αρκετά χρόνια. Η διάρκεια επηρεάζεται από τον τύπο δέρματος, την έκθεση στον ήλιο, τον τρόπο ζωής και τη σωστή φροντίδα.",
+    "Results usually last for several years. Longevity is influenced by skin type, sun exposure, lifestyle and proper aftercare."
   ),
   c(
-    "Οι περισσότεροι περιγράφουν μια ήπια ενόχληση, η οποία είναι γενικά καλά ανεκτή. Η αίσθηση διαφέρει ανά περιοχή και άτομο.",
-    "Most clients describe mild discomfort that is generally well tolerated. Sensation varies by area and from person to person."
+    "Ναι, το χρώμα μαλακώνει και ξεθωριάζει σταδιακά με τον χρόνο. Αυτή η φυσιολογική εξέλιξη επιτρέπει στο αποτέλεσμα να παραμένει διακριτικό καθώς αλλάζει η εμφάνισή σας.",
+    "Yes. The pigment softens and fades gradually over time. This normal progression helps the result remain subtle as your appearance changes."
   ),
   c(
-    "Το αποτέλεσμα ξεθωριάζει σταδιακά και συνήθως διατηρείται για αρκετά χρόνια. Ο τύπος δέρματος, η έκθεση στον ήλιο και η φροντίδα επηρεάζουν τη διάρκειά του. Μια συνεδρία ανανέωσης μπορεί να χρειαστεί στο μέλλον.",
-    "The result fades gradually and usually lasts for several years. Skin type, sun exposure and aftercare affect longevity. A refresh session may be recommended later."
+    "Μπορεί να χρειαστεί μια συνεδρία ανανέωσης έπειτα από μερικά χρόνια. Η καθημερινή αντηλιακή προστασία βοηθά σημαντικά στη διατήρηση του τόνου.",
+    "A refresh session may be useful after several years. Daily sun protection makes a meaningful difference to colour retention."
   ),
   c(
-    "Σε πολλές περιπτώσεις μπορεί να μειώσει οπτικά την αντίθεση μιας ουλής μεταμόσχευσης ή τραυματισμού. Η καταλληλότητα αξιολογείται μόνο αφού η ουλή έχει ωριμάσει πλήρως.",
-    "In many cases SMP can visually reduce the contrast of transplant or trauma scars. Suitability is assessed only after the scar has fully matured."
+    "Αποφύγετε έντονη άσκηση και υπερβολικό ιδρώτα τις πρώτες ημέρες. Επιστρέφετε σταδιακά, ακολουθώντας τις προσωπικές οδηγίες που θα σας δοθούν.",
+    "Avoid intense exercise and heavy sweating during the first few days. Return gradually, following the personal aftercare guidance you receive."
   ),
   c(
-    "Τις πρώτες ημέρες αποφεύγετε έντονη άσκηση, υπερβολικό ιδρώτα, πισίνα, σάουνα, άμεσο ήλιο και τρίψιμο της περιοχής. Θα λάβετε αναλυτικές οδηγίες ειδικά για εσάς.",
-    "For the first few days avoid intense exercise, heavy sweating, pools, saunas, direct sun and rubbing the area. You will receive detailed guidance for your specific treatment."
+    "Όχι αμέσως μετά τη συνεδρία. Θάλασσα, πισίνα και έντονη ηλιακή έκθεση αποφεύγονται κατά την αρχική επούλωση· θα σας ενημερώσουμε πότε είναι ασφαλής η επιστροφή.",
+    "Not immediately after a session. Sea water, pools and strong sun exposure should be avoided during initial healing; we will tell you when it is safe to return."
   ),
   c(
-    "Ναι. Η τεχνική μπορεί να μειώσει την ορατότητα της αραίωσης προσθέτοντας την εντύπωση πυκνότητας ανάμεσα στα υπάρχοντα μαλλιά, όταν υπάρχει κατάλληλη ένδειξη.",
-    "Yes. Where appropriate, the technique can reduce the visibility of thinning by adding the impression of density between existing hairs."
+    "Ναι, σε πολλές περιπτώσεις το SMP δεν αποκλείει μια μελλοντική μεταμόσχευση. Απαιτείται όμως κοινός σχεδιασμός με τον ιατρό μεταμόσχευσης και πλήρης αξιολόγηση πριν αποφασιστεί το επόμενο βήμα.",
+    "Yes, in many cases SMP does not prevent a future hair transplant. The next step should, however, be planned with your transplant surgeon after a full assessment."
   ),
 ];
 
@@ -129,19 +129,24 @@ function Header({ lang, route, onLanguage }: { lang: Language; route: Route; onL
     <header className="site-header">
       <div className="header-top">
         <a href={url("/")} className="brand" aria-label="DermaDot home">
-          <span className="brand-mark" aria-hidden="true" />
-          <span className="brand-name">DermaDot</span>
+          <img className="brand-logo" src="/logo.png" alt="DermaDot Plus — Andreas Petropoulos" />
         </a>
-        <button
-          className="lang-toggle"
-          type="button"
-          onClick={() => onLanguage(lang === "el" ? "en" : "el")}
-          aria-label={lang === "el" ? "Switch to English" : "Αλλαγή στα Ελληνικά"}
-        >
-          <span className={lang === "en" ? "active" : ""}>EN</span>
-          <span>/</span>
-          <span className={lang === "el" ? "active" : ""}>ΕΛ</span>
-        </button>
+        <div className="header-actions">
+          <button
+            className="lang-toggle"
+            type="button"
+            onClick={() => onLanguage(lang === "el" ? "en" : "el")}
+            aria-label={lang === "el" ? "Switch to English" : "Αλλαγή στα Ελληνικά"}
+          >
+            <span className={lang === "en" ? "active" : ""}>EN</span>
+            <span>/</span>
+            <span className={lang === "el" ? "active" : ""}>ΕΛ</span>
+          </button>
+          <a className="header-call" href="tel:+302100000000">
+            <span aria-hidden="true">☎</span>
+            {lang === "el" ? "Καλέστε τώρα" : "Call now"}
+          </a>
+        </div>
       </div>
       <div className="nav-wrap">
         <nav className="main-nav" aria-label={lang === "el" ? "Κύρια πλοήγηση" : "Main navigation"}>
@@ -176,6 +181,7 @@ function Footer({ lang }: { lang: Language }) {
       <div className="footer-bottom">
         <span>© 2026 DERMADOT</span>
         <span>{lang === "el" ? "ΜΙΚΡΟΧΡΩΜΑΤΩΣΗ ΤΡΙΧΩΤΟΥ • ΑΘΗΝΑ" : "SCALP MICROPIGMENTATION • ATHENS"}</span>
+        <a href="/admin/photos">{lang === "el" ? "ΔΙΑΧΕΙΡΙΣΗ ΦΩΤΟΓΡΑΦΙΩΝ" : "MANAGE PHOTOS"}</a>
       </div>
     </footer>
   );
@@ -200,54 +206,55 @@ function Home({ lang }: { lang: Language }) {
   const url = (href: string) => (lang === "en" ? `${href}?lang=en` : href);
   return (
     <>
-      <section className="hero">
-        <div className="hero-copy">
-          <div>
-            <p className="eyebrow">{lang === "el" ? "Scalp Micropigmentation • Αθήνα" : "Scalp Micropigmentation • Athens"}</p>
-            <h1>{lang === "el" ? <>Ακρίβεια που μοιάζει φυσική.</> : <>Precision that looks natural.</>}</h1>
-          </div>
-          <div>
-            <p className="hero-lede">
-              {lang === "el"
-                ? "Μικροχρωμάτωση τριχωτού με εξατομικευμένο σχεδιασμό, διακριτική αισθητική και κλινική προσοχή στη λεπτομέρεια."
-                : "Scalp micropigmentation with individual design, understated aesthetics and clinical attention to detail."}
-            </p>
-            <div className="hero-actions">
-              <a className="button" href={url("/contact")}>{lang === "el" ? "Κλείστε αξιολόγηση" : "Book a consultation"}</a>
-              <a className="button secondary" href={url("/what-is-smp")}>{lang === "el" ? "Γνωρίστε το SMP" : "Explore SMP"}</a>
-            </div>
+      <section className="template-hero">
+        <div className="template-hero-shade" />
+        <div className="template-hero-copy">
+          <p className="hero-kicker">{lang === "el" ? "Scalp Micropigmentation • Αθήνα" : "Scalp Micropigmentation • Athens"}</p>
+          <h1>
+            {lang === "el" ? <>Φυσική<br />Ακρίβεια.</> : <>Natural<br />Precision.</>}
+          </h1>
+          <p className="hero-lede">
+            {lang === "el"
+              ? "Εξατομικευμένη μικροχρωμάτωση τριχωτού, σχεδιασμένη για να δείχνει αβίαστη, καθαρή και απόλυτα δική σας."
+              : "Individual scalp micropigmentation designed to look effortless, refined and entirely your own."}
+          </p>
+          <div className="hero-actions">
+            <a className="button" href={url("/contact")}>
+              {lang === "el" ? "Κλείστε ραντεβού" : "Book appointment"} <span aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
-        <div className="hero-visual" aria-label={lang === "el" ? "Αφηρημένο μοτίβο μικροχρωμάτωσης" : "Abstract micropigmentation pattern"}>
-          <span className="visual-label">{lang === "el" ? "Χιλιάδες σημεία. Ένα φυσικό σύνολο." : "Thousands of dots. One natural whole."}</span>
+      </section>
+      <section className="template-about">
+        <div className="about-image about-image-left" role="img" aria-label={lang === "el" ? "Λεπτομέρεια εφαρμογής SMP" : "SMP treatment detail"} />
+        <div className="about-center">
+          <p className="about-label">— {lang === "el" ? "η προσέγγισή μας" : "our approach"} —</p>
+          <h2>{lang === "el" ? "Ένας απλός τρόπος να ξαναβρείτε την αυτοπεποίθησή σας." : "A simple way to restore your confidence."}</h2>
+          <p>
+            {lang === "el"
+              ? "Με προσεκτικό σχεδιασμό, ελεγχόμενη τεχνική και χρόνο για κάθε λεπτομέρεια, δημιουργούμε ένα φυσικό αποτέλεσμα προσαρμοσμένο αποκλειστικά σε εσάς."
+              : "Through considered design, controlled technique and time for every detail, we create a natural result tailored entirely to you."}
+          </p>
+          <a className="button" href={url("/info")}>
+            {lang === "el" ? "Μάθετε περισσότερα" : "Learn more"} <span aria-hidden="true">→</span>
+          </a>
+          <div className="about-image about-image-wide" role="img" aria-label={lang === "el" ? "Φυσικό αποτέλεσμα SMP" : "Natural SMP result"} />
+        </div>
+        <div className="about-right">
+          <div className="about-image about-image-right" role="img" aria-label={lang === "el" ? "Εξειδικευμένη φροντίδα SMP" : "Specialist SMP care"} />
+          <div className="about-stat">
+            <strong>2–3</strong>
+            <span>{lang === "el" ? "συνεδρίες για ένα σταδιακό, φυσικό αποτέλεσμα" : "sessions for a gradual, natural result"}</span>
+          </div>
         </div>
       </section>
-      <section className="trust-strip">
-        {[
-          c("Εξατομικευμένη γραμμή", "Individually designed hairline"),
-          c("Εξειδικευμένες χρωστικές", "Specialised SMP pigments"),
-          c("Ιδιωτική αξιολόγηση", "Private consultation"),
-        ].map((item, i) => (
-          <div className="trust-item" key={item.en}>
-            <div className="trust-number">0{i + 1}</div>
-            <div className="trust-title">{item[lang]}</div>
-            <p className="trust-copy">
-              {[
-                c("Σχεδιασμένη για το πρόσωπο και το προφίλ σας.", "Designed around your face and profile."),
-                c("Επιλογή τόνου με στόχο τη φυσική ενσωμάτωση.", "Tone selection focused on natural integration."),
-                c("Χωρίς βιασύνη, πίεση ή γενικές λύσεις.", "No rushing, pressure or one-size-fits-all plans."),
-              ][i][lang]}
-            </p>
-          </div>
-        ))}
-      </section>
-      <section className="section">
+      <section className="section template-topics">
         <div className="section-head">
-          <h2>{lang === "el" ? "Κατανοήστε κάθε βήμα." : "Understand every step."}</h2>
+          <h2>{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2>
           <p className="section-intro">
             {lang === "el"
-              ? "Καθαρή ενημέρωση πριν από κάθε απόφαση. Εξερευνήστε την τεχνική, τη διαδικασία και τη φροντίδα σε ξεχωριστές σελίδες."
-              : "Clear information before every decision. Explore the technique, procedure and aftercare on dedicated pages."}
+              ? "Εξερευνήστε κάθε στάδιο της θεραπείας σε ξεχωριστή, γρήγορη σελίδα."
+              : "Explore each part of treatment on its own fast, focused page."}
           </p>
         </div>
         <div className="topic-grid">
@@ -267,29 +274,45 @@ function Home({ lang }: { lang: Language }) {
 
 const infoCards = [
   {
-    title: c("Φυσική οπτική πυκνότητα", "Natural visual density"),
-    text: c("Μικροσκοπικά σημεία χρωστικής μειώνουν την αντίθεση ανάμεσα στο δέρμα και τα μαλλιά.", "Microscopic pigment impressions reduce the contrast between scalp and hair."),
+    title: c("Ανδρική αλωπεκία", "Male hair loss"),
+    text: c("Δημιουργεί την εικόνα ενός φυσικά ξυρισμένου τριχωτού και επαναπροσδιορίζει διακριτικά τη γραμμή των μαλλιών.", "Creates the appearance of a naturally shaved scalp and subtly redefines the hairline."),
   },
   {
-    title: c("Σχεδιασμός χωρίς στερεότυπα", "Design without templates"),
-    text: c("Η γραμμή και η πυκνότητα προσαρμόζονται στην ηλικία, τα χαρακτηριστικά και τον στόχο σας.", "Hairline and density are adjusted to your age, features and personal goal."),
+    title: c("Γυναικεία αραίωση", "Female thinning"),
+    text: c("Μειώνει την αντίθεση του ορατού δέρματος ανάμεσα στα υπάρχοντα μαλλιά, προσφέροντας την εντύπωση μεγαλύτερης πυκνότητας.", "Reduces the contrast of visible scalp between existing hairs, creating the impression of greater density."),
   },
   {
-    title: c("Μη χειρουργική προσέγγιση", "Non-surgical approach"),
-    text: c("Δεν μεταμοσχεύει τρίχες. Δημιουργεί μια ρεαλιστική οπτική εντύπωση με ελεγχόμενη εφαρμογή.", "It does not transplant hair. It creates a realistic visual impression through controlled application."),
+    title: c("Ουλές από μεταμόσχευση", "Hair-transplant scars"),
+    text: c("Ενσωματώνει οπτικά ώριμες ουλές FUE ή FUT στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
+  },
+  {
+    title: c("Ουλές από τραυματισμούς", "Trauma scars"),
+    text: c("Μπορεί να καμουφλάρει επιλεγμένες, πλήρως επουλωμένες ουλές έπειτα από προσεκτική αξιολόγηση.", "Can camouflage selected, fully healed scars after careful assessment."),
+  },
+  {
+    title: c("Alopecia Areata", "Alopecia Areata"),
+    text: c("Σε σταθεροποιημένες περιπτώσεις μπορεί να μειώσει οπτικά τη διαφορά ανάμεσα στις περιοχές με και χωρίς τρίχες.", "In stable cases, it can visually reduce the contrast between areas with and without hair."),
+  },
+  {
+    title: c("Γένια", "Beard"),
+    text: c("Προσθέτει την οπτική εντύπωση πυκνότητας ή βοηθά στην εξισορρόπηση κενών στην περιοχή των γενιών.", "Adds the visual impression of density or helps balance gaps within the beard area."),
+  },
+  {
+    title: c("Διόρθωση αποτυχημένου SMP", "Correction of previous SMP"),
+    text: c("Αξιολογούμε χρώμα, βάθος, σχήμα και κατάσταση του δέρματος πριν προτείνουμε ασφαλή διόρθωση ή ανασχεδιασμό.", "We assess colour, depth, shape and skin condition before recommending a safe correction or redesign."),
   },
 ];
 
 function Info({ lang }: { lang: Language }) {
   return (
     <>
-      <PageHero index="01" lang={lang} title={c("Πληροφορίες", "Information")} intro={c("Η φιλοσοφία μας είναι απλή: σωστή ενημέρωση, προσεκτικός σχεδιασμός και αποτέλεσμα που δεν ζητά προσοχή.", "Our philosophy is simple: clear information, careful design and a result that never asks for attention.")} />
+      <PageHero index="01" lang={lang} title={c("Εφαρμογές SMP", "SMP Applications")} intro={c("Κάθε εφαρμογή ξεκινά με σωστή διάγνωση της ανάγκης και εξατομικευμένο σχεδιασμό.", "Every application begins with a clear understanding of the need and an individual treatment design.")} />
       <section className="section">
         <div className="section-head">
-          <h2>{lang === "el" ? "Διακριτική αλλαγή. Ορατή αυτοπεποίθηση." : "Subtle change. Visible confidence."}</h2>
-          <p className="section-intro">{lang === "el" ? "Το SMP μπορεί να υποστηρίξει ένα ξυρισμένο look, να μειώσει την ορατότητα αραίωσης ή να καμουφλάρει επιλεγμένες ουλές." : "SMP can support a shaved look, reduce the visibility of thinning or camouflage selected scars."}</p>
+          <h2>{lang === "el" ? "Επτά εξειδικευμένες εφαρμογές." : "Seven specialist applications."}</h2>
+          <p className="section-intro">{lang === "el" ? "Το SMP προσαρμόζεται σε διαφορετικές μορφές τριχόπτωσης, αραίωσης και ουλών — ποτέ με μία γενική λύση." : "SMP adapts to different forms of hair loss, thinning and scarring — never with a one-size-fits-all solution."}</p>
         </div>
-        <div className="content-grid">
+        <div className="content-grid applications-grid">
           {infoCards.map((card) => <article className="content-card" key={card.title.en}><h3>{card.title[lang]}</h3><p>{card.text[lang]}</p></article>)}
         </div>
       </section>
@@ -302,17 +325,22 @@ function Info({ lang }: { lang: Language }) {
 }
 
 function WhatIsSmp({ lang }: { lang: Language }) {
+  const essentials = [
+    c("Πώς λειτουργεί|Με εξειδικευμένη βελόνα δημιουργούνται μικροσκοπικά σημεία χρωστικής στο ανώτερο στρώμα του δέρματος, μιμούμενα φυσικούς θύλακες.", "How it works|A specialist needle places microscopic pigment impressions in the upper layer of the skin, mimicking natural follicles."),
+    c("Πόσο διαρκεί|Το αποτέλεσμα συνήθως παραμένει ορατό για αρκετά χρόνια, ανάλογα με το δέρμα, τον ήλιο, τον τρόπο ζωής και τη φροντίδα.", "How long it lasts|Results usually remain visible for several years, depending on skin, sun exposure, lifestyle and aftercare."),
+    c("Μόνιμο ή ημιμόνιμο;|Θεωρείται μακράς διάρκειας αλλά όχι αμετάβλητο. Η χρωστική μαλακώνει και ξεθωριάζει σταδιακά με τον χρόνο.", "Permanent or semi-permanent?|It is long-lasting but not unchanging. Pigment softens and fades gradually over time."),
+    c("Είναι ασφαλές;|Όταν εφαρμόζεται από εκπαιδευμένο επαγγελματία με σωστή υγιεινή, αποστειρωμένο εξοπλισμό και κατάλληλες χρωστικές, είναι μη χειρουργική και ελεγχόμενη διαδικασία.", "Is it safe?|When performed by a trained professional using proper hygiene, sterile equipment and suitable pigments, it is a controlled, non-surgical procedure."),
+    c("Πόσες συνεδρίες χρειάζονται;|Συνήθως χρειάζονται 2–3 συνεδρίες, με χρόνο επούλωσης ανάμεσά τους ώστε η πυκνότητα να χτίζεται σταδιακά.", "How many sessions are needed?|Most treatments need 2–3 sessions, with healing time between them so density can be built gradually."),
+    c("Πονάει;|Οι περισσότεροι περιγράφουν ήπια έως μέτρια ενόχληση. Η αίσθηση διαφέρει ανά περιοχή και από άτομο σε άτομο.", "Does it hurt?|Most clients report mild to moderate discomfort. Sensation varies by area and from person to person."),
+    c("Τι χρωστικές χρησιμοποιούνται|Χρησιμοποιούνται επαγγελματικές χρωστικές ειδικά επιλεγμένες για SMP και προσαρμοσμένες στον τόνο του δέρματος και των μαλλιών.", "Which pigments are used|Professional pigments selected specifically for SMP are matched to the tone of your skin and hair."),
+  ];
   return (
     <>
       <PageHero index="02" lang={lang} title={c("Τι είναι το SMP;", "What is SMP?")} intro={c("Μια εξειδικευμένη τεχνική που δημιουργεί την οπτική εντύπωση φυσικών θυλάκων τρίχας.", "A specialised technique that creates the visual impression of natural hair follicles.")} />
       <section className="section">
-        <div className="section-head"><h2>{lang === "el" ? "Μικρές λεπτομέρειες. Συνολικό αποτέλεσμα." : "Tiny details. A complete result."}</h2><p className="section-intro">{lang === "el" ? "Οι χρωστικές τοποθετούνται επιφανειακά και με ελεγχόμενο βάθος, ακολουθώντας τη φυσική κατεύθυνση και κατανομή του τριχωτού." : "Pigments are placed superficially at a controlled depth, following the natural direction and distribution of hair."}</p></div>
-        <div className="content-grid">
-          {[
-            c("Ξυρισμένο look|Δημιουργεί την εντύπωση κοντοκουρεμένων θυλάκων σε περιοχές απώλειας.", "Shaved look|Creates the impression of closely cropped follicles in areas of hair loss."),
-            c("Οπτική πυκνότητα|Μειώνει την αντίθεση του δέρματος που φαίνεται ανάμεσα στα υπάρχοντα μαλλιά.", "Visual density|Reduces the contrast of visible scalp between existing hairs."),
-            c("Καμουφλάζ ουλών|Μπορεί να ενσωματώσει οπτικά ώριμες ουλές μεταμόσχευσης ή τραυματισμού.", "Scar camouflage|Can visually blend mature transplant or trauma scars."),
-          ].map((item) => {
+        <div className="section-head"><h2>{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2><p className="section-intro">{lang === "el" ? "Η SMP είναι μια μη χειρουργική τεχνική οπτικής αποκατάστασης. Οι βασικές απαντήσεις παρακάτω εξηγούν πώς εφαρμόζεται και τι να περιμένετε." : "SMP is a non-surgical visual restoration technique. The essentials below explain how it is performed and what to expect."}</p></div>
+        <div className="content-grid essentials-grid">
+          {essentials.map((item) => {
             const [elTitle, elText] = item.el.split("|");
             const [enTitle, enText] = item.en.split("|");
             return <article className="content-card" key={item.en}><h3>{lang === "el" ? elTitle : enTitle}</h3><p>{lang === "el" ? elText : enText}</p></article>;
@@ -336,6 +364,7 @@ function Results({ lang }: { lang: Language }) {
       <PageHero index="03" lang={lang} title={c("Πριν & Μετά", "Before & After")} intro={c("Το καλό αποτέλεσμα δεν αλλάζει ποιοι είστε. Αποκαθιστά την ισορροπία με τρόπο διακριτικό.", "A good result does not change who you are. It restores balance in an understated way.")} />
       <section className="section">
         <div className="section-head"><h2>{lang === "el" ? "Τέσσερις διαφορετικοί στόχοι." : "Four different goals."}</h2><p className="section-intro">{lang === "el" ? "Οι παρακάτω κατηγορίες παρουσιάζουν ενδεικτικές εφαρμογές. Τα πραγματικά αποτελέσματα διαφέρουν ανά άτομο." : "The categories below show representative applications. Individual outcomes vary."}</p></div>
+        <PublicPhotoGallery lang={lang} />
         <div className="results-grid">
           {cases.map((item, i) => {
             const [elTitle, elText] = item.el.split("|");
@@ -349,12 +378,63 @@ function Results({ lang }: { lang: Language }) {
   );
 }
 
+type GalleryPhoto = {
+  id: string;
+  alt: string;
+  uploadedAt: string;
+  url: string;
+};
+
+function PublicPhotoGallery({ lang }: { lang: Language }) {
+  const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
+
+  useEffect(() => {
+    let active = true;
+    fetch("/api/photos", { cache: "no-store" })
+      .then((response) => response.json())
+      .then((data: { photos?: GalleryPhoto[] }) => {
+        if (active) setPhotos(data.photos ?? []);
+      })
+      .catch(() => {
+        if (active) setPhotos([]);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  if (photos.length === 0) return null;
+
+  return (
+    <div className="public-photo-section">
+      <div className="public-photo-heading">
+        <span className="eyebrow">{lang === "el" ? "Πραγματικά αποτελέσματα" : "Real results"}</span>
+        <p>
+          {lang === "el"
+            ? "Φωτογραφίες που έχουν επιλεγεί και δημοσιευτεί από το DermaDot."
+            : "Photos selected and published by DermaDot."}
+        </p>
+      </div>
+      <div className="public-photo-grid">
+        {photos.map((photo) => (
+          <figure className="public-photo" key={photo.id}>
+            <img src={photo.url} alt={photo.alt} loading="lazy" />
+            <figcaption>{photo.alt}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Procedure({ lang }: { lang: Language }) {
   const steps = [
-    c("Αξιολόγηση|Συζητάμε τον στόχο, το ιστορικό, το δέρμα και την καταλληλότητα της τεχνικής.", "Consultation|We discuss your goal, history, skin and whether the technique is suitable."),
-    c("Σχεδιασμός|Σχεδιάζουμε τη γραμμή, επιλέγουμε τόνο και συμφωνούμε την επιθυμητή πυκνότητα.", "Design|We map the hairline, choose a tone and agree on the desired density."),
-    c("Συνεδρίες|Εφαρμόζουμε διαδοχικά επίπεδα μικροσκοπικών σημείων με χρόνο επούλωσης ανάμεσα.", "Sessions|We apply successive layers of microscopic impressions with healing time in between."),
-    c("Έλεγχος|Αξιολογούμε το επουλωμένο αποτέλεσμα και κάνουμε μόνο τις προσαρμογές που χρειάζονται.", "Review|We assess the healed result and make only the refinements that are needed."),
+    c("Δωρεάν αξιολόγηση|Συζητάμε τον στόχο, το ιστορικό, το δέρμα και αν η τεχνική είναι κατάλληλη για εσάς.", "Free consultation|We discuss your goal, history, skin and whether the technique is right for you."),
+    c("Σχεδιασμός hairline|Σχεδιάζουμε μαζί μια φυσική, ηλικιακά κατάλληλη γραμμή και επιλέγουμε τον σωστό τόνο.", "Hairline design|Together, we map a natural, age-appropriate hairline and select the right tone."),
+    c("1η συνεδρία|Τοποθετούμε το πρώτο, απαλό επίπεδο σημείων που ορίζει τη βάση του αποτελέσματος.", "First session|We place the first subtle layer of impressions that establishes the foundation of the result."),
+    c("2η συνεδρία|Μετά την επούλωση αξιολογούμε την απόκριση του δέρματος και χτίζουμε ελεγχόμενα την πυκνότητα.", "Second session|After healing, we assess the skin response and build density in a controlled way."),
+    c("3η συνεδρία (αν χρειάζεται)|Προσθέτουμε τις τελευταίες λεπτομέρειες μόνο όπου χρειάζονται για ισορροπία και ομοιομορφία.", "Third session (if needed)|We add final refinements only where needed for balance and uniformity."),
+    c("Οδηγίες μετά τη θεραπεία|Λαμβάνετε σαφείς προσωπικές οδηγίες για επούλωση, άσκηση, νερό, ήλιο και μακροχρόνια φροντίδα.", "Aftercare guidance|You receive clear personal guidance for healing, exercise, water, sun exposure and long-term care."),
   ];
   return (
     <>
@@ -445,10 +525,10 @@ function FAQ({ lang }: { lang: Language }) {
       <section className="section">
         <div className="faq-list">
           {faqItems.map((question, i) => (
-            <details className="faq-item" key={question.en}>
-              <summary>{question[lang]}</summary>
-              <div className="faq-answer">{faqAnswers[i][lang]}</div>
-            </details>
+            <article className="faq-row" key={question.en}>
+              <h2 className="faq-question">{question[lang]}</h2>
+              <p className="faq-answer">{faqAnswers[i][lang]}</p>
+            </article>
           ))}
         </div>
       </section>
