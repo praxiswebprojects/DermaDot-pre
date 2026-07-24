@@ -25,13 +25,13 @@ const c = (el: string, en: string): Copy => ({ el, en });
 const nav: { route: Route; href: string; label: Copy }[] = [
   { route: "home", href: "/", label: c("Αρχική", "Home") },
   { route: "info", href: "/info", label: c("Πληροφορίες", "Info") },
-  { route: "doctor", href: "/doctor", label: c("Ανδρέας Πετρόπουλος", "About Andreas") },
   { route: "what-is-smp", href: "/what-is-smp", label: c("Τι είναι το SMP", "What is SMP") },
   { route: "results", href: "/results", label: c("Πριν & Μετά", "Before & After") },
   { route: "procedure", href: "/procedure", label: c("Διαδικασία", "Procedure") },
   { route: "aftercare", href: "/aftercare", label: c("Φροντίδα", "Aftercare") },
   { route: "contact", href: "/contact", label: c("Επικοινωνία", "Contact") },
   { route: "faq", href: "/faq", label: c("Συχνές Ερωτήσεις", "FAQ") },
+  { route: "doctor", href: "/doctor", label: c("Ανδρέας Πετρόπουλος", "About Andreas") },
 ];
 
 const topicCards = [
@@ -127,11 +127,24 @@ function useLanguage() {
 }
 
 function Header({ lang, route, onLanguage }: { lang: Language; route: Route; onLanguage: (lang: Language) => void }) {
+  const [menuOpen, setMenuOpen] = useState(false);
   const url = (href: string) => (lang === "en" ? `${href}?lang=en` : href);
 
   return (
     <header className="site-header">
       <div className="header-top">
+        <button
+          className={`menu-toggle ${menuOpen ? "open" : ""}`}
+          type="button"
+          aria-expanded={menuOpen}
+          aria-controls="site-navigation"
+          aria-label={lang === "el" ? "Άνοιγμα κατηγοριών" : "Open categories"}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
         <a href={url("/")} className="brand" aria-label="DermaDot home">
           <img className="brand-logo" src="/logo.png" alt="DermaDot Plus — Andreas Petropoulos" />
         </a>
@@ -152,10 +165,15 @@ function Header({ lang, route, onLanguage }: { lang: Language; route: Route; onL
           </a>
         </div>
       </div>
-      <div className="nav-wrap">
-        <nav className="main-nav" aria-label={lang === "el" ? "Κύρια πλοήγηση" : "Main navigation"}>
+      <div className={`nav-wrap ${menuOpen ? "open" : ""}`}>
+        <nav id="site-navigation" className="main-nav" aria-label={lang === "el" ? "Κύρια πλοήγηση" : "Main navigation"}>
           {nav.map((item) => (
-            <a key={item.route} className={`nav-link ${route === item.route || (route === "applications" && item.route === "info") ? "active" : ""}`} href={url(item.href)}>
+            <a
+              key={item.route}
+              className={`nav-link ${route === item.route || (route === "applications" && item.route === "info") ? "active" : ""}`}
+              href={url(item.href)}
+              onClick={() => setMenuOpen(false)}
+            >
               {item.label[lang]}
             </a>
           ))}

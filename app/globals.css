@@ -2215,3 +2215,126 @@ body {
 .template-about {
   background-color: transparent;
 }
+
+/* Borderless category menu */
+.header-top .brand {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu-toggle {
+  position: absolute;
+  z-index: 3;
+  top: 2px;
+  left: 0;
+  display: flex;
+  width: 44px;
+  height: 42px;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  border-radius: 999px;
+  background: #F4F1EC;
+  transform-origin: center;
+  transition: transform .24s ease, opacity .18s ease;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.site-header .nav-wrap {
+  position: absolute;
+  z-index: 2;
+  top: 82px;
+  left: 38px;
+  width: min(520px, calc(100vw - 76px));
+  max-height: calc(100vh - 110px);
+  margin: 0;
+  padding: 12px;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 18px;
+  background: rgba(20, 20, 20, .97);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  backdrop-filter: blur(18px);
+  transition: opacity .22s ease, transform .28s cubic-bezier(.22, 1, .36, 1);
+}
+
+.site-header .nav-wrap.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.site-header .main-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  overflow: visible;
+}
+
+.site-header .nav-link {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  padding: 13px 16px;
+  border-radius: 10px;
+  color: #B8B8B3 !important;
+  font-size: 12px;
+  text-align: left;
+  transition: color .18s ease, background-color .18s ease;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link.active {
+  background: #202020;
+  color: #F4F1EC !important;
+}
+
+.site-header .nav-link.active {
+  box-shadow: inset 2px 0 0 #B8955A;
+}
+
+@media (max-width: 700px) {
+  .site-header .nav-wrap {
+    top: 72px;
+    left: 18px;
+    width: calc(100vw - 48px);
+    padding: 10px;
+  }
+
+  .site-header .main-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header .nav-link {
+    min-height: 48px;
+  }
+
+  .brand-logo {
+    max-width: 156px;
+  }
+}
