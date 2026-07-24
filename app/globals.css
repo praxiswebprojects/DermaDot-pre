@@ -1753,3 +1753,145 @@ h1::first-letter,
     border-radius: 20px;
   }
 }
+
+/* Final premium black readability palette */
+:root {
+  --ink: #F4F1EC;
+  --paper: #0A0A0A;
+  --white: #F4F1EC;
+  --soft: #141414;
+  --mid: #B8B8B3;
+  --line: #333333;
+  --bordeaux: #B8955A;
+}
+
+html,
+body,
+.site-shell,
+.page,
+.section,
+.site-footer,
+.contact-form,
+.page-hero {
+  background-color: #0A0A0A;
+}
+
+body,
+body * {
+  color: #F4F1EC !important;
+}
+
+p,
+.section-intro,
+.hero-lede,
+.topic-card p,
+.content-card p,
+.step p,
+.case-copy p,
+.faq-answer,
+.page-hero-aside p,
+.note-panel p,
+.about-center > p,
+.about-stat span,
+.form-note,
+.footer-cta p,
+.footer-bottom,
+.application-panel p,
+.applications-heading p {
+  color: #B8B8B3 !important;
+}
+
+.content-card,
+.step,
+.topic-card,
+.case-copy,
+.application-panel,
+.note-panel,
+.page-hero-aside,
+.map-card {
+  background-color: #141414;
+}
+
+.content-grid,
+.steps,
+.topic-grid {
+  background: #333333;
+  border-color: #333333;
+}
+
+.nav-link:hover,
+.nav-link.active,
+.topic-card:hover,
+.application-tab:hover,
+.application-tab.active,
+.application-controls button:hover,
+.lang-toggle:hover,
+.header-call:hover {
+  background-color: #202020;
+}
+
+.site-shell,
+.nav-wrap,
+.content-grid,
+.steps,
+.topic-grid,
+.content-card,
+.step,
+.topic-card,
+.case-card,
+.case-copy,
+.faq-list,
+.faq-row,
+.contact-row,
+.field input,
+.field textarea,
+.application-panel,
+.application-tab,
+.application-controls button,
+.note-panel,
+.map-card {
+  border-color: #333333;
+}
+
+.eyebrow,
+.hero-kicker,
+.about-label,
+.topic-index,
+.step-no,
+.page-code,
+.case-tag,
+.application-panel-number,
+.application-tab.active > span:first-child,
+.lang-toggle .active {
+  color: #B8955A !important;
+}
+
+.eyebrow::before,
+.appointment-only::before {
+  background: #B8955A;
+}
+
+.button,
+.button.secondary {
+  border-color: #B8955A;
+  background: transparent;
+  color: #F4F1EC !important;
+}
+
+.button:hover,
+.button.secondary:hover {
+  border-color: #B8955A;
+  background: #202020;
+}
+
+.field input,
+.field textarea,
+.application-tab {
+  background-color: #141414;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: #B8955A;
+  outline-color: #B8955A;
+}
