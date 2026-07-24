@@ -1594,7 +1594,7 @@ h1::first-letter,
 }
 
 .applications-showcase {
-  width: min(1180px, 100%);
+  width: min(1480px, 100%);
   margin: 0 auto;
 }
 
@@ -1613,29 +1613,44 @@ h1::first-letter,
 }
 
 .applications-viewport {
+  position: relative;
   overflow: hidden;
-  border: 1px solid #333333;
-  border-radius: 30px;
-  background: #141414;
+  scroll-behavior: smooth;
 }
 
 .applications-track {
   display: flex;
-  will-change: transform;
-  transition: transform .72s cubic-bezier(.22, 1, .36, 1);
+  gap: 22px;
+  width: 100%;
 }
 
 .application-slide {
-  position: relative;
-  display: block;
-  min-width: 100%;
-  min-height: clamp(460px, 63vw, 720px);
+  display: flex;
+  min-width: calc((100% - 44px) / 3);
+  min-height: 690px;
+  flex-direction: column;
   overflow: hidden;
-  background-image: url("/hero.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  border: 1px solid #333333;
+  border-radius: 30px;
+  background: #141414;
   color: #F4F1EC;
   text-decoration: none;
+  transition: border-color .25s ease, transform .35s ease;
+}
+
+.application-slide:hover {
+  border-color: #B8955A;
+  transform: translateY(-5px);
+}
+
+.application-slide-image {
+  display: block;
+  min-height: 390px;
+  background-image:
+    linear-gradient(0deg, rgba(5, 5, 5, .16), rgba(5, 5, 5, .08)),
+    url("/hero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .application-image-1 { background-position: 68% center; }
@@ -1646,48 +1661,54 @@ h1::first-letter,
 .application-image-6 { background-position: 76% 58%; }
 .application-image-7 { background-position: 92% 42%; }
 
-.application-slide-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(5, 5, 5, .9) 0%, rgba(5, 5, 5, .44) 52%, rgba(5, 5, 5, .08) 100%),
-    linear-gradient(0deg, rgba(5, 5, 5, .5), transparent 48%);
-  transition: background-color .25s ease;
-}
-
-.application-slide:hover .application-slide-shade {
-  background-color: rgba(184, 149, 90, .08);
-}
-
 .application-slide-copy {
-  position: absolute;
-  z-index: 1;
-  inset: auto clamp(26px, 6vw, 76px) clamp(28px, 6vw, 72px);
-  display: grid;
-  max-width: 760px;
-  gap: 18px;
+  display: flex;
+  min-height: 300px;
+  flex: 1;
+  flex-direction: column;
+  padding: 32px clamp(24px, 3vw, 42px) 38px;
 }
 
-.application-slide-copy small {
-  color: #B8955A !important;
+.application-slide-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 44px;
+}
+
+.application-slide-meta small {
+  color: #B8B8B3 !important;
   font-size: 12px;
   letter-spacing: .16em;
 }
 
-.application-slide-copy strong {
-  max-width: 760px;
-  font-size: clamp(44px, 8vw, 104px);
-  font-weight: 550;
-  letter-spacing: -.065em;
-  line-height: .9;
+.application-slide-meta > span {
+  color: #B8B8B3 !important;
+  font-size: 28px;
+  transition: color .2s ease, transform .2s ease;
 }
 
-.application-slide-copy > span {
+.application-slide:hover .application-slide-meta > span {
+  color: #B8955A !important;
+  transform: translate(3px, -3px);
+}
+
+.application-slide-copy strong {
+  max-width: 100%;
+  font-size: clamp(30px, 3vw, 47px);
+  font-weight: 550;
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.application-slide-link {
   width: fit-content;
-  padding-bottom: 7px;
-  border-bottom: 1px solid #B8955A;
-  color: #F4F1EC;
-  font-size: 14px;
+  margin-top: auto;
+  padding-top: 42px;
+  color: #B8B8B3 !important;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
 .application-controls {
@@ -1787,7 +1808,8 @@ h1::first-letter,
 
 @media (max-width: 900px) {
   .application-slide {
-    min-height: 560px;
+    min-width: calc((100% - 22px) / 2);
+    min-height: 640px;
   }
 
   .application-detail {
@@ -1821,16 +1843,25 @@ h1::first-letter,
 
   .applications-viewport,
   .application-detail-image {
-    border-radius: 20px;
+    border-radius: 0;
   }
 
   .application-slide {
-    min-height: 500px;
-    background-position: 76% center;
+    min-width: 100%;
+    min-height: 610px;
+    border-radius: 22px;
+  }
+
+  .application-slide-image {
+    min-height: 340px;
+  }
+
+  .application-slide-copy {
+    min-height: 270px;
   }
 
   .application-slide-copy strong {
-    font-size: clamp(42px, 14vw, 68px);
+    font-size: clamp(34px, 10vw, 52px);
   }
 }
 

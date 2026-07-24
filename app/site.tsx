@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 type Language = "el" | "en";
 type Route =
@@ -341,16 +341,27 @@ const infoCards = [
 
 function Info({ lang }: { lang: Language }) {
   const [activeApplication, setActiveApplication] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const applicationUrl = (slug: string) => lang === "en" ? `/applications?lang=en#${slug}` : `/applications#${slug}`;
 
   const moveApplication = (direction: number) => {
     setActiveApplication((current) => {
+      const visibleCards = window.innerWidth >= 901 ? 3 : window.innerWidth >= 701 ? 2 : 1;
+      const lastStart = infoCards.length - visibleCards;
       const next = current + direction;
-      if (next < 0) return infoCards.length - 1;
-      if (next >= infoCards.length) return 0;
+      if (next < 0) return lastStart;
+      if (next > lastStart) return 0;
       return next;
     });
   };
+
+  useEffect(() => {
+    const viewport = carouselRef.current;
+    const target = viewport?.querySelector<HTMLElement>(`[data-slide="${activeApplication}"]`);
+    if (viewport && target) {
+      viewport.scrollTo({ left: target.offsetLeft, behavior: "smooth" });
+    }
+  }, [activeApplication]);
 
   return (
     <>
@@ -373,20 +384,24 @@ function Info({ lang }: { lang: Language }) {
               <button type="button" onClick={() => moveApplication(1)} aria-label={lang === "el" ? "Επόμενη εφαρμογή" : "Next application"}>→</button>
             </div>
           </div>
-          <div className="applications-viewport">
-            <div className="applications-track" style={{ transform: `translate3d(-${activeApplication * 100}%, 0, 0)` }}>
+          <div className="applications-viewport" ref={carouselRef}>
+            <div className="applications-track">
               {infoCards.map((card, index) => (
                 <a
-                  className={`application-slide application-image-${index + 1}`}
+                  className="application-slide"
                   href={applicationUrl(card.slug)}
                   key={card.slug}
+                  data-slide={index}
                   aria-label={`${card.title[lang]} — ${lang === "el" ? "περισσότερες πληροφορίες" : "more information"}`}
                 >
-                  <span className="application-slide-shade" />
+                  <span className={`application-slide-image application-image-${index + 1}`} />
                   <span className="application-slide-copy">
-                    <small>0{index + 1}</small>
+                    <span className="application-slide-meta">
+                      <small>0{index + 1} / 07</small>
+                      <span aria-hidden="true">↗</span>
+                    </span>
                     <strong>{card.title[lang]}</strong>
-                    <span>{lang === "el" ? "Δείτε αναλυτικά" : "View details"} ↗</span>
+                    <span className="application-slide-link">{lang === "el" ? "Δείτε περισσότερα" : "View more"}</span>
                   </span>
                 </a>
               ))}
