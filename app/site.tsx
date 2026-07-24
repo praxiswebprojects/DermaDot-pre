@@ -7,6 +7,7 @@ type Route =
   | "home"
   | "info"
   | "applications"
+  | "doctor"
   | "what-is-smp"
   | "results"
   | "procedure"
@@ -24,6 +25,7 @@ const c = (el: string, en: string): Copy => ({ el, en });
 const nav: { route: Route; href: string; label: Copy }[] = [
   { route: "home", href: "/", label: c("Αρχική", "Home") },
   { route: "info", href: "/info", label: c("Πληροφορίες", "Info") },
+  { route: "doctor", href: "/doctor", label: c("Ο Ιατρός", "The Doctor") },
   { route: "what-is-smp", href: "/what-is-smp", label: c("Τι είναι το SMP", "What is SMP") },
   { route: "results", href: "/results", label: c("Πριν & Μετά", "Before & After") },
   { route: "procedure", href: "/procedure", label: c("Διαδικασία", "Procedure") },
@@ -552,6 +554,71 @@ function Aftercare({ lang }: { lang: Language }) {
   );
 }
 
+function Doctor({ lang }: { lang: Language }) {
+  return (
+    <>
+      <PageHero
+        index="08"
+        lang={lang}
+        title={c("Ο Ιατρός", "The Doctor")}
+        intro={c("Η ιστορία, η επαγγελματική διαδρομή και η φιλοσοφία πίσω από κάθε εξατομικευμένη εφαρμογή SMP.", "The story, professional background and philosophy behind every personalised SMP treatment.")}
+      />
+      <section className="section doctor-profile">
+        <div className="doctor-portrait" role="img" aria-label={lang === "el" ? "Ανδρέας Πετρόπουλος — DermaDot" : "Andreas Petropoulos — DermaDot"}>
+          <span>DERMADOT</span>
+        </div>
+        <div className="doctor-introduction">
+          <p className="eyebrow">{lang === "el" ? "Γνωρίστε τον ιδρυτή" : "Meet the founder"}</p>
+          <h2>Andreas<br />Petropoulos</h2>
+          <p className="doctor-lede">
+            {lang === "el"
+              ? "Η φιλοσοφία του DermaDot βασίζεται στην ακρίβεια, την ειλικρινή αξιολόγηση και στον σχεδιασμό που σέβεται τα χαρακτηριστικά κάθε ανθρώπου."
+              : "DermaDot is built around precision, honest consultation and design that respects each person’s individual features."}
+          </p>
+          <p>
+            {lang === "el"
+              ? "Κάθε θεραπεία ξεκινά με ακρόαση. Ο στόχος δεν είναι μια τυποποιημένη αλλαγή, αλλά ένα ήρεμο και φυσικό αποτέλεσμα που ανταποκρίνεται στις πραγματικές ανάγκες, στο δέρμα και στον τρόπο ζωής του πελάτη."
+              : "Every treatment begins with listening. The aim is not a standardised change, but a calm, natural result shaped around the client’s real needs, skin and lifestyle."}
+          </p>
+        </div>
+      </section>
+      <section className="section doctor-story">
+        <div className="section-head">
+          <h2>{lang === "el" ? "Η ιστορία πίσω από το DermaDot." : "The story behind DermaDot."}</h2>
+          <p className="section-intro">
+            {lang === "el"
+              ? "Η επαγγελματική προσέγγιση εξελίσσεται γύρω από μία σταθερή αρχή: το SMP πρέπει να ενσωματώνεται στην εικόνα του ανθρώπου, όχι να την υπερκαλύπτει."
+              : "The professional approach is guided by one consistent principle: SMP should integrate with a person’s appearance, never overpower it."}
+          </p>
+        </div>
+        <div className="doctor-values">
+          <article>
+            <span>01</span>
+            <h3>{lang === "el" ? "Προσωπική διαδρομή" : "Personal journey"}</h3>
+            <p>{lang === "el" ? "Η ιστορία και τα προσωπικά κίνητρα του Ανδρέα θα παρουσιαστούν εδώ, με έμφαση στη διαδρομή που οδήγησε στη δημιουργία του DermaDot." : "Andreas’s story and personal motivation will be presented here, focusing on the path that led to the creation of DermaDot."}</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>{lang === "el" ? "Εκπαίδευση & υπόβαθρο" : "Training & background"}</h3>
+            <p>{lang === "el" ? "Το αναλυτικό επαγγελματικό υπόβαθρο, οι σπουδές και οι πιστοποιήσεις θα προστεθούν μετά την επιβεβαίωση των επίσημων στοιχείων." : "Detailed professional background, education and certifications will be added once the official information has been confirmed."}</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>{lang === "el" ? "Φιλοσοφία εφαρμογής" : "Treatment philosophy"}</h3>
+            <p>{lang === "el" ? "Συντηρητικός σχεδιασμός, σταδιακή πυκνότητα και καθαρή επικοινωνία σε κάθε στάδιο, ώστε το τελικό αποτέλεσμα να παραμένει διακριτικό και προσωπικό." : "Conservative design, gradual density and clear communication at every stage keep the final result subtle and personal."}</p>
+          </article>
+        </div>
+      </section>
+      <section className="section doctor-quote">
+        <p>{lang === "el" ? "«Κάθε εφαρμογή ξεκινά από τον άνθρωπο, όχι από μια έτοιμη γραμμή.»" : "“Every treatment begins with the person, never with a predefined hairline.”"}</p>
+        <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
+          {lang === "el" ? "Γνωρίστε μας από κοντά" : "Meet us in person"} <span aria-hidden="true">→</span>
+        </a>
+      </section>
+    </>
+  );
+}
+
 function Contact({ lang }: { lang: Language }) {
   const [sent, setSent] = useState(false);
   const submit = (event: FormEvent<HTMLFormElement>) => {
@@ -616,6 +683,7 @@ export default function DermaDotSite({ route }: { route: Route }) {
     home: <Home lang={lang} />,
     info: <Info lang={lang} />,
     applications: <Applications lang={lang} />,
+    doctor: <Doctor lang={lang} />,
     "what-is-smp": <WhatIsSmp lang={lang} />,
     results: <Results lang={lang} />,
     procedure: <Procedure lang={lang} />,

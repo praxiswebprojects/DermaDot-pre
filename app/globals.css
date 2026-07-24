@@ -1865,6 +1865,135 @@ h1::first-letter,
   }
 }
 
+/* Doctor profile */
+.doctor-profile {
+  display: grid;
+  gap: clamp(34px, 7vw, 100px);
+  align-items: center;
+}
+
+.doctor-portrait {
+  position: relative;
+  min-height: clamp(520px, 66vw, 760px);
+  overflow: hidden;
+  border: 1px solid #333333;
+  border-radius: 30px;
+  background:
+    linear-gradient(0deg, rgba(5, 5, 5, .42), rgba(5, 5, 5, .02) 55%),
+    url("/hero.png") 83% center / cover no-repeat;
+}
+
+.doctor-portrait span {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  color: #B8955A !important;
+  font-size: 11px;
+  letter-spacing: .22em;
+}
+
+.doctor-introduction h2 {
+  margin: 20px 0 34px;
+  font-size: clamp(52px, 8vw, 112px);
+  font-weight: 540;
+  letter-spacing: -.07em;
+  line-height: .82;
+}
+
+.doctor-introduction > p:not(.eyebrow) {
+  max-width: 660px;
+  margin: 0 0 22px;
+  color: #B8B8B3 !important;
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.72;
+}
+
+.doctor-introduction .doctor-lede {
+  color: #F4F1EC !important;
+  font-size: clamp(21px, 2.2vw, 29px) !important;
+  line-height: 1.48 !important;
+}
+
+.doctor-story {
+  border-top: 1px solid #333333;
+}
+
+.doctor-values {
+  display: grid;
+  gap: 1px;
+  margin-top: clamp(46px, 7vw, 90px);
+  background: #333333;
+  border: 1px solid #333333;
+}
+
+.doctor-values article {
+  min-height: 290px;
+  padding: clamp(28px, 4vw, 50px);
+  background: #141414;
+}
+
+.doctor-values article > span {
+  display: block;
+  margin-bottom: 62px;
+  color: #B8955A !important;
+  font-size: 11px;
+  letter-spacing: .16em;
+}
+
+.doctor-values h3 {
+  margin: 0 0 18px;
+  font-size: clamp(25px, 2.6vw, 38px);
+  font-weight: 540;
+  letter-spacing: -.04em;
+}
+
+.doctor-values p {
+  max-width: 500px;
+  margin: 0;
+  color: #B8B8B3 !important;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.doctor-quote {
+  display: grid;
+  gap: 38px;
+  justify-items: start;
+  border-radius: 28px;
+  background: #141414;
+}
+
+.doctor-quote > p {
+  max-width: 1080px;
+  margin: 0;
+  color: #F4F1EC !important;
+  font-size: clamp(34px, 5.8vw, 82px);
+  font-weight: 520;
+  letter-spacing: -.055em;
+  line-height: 1.04;
+}
+
+@media (min-width: 901px) {
+  .doctor-profile {
+    grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr);
+  }
+
+  .doctor-values {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .doctor-portrait,
+  .doctor-quote {
+    border-radius: 20px;
+  }
+
+  .doctor-portrait {
+    min-height: 520px;
+  }
+}
+
 /* Final premium black readability palette */
 :root {
   --ink: #F4F1EC;
