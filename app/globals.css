@@ -980,7 +980,7 @@ h1::first-letter,
 /* Reference-led black edition */
 :root {
   --ink: #ffffff;
-  --paper: #000000;
+  --paper: #0A0A0A;
   --white: #ffffff;
   --soft: #101010;
   --mid: #a8a8a8;
@@ -999,7 +999,7 @@ body,
 .topic-card,
 .case-copy,
 .contact-form {
-  background: #000000;
+  background: #0A0A0A;
 }
 
 body,
@@ -1131,7 +1131,7 @@ h1::first-letter,
   margin: 0;
   overflow: hidden;
   border-radius: 28px;
-  background: #000000 url("/hero.png") center right / cover no-repeat;
+  background: #0A0A0A url("/hero.png") center right / cover no-repeat;
 }
 
 .template-hero-shade {
@@ -1300,7 +1300,7 @@ h1::first-letter,
 
 .page-hero {
   padding-top: 120px;
-  background: #000000;
+  background: #0A0A0A;
 }
 
 .page-hero-aside,
@@ -1308,7 +1308,7 @@ h1::first-letter,
 .site-footer,
 .map-card,
 .hero-visual {
-  background-color: #000000;
+  background-color: #0A0A0A;
 }
 
 .content-grid,
@@ -1347,7 +1347,7 @@ h1::first-letter,
 
 .field input,
 .field textarea {
-  background: #000000;
+  background: #0A0A0A;
 }
 
 .field input::placeholder,
@@ -1455,7 +1455,7 @@ h1::first-letter,
   }
 
   .template-hero-shade {
-    background: linear-gradient(0deg, #000000 0%, rgba(0,0,0,.96) 34%, rgba(0,0,0,.32) 72%, rgba(0,0,0,.38) 100%);
+    background: linear-gradient(0deg, #0A0A0A 0%, rgba(10,10,10,.96) 34%, rgba(10,10,10,.32) 72%, rgba(10,10,10,.38) 100%);
   }
 
   .template-hero-copy {
@@ -1616,7 +1616,7 @@ h1::first-letter,
   padding: 18px 20px;
   border: 0;
   border-bottom: 1px solid #333333;
-  background: #000000;
+  background: #0A0A0A;
   color: #ffffff;
   cursor: pointer;
   font: inherit;
