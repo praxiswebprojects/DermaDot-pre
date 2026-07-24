@@ -567,19 +567,23 @@ h1::first-letter,
 }
 
 .note-panel {
+  display: grid;
+  gap: 32px;
   padding: 42px 24px;
   background: var(--ink);
   color: var(--white);
 }
 
-.note-panel p.note-statement {
-  max-width: 1180px;
+.note-panel h2 {
   margin: 0;
-  color: var(--white);
-  font-size: clamp(28px, 4.2vw, 62px);
-  font-weight: 520;
-  letter-spacing: -.045em;
-  line-height: 1.08;
+}
+
+.note-panel p {
+  max-width: 540px;
+  margin: 0;
+  color: #bfbfba;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .results-grid {
@@ -909,7 +913,8 @@ h1::first-letter,
   }
 
   .note-panel {
-    padding: 64px 52px;
+    grid-template-columns: 1fr 1fr;
+    padding: 54px 44px;
   }
 
   .footer-top {
@@ -1677,6 +1682,11 @@ h1::first-letter,
   line-height: .98;
 }
 
+.application-panel h2.application-panel-sentence {
+  font-size: clamp(32px, 4.6vw, 64px);
+  line-height: 1.06;
+}
+
 .application-panel p {
   max-width: 620px;
   margin: 0;
@@ -1794,10 +1804,6 @@ p,
 .application-panel p,
 .applications-heading p {
   color: #B8B8B3 !important;
-}
-
-.note-panel p.note-statement {
-  color: #F4F1EC !important;
 }
 
 .content-card,
