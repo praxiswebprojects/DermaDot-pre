@@ -164,6 +164,37 @@ a {
   display: none;
 }
 
+/* Reference-matched charcoal site canvas */
+:root {
+  --paper: #1C1C1C;
+}
+
+html {
+  background-color: #191919;
+}
+
+body {
+  background-color: #191919;
+  background-image: radial-gradient(
+    circle at 50% 42%,
+    #282828 0%,
+    #222222 34%,
+    #1C1C1C 68%,
+    #191919 100%
+  );
+  background-attachment: fixed;
+}
+
+.site-shell,
+.page,
+.section,
+.site-footer,
+.page-hero,
+.contact-form,
+.template-about {
+  background-color: transparent;
+}
+
 .nav-link {
   position: relative;
   flex: 0 0 auto;
