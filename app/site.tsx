@@ -21,6 +21,7 @@ type Copy = {
 const c = (el: string, en: string): Copy => ({ el, en });
 
 const nav: { route: Route; href: string; label: Copy }[] = [
+  { route: "home", href: "/", label: c("Αρχική", "Home") },
   { route: "info", href: "/info", label: c("Πληροφορίες", "Info") },
   { route: "what-is-smp", href: "/what-is-smp", label: c("Τι είναι το SMP", "What is SMP") },
   { route: "results", href: "/results", label: c("Πριν & Μετά", "Before & After") },

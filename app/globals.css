@@ -1895,3 +1895,16 @@ p,
   border-color: #B8955A;
   outline-color: #B8955A;
 }
+
+.nav-wrap {
+  width: min(820px, 60vw);
+}
+
+.main-nav {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.main-nav::-webkit-scrollbar {
+  display: none;
+}
