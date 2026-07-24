@@ -356,8 +356,18 @@ function Info({ lang }: { lang: Language }) {
           >
             <span className="application-panel-number">0{activeApplication + 1} / 07</span>
             <div>
-              <h2>{activeCard.title[lang]}</h2>
-              <p>{activeCard.text[lang]}</p>
+              {activeApplication === 2 ? (
+                <h2 className="application-panel-sentence">
+                  {lang === "el"
+                    ? "Οι ουλές από μεταμόσχευση ενσωματώνονται οπτικά στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους."
+                    : "Hair-transplant scars are visually blended into the surrounding scalp, reducing their contrast."}
+                </h2>
+              ) : (
+                <>
+                  <h2>{activeCard.title[lang]}</h2>
+                  <p>{activeCard.text[lang]}</p>
+                </>
+              )}
             </div>
             <div className="application-controls">
               <button type="button" onClick={() => moveApplication(-1)} aria-label={lang === "el" ? "Προηγούμενη εφαρμογή" : "Previous application"}>←</button>

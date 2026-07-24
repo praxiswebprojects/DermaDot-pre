@@ -1682,6 +1682,11 @@ h1::first-letter,
   line-height: .98;
 }
 
+.application-panel h2.application-panel-sentence {
+  font-size: clamp(32px, 4.6vw, 64px);
+  line-height: 1.06;
+}
+
 .application-panel p {
   max-width: 620px;
   margin: 0;
