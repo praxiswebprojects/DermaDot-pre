@@ -304,16 +304,68 @@ const infoCards = [
 ];
 
 function Info({ lang }: { lang: Language }) {
+  const [activeApplication, setActiveApplication] = useState(0);
+  const activeCard = infoCards[activeApplication];
+
+  const moveApplication = (direction: number) => {
+    setActiveApplication((current) => {
+      const next = current + direction;
+      if (next < 0) return infoCards.length - 1;
+      if (next >= infoCards.length) return 0;
+      return next;
+    });
+  };
+
   return (
     <>
-      <PageHero index="01" lang={lang} title={c("Εφαρμογές SMP", "SMP Applications")} intro={c("Κάθε εφαρμογή ξεκινά με σωστή διάγνωση της ανάγκης και εξατομικευμένο σχεδιασμό.", "Every application begins with a clear understanding of the need and an individual treatment design.")} />
-      <section className="section">
-        <div className="section-head">
-          <h2>{lang === "el" ? "Επτά εξειδικευμένες εφαρμογές." : "Seven specialist applications."}</h2>
-          <p className="section-intro">{lang === "el" ? "Το SMP προσαρμόζεται σε διαφορετικές μορφές τριχόπτωσης, αραίωσης και ουλών — ποτέ με μία γενική λύση." : "SMP adapts to different forms of hair loss, thinning and scarring — never with a one-size-fits-all solution."}</p>
+      <section className="section applications-page">
+        <div className="applications-heading">
+          <span className="title-quote title-quote-open" aria-hidden="true">“</span>
+          <h1>{lang === "el" ? "Εξειδικευμένες εφαρμογές SMP" : "Specialised SMP Applications"}</h1>
+          <span className="title-quote title-quote-close" aria-hidden="true">”</span>
+          <p>
+            {lang === "el"
+              ? "Επιλέξτε μία εφαρμογή για να δείτε πώς το SMP προσαρμόζεται σε κάθε διαφορετική ανάγκη."
+              : "Select an application to see how SMP is adapted to each individual need."}
+          </p>
         </div>
-        <div className="content-grid applications-grid">
-          {infoCards.map((card) => <article className="content-card" key={card.title.en}><h3>{card.title[lang]}</h3><p>{card.text[lang]}</p></article>)}
+        <div className="applications-carousel">
+          <div className="applications-tabs" role="tablist" aria-label={lang === "el" ? "Εφαρμογές SMP" : "SMP applications"}>
+            {infoCards.map((card, index) => (
+              <button
+                className={`application-tab ${activeApplication === index ? "active" : ""}`}
+                id={`application-tab-${index}`}
+                key={card.title.en}
+                type="button"
+                role="tab"
+                aria-controls="application-panel"
+                aria-selected={activeApplication === index}
+                tabIndex={activeApplication === index ? 0 : -1}
+                onClick={() => setActiveApplication(index)}
+              >
+                <span>0{index + 1}</span>
+                <strong>{card.title[lang]}</strong>
+                <span aria-hidden="true">→</span>
+              </button>
+            ))}
+          </div>
+          <article
+            className="application-panel"
+            id="application-panel"
+            role="tabpanel"
+            aria-labelledby={`application-tab-${activeApplication}`}
+            key={`${lang}-${activeApplication}`}
+          >
+            <span className="application-panel-number">0{activeApplication + 1} / 07</span>
+            <div>
+              <h2>{activeCard.title[lang]}</h2>
+              <p>{activeCard.text[lang]}</p>
+            </div>
+            <div className="application-controls">
+              <button type="button" onClick={() => moveApplication(-1)} aria-label={lang === "el" ? "Προηγούμενη εφαρμογή" : "Previous application"}>←</button>
+              <button type="button" onClick={() => moveApplication(1)} aria-label={lang === "el" ? "Επόμενη εφαρμογή" : "Next application"}>→</button>
+            </div>
+          </article>
         </div>
       </section>
       <section className="section note-panel">
