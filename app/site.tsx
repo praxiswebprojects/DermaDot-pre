@@ -25,7 +25,7 @@ const c = (el: string, en: string): Copy => ({ el, en });
 const nav: { route: Route; href: string; label: Copy }[] = [
   { route: "home", href: "/", label: c("Αρχική", "Home") },
   { route: "info", href: "/info", label: c("Πληροφορίες", "Info") },
-  { route: "doctor", href: "/doctor", label: c("Ο Ιατρός", "The Doctor") },
+  { route: "doctor", href: "/doctor", label: c("Ανδρέας Πετρόπουλος", "About Andreas") },
   { route: "what-is-smp", href: "/what-is-smp", label: c("Τι είναι το SMP", "What is SMP") },
   { route: "results", href: "/results", label: c("Πριν & Μετά", "Before & After") },
   { route: "procedure", href: "/procedure", label: c("Διαδικασία", "Procedure") },
@@ -555,62 +555,127 @@ function Aftercare({ lang }: { lang: Language }) {
 }
 
 function Doctor({ lang }: { lang: Language }) {
+  const chapters = [
+    {
+      number: "01",
+      title: c("Πειθαρχία και προσωπική διαδρομή", "Discipline and personal journey"),
+      paragraphs: [
+        c(
+          "Από πολύ μικρή ηλικία έμαθα να λειτουργώ με πειθαρχία, συνέπεια και αφοσίωση στους στόχους μου. Ο αθλητισμός αποτελεί αναπόσπαστο κομμάτι της ζωής μου από την ηλικία των πέντε ετών και μου δίδαξε ότι η πραγματική επιτυχία χτίζεται μέσα από καθημερινή προσπάθεια, συνεχή εξέλιξη και σεβασμό προς τον εαυτό μας.",
+          "From a very young age, I learned to approach life with discipline, consistency and dedication to my goals. Sport has been an inseparable part of my life since the age of five, teaching me that real success is built through daily effort, continuous development and respect for ourselves."
+        ),
+        c(
+          "Την ίδια φιλοσοφία ακολουθώ και στην επαγγελματική μου πορεία. Πιστεύω πως όταν αναλαμβάνεις κάτι, οφείλεις να δίνεις το 100% του εαυτού σου, χωρίς εκπτώσεις στην ποιότητα και στο τελικό αποτέλεσμα.",
+          "I follow the same philosophy throughout my professional life. I believe that when you undertake something, you must give it one hundred per cent, without compromising on quality or the final result."
+        ),
+        c(
+          "Παράλληλα, δραστηριοποιούμαι επιχειρηματικά στη Γερμανία, όπου διατηρώ επιχείρηση στον χώρο της εμπορίας τροφίμων.",
+          "Alongside my work in SMP, I am also active in business in Germany, where I run a company in the food-trading sector."
+        ),
+      ],
+    },
+    {
+      number: "02",
+      title: c("Η προσωπική εμπειρία που με οδήγησε στο SMP", "The personal experience that led me to SMP"),
+      paragraphs: [
+        c(
+          "Η πρώτη μου επαφή με το Scalp Micropigmentation (SMP) προέκυψε μέσα από μια προσωπική εμπειρία της οικογένειάς μου. Ο πατέρας μου αντιμετώπιζε για πολλά χρόνια αλωπεκία και είχε υποβληθεί σε αρκετές μεταμοσχεύσεις μαλλιών, χωρίς να πετύχει το αποτέλεσμα που επιθυμούσε. Όταν αποφάσισε να προχωρήσει σε θεραπεία SMP, η αλλαγή στην εμφάνισή του και, κυρίως, στην αυτοπεποίθησή του ήταν πραγματικά εντυπωσιακή.",
+          "My first encounter with Scalp Micropigmentation (SMP) came through a personal experience in my family. My father had lived with alopecia for many years and had undergone several hair transplants without achieving the result he wanted. When he decided to have SMP treatment, the change in his appearance—and, above all, in his confidence—was truly remarkable."
+        ),
+        c(
+          "Αυτή η εμπειρία αποτέλεσε την αφορμή να γνωρίσω έναν εντελώς διαφορετικό κόσμο. Αποφάσισα να εμβαθύνω στην τεχνική του SMP και να εκπαιδευτώ δίπλα σε καταξιωμένους επαγγελματίες του χώρου.",
+          "That experience introduced me to an entirely different world. I decided to study the SMP technique in depth and train alongside established professionals in the field."
+        ),
+      ],
+    },
+    {
+      number: "03",
+      title: c("Εξειδικευμένη εκπαίδευση", "Specialist training"),
+      paragraphs: [
+        c(
+          "Στο πλαίσιο αυτό, έχω παρακολουθήσει πληθώρα εξειδικευμένων εκπαιδευτικών προγραμμάτων και σεμιναρίων, τόσο εντός όσο και εκτός Ελλάδας, διευρύνοντας τις γνώσεις μου πάνω σε διαφορετικές τεχνικές, σύγχρονες μεθόδους εφαρμογής και τις πιο εξελιγμένες προσεγγίσεις του SMP.",
+          "As part of this journey, I have attended numerous specialist training programmes and seminars in Greece and abroad, expanding my knowledge of different techniques, modern application methods and the most advanced approaches to SMP."
+        ),
+      ],
+    },
+    {
+      number: "04",
+      title: c("Πάθος, τέχνη και προσωπική δέσμευση", "Passion, artistry and personal commitment"),
+      paragraphs: [
+        c(
+          "Δεν επέλεξα το SMP απλώς ως επάγγελμα.",
+          "I did not choose SMP simply as a profession."
+        ),
+        c(
+          "Το επέλεξα γιατί πίστεψα πραγματικά στη δύναμή του να αλλάζει τη ζωή ενός ανθρώπου. Για εμένα, το SMP δεν είναι μόνο μια αισθητική εφαρμογή. Είναι ένας συνδυασμός τέχνης, τεχνικής ακρίβειας και ανθρώπινης ψυχολογίας, που μπορεί να χαρίσει ξανά αυτοπεποίθηση σε έναν άνθρωπο.",
+          "I chose it because I genuinely believed in its power to change a person’s life. To me, SMP is more than an aesthetic treatment. It combines artistry, technical precision and an understanding of human psychology, with the ability to restore someone’s confidence."
+        ),
+        c(
+          "Κάθε εφαρμογή αποτελεί μια ξεχωριστή ευθύνη. Στόχος μου είναι κάθε άνθρωπος που με εμπιστεύεται να αποκτά ένα αποτέλεσμα απόλυτα φυσικό, προσαρμοσμένο στα χαρακτηριστικά του προσώπου του και στις προσωπικές του ανάγκες, ώστε να αισθάνεται ξανά σιγουριά κάθε φορά που κοιτάζει τον εαυτό του στον καθρέφτη.",
+          "Every treatment carries its own responsibility. My goal is for every person who trusts me to receive a completely natural result, tailored to their facial features and personal needs, so they can feel confident again whenever they look in the mirror."
+        ),
+        c(
+          "Για μένα, το SMP δεν είναι απλώς μια υπηρεσία ούτε απλώς ένα επάγγελμα.",
+          "For me, SMP is neither simply a service nor simply a profession."
+        ),
+      ],
+    },
+  ];
+
   return (
     <>
       <PageHero
         index="08"
         lang={lang}
-        title={c("Ο Ιατρός", "The Doctor")}
-        intro={c("Η ιστορία, η επαγγελματική διαδρομή και η φιλοσοφία πίσω από κάθε εξατομικευμένη εφαρμογή SMP.", "The story, professional background and philosophy behind every personalised SMP treatment.")}
+        title={c("Γνώρισε τον Ανδρέα Πετρόπουλο", "Meet Andreas Petropoulos")}
+        intro={c("Η προσωπική ιστορία, η εκπαίδευση και η φιλοσοφία πίσω από κάθε εφαρμογή SMP.", "The personal story, training and philosophy behind every SMP treatment.")}
       />
       <section className="section doctor-profile">
         <div className="doctor-portrait" role="img" aria-label={lang === "el" ? "Ανδρέας Πετρόπουλος — DermaDot" : "Andreas Petropoulos — DermaDot"}>
           <span>DERMADOT</span>
         </div>
         <div className="doctor-introduction">
-          <p className="eyebrow">{lang === "el" ? "Γνωρίστε τον ιδρυτή" : "Meet the founder"}</p>
+          <p className="eyebrow">{lang === "el" ? "Προσωπικό προφίλ" : "Personal profile"}</p>
           <h2>Andreas<br />Petropoulos</h2>
           <p className="doctor-lede">
             {lang === "el"
-              ? "Η φιλοσοφία του DermaDot βασίζεται στην ακρίβεια, την ειλικρινή αξιολόγηση και στον σχεδιασμό που σέβεται τα χαρακτηριστικά κάθε ανθρώπου."
-              : "DermaDot is built around precision, honest consultation and design that respects each person’s individual features."}
+              ? "Είμαι ο Ανδρέας Πετρόπουλος, απόφοιτος του Αρσακείου Σχολείου και του Πανεπιστημίου Queen Margaret στη Σκωτία, όπου σπούδασα Management."
+              : "I am Andreas Petropoulos, a graduate of Arsakeio School and Queen Margaret University in Scotland, where I studied Management."}
           </p>
           <p>
             {lang === "el"
-              ? "Κάθε θεραπεία ξεκινά με ακρόαση. Ο στόχος δεν είναι μια τυποποιημένη αλλαγή, αλλά ένα ήρεμο και φυσικό αποτέλεσμα που ανταποκρίνεται στις πραγματικές ανάγκες, στο δέρμα και στον τρόπο ζωής του πελάτη."
-              : "Every treatment begins with listening. The aim is not a standardised change, but a calm, natural result shaped around the client’s real needs, skin and lifestyle."}
+              ? "Η πορεία μου συνδυάζει την πειθαρχία του αθλητισμού, την επιχειρηματική εμπειρία και τη βαθιά προσωπική σύνδεση με τη δύναμη του Scalp Micropigmentation."
+              : "My journey brings together the discipline of sport, business experience and a deeply personal connection to the transformative power of Scalp Micropigmentation."}
           </p>
         </div>
       </section>
       <section className="section doctor-story">
         <div className="section-head">
-          <h2>{lang === "el" ? "Η ιστορία πίσω από το DermaDot." : "The story behind DermaDot."}</h2>
+          <h2>{lang === "el" ? "Η ιστορία μου." : "My story."}</h2>
           <p className="section-intro">
             {lang === "el"
-              ? "Η επαγγελματική προσέγγιση εξελίσσεται γύρω από μία σταθερή αρχή: το SMP πρέπει να ενσωματώνεται στην εικόνα του ανθρώπου, όχι να την υπερκαλύπτει."
-              : "The professional approach is guided by one consistent principle: SMP should integrate with a person’s appearance, never overpower it."}
+              ? "Μια πορεία που ξεκίνησε από την πειθαρχία, διαμορφώθηκε μέσα από μια οικογενειακή εμπειρία και εξελίχθηκε σε προσωπική δέσμευση προς κάθε άνθρωπο που με εμπιστεύεται."
+              : "A journey that began with discipline, was shaped by a family experience and grew into a personal commitment to every person who places their trust in me."}
           </p>
         </div>
-        <div className="doctor-values">
-          <article>
-            <span>01</span>
-            <h3>{lang === "el" ? "Προσωπική διαδρομή" : "Personal journey"}</h3>
-            <p>{lang === "el" ? "Η ιστορία και τα προσωπικά κίνητρα του Ανδρέα θα παρουσιαστούν εδώ, με έμφαση στη διαδρομή που οδήγησε στη δημιουργία του DermaDot." : "Andreas’s story and personal motivation will be presented here, focusing on the path that led to the creation of DermaDot."}</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>{lang === "el" ? "Εκπαίδευση & υπόβαθρο" : "Training & background"}</h3>
-            <p>{lang === "el" ? "Το αναλυτικό επαγγελματικό υπόβαθρο, οι σπουδές και οι πιστοποιήσεις θα προστεθούν μετά την επιβεβαίωση των επίσημων στοιχείων." : "Detailed professional background, education and certifications will be added once the official information has been confirmed."}</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>{lang === "el" ? "Φιλοσοφία εφαρμογής" : "Treatment philosophy"}</h3>
-            <p>{lang === "el" ? "Συντηρητικός σχεδιασμός, σταδιακή πυκνότητα και καθαρή επικοινωνία σε κάθε στάδιο, ώστε το τελικό αποτέλεσμα να παραμένει διακριτικό και προσωπικό." : "Conservative design, gradual density and clear communication at every stage keep the final result subtle and personal."}</p>
-          </article>
+        <div className="doctor-biography">
+          {chapters.map((chapter) => (
+            <article className="doctor-chapter" key={chapter.number}>
+              <span>{chapter.number}</span>
+              <div>
+                <h3>{chapter.title[lang]}</h3>
+                {chapter.paragraphs.map((paragraph, index) => (
+                  <p className={chapter.number === "04" && index === 0 ? "doctor-emphasis" : ""} key={paragraph.en}>
+                    {paragraph[lang]}
+                  </p>
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
       </section>
       <section className="section doctor-quote">
-        <p>{lang === "el" ? "«Κάθε εφαρμογή ξεκινά από τον άνθρωπο, όχι από μια έτοιμη γραμμή.»" : "“Every treatment begins with the person, never with a predefined hairline.”"}</p>
+        <p>{lang === "el" ? "«Είναι πάθος, τέχνη και προσωπική δέσμευση απέναντι σε κάθε άνθρωπο που επιλέγει να με εμπιστευτεί.»" : "“It is passion, artistry and a personal commitment to every person who chooses to place their trust in me.”"}</p>
         <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
           {lang === "el" ? "Γνωρίστε μας από κοντά" : "Meet us in person"} <span aria-hidden="true">→</span>
         </a>
