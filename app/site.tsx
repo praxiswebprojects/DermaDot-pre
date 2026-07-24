@@ -181,7 +181,6 @@ function Footer({ lang }: { lang: Language }) {
       <div className="footer-bottom">
         <span>© 2026 DERMADOT</span>
         <span>{lang === "el" ? "ΜΙΚΡΟΧΡΩΜΑΤΩΣΗ ΤΡΙΧΩΤΟΥ • ΑΘΗΝΑ" : "SCALP MICROPIGMENTATION • ATHENS"}</span>
-        <a href="/photo-manager">{lang === "el" ? "ΔΙΑΧΕΙΡΙΣΗ ΦΩΤΟΓΡΑΦΙΩΝ" : "MANAGE PHOTOS"}</a>
       </div>
     </footer>
   );
@@ -320,9 +319,7 @@ function Info({ lang }: { lang: Language }) {
     <>
       <section className="section applications-page">
         <div className="applications-heading">
-          <span className="title-quote title-quote-open" aria-hidden="true">“</span>
           <h1>{lang === "el" ? "Εξειδικευμένες εφαρμογές SMP" : "Specialised SMP Applications"}</h1>
-          <span className="title-quote title-quote-close" aria-hidden="true">”</span>
           <p>
             {lang === "el"
               ? "Επιλέξτε μία εφαρμογή για να δείτε πώς το SMP προσαρμόζεται σε κάθε διαφορετική ανάγκη."
@@ -416,7 +413,6 @@ function Results({ lang }: { lang: Language }) {
       <PageHero index="03" lang={lang} title={c("Πριν & Μετά", "Before & After")} intro={c("Το καλό αποτέλεσμα δεν αλλάζει ποιοι είστε. Αποκαθιστά την ισορροπία με τρόπο διακριτικό.", "A good result does not change who you are. It restores balance in an understated way.")} />
       <section className="section">
         <div className="section-head"><h2>{lang === "el" ? "Τέσσερις διαφορετικοί στόχοι." : "Four different goals."}</h2><p className="section-intro">{lang === "el" ? "Οι παρακάτω κατηγορίες παρουσιάζουν ενδεικτικές εφαρμογές. Τα πραγματικά αποτελέσματα διαφέρουν ανά άτομο." : "The categories below show representative applications. Individual outcomes vary."}</p></div>
-        <PublicPhotoGallery lang={lang} />
         <div className="results-grid">
           {cases.map((item, i) => {
             const [elTitle, elText] = item.el.split("|");
@@ -427,55 +423,6 @@ function Results({ lang }: { lang: Language }) {
       </section>
       <section className="section note-panel"><h2>{lang === "el" ? "Το φυσικό αποτέλεσμα χτίζεται σταδιακά." : "Natural results are built gradually."}</h2><p>{lang === "el" ? "Δεν επιδιώκουμε υπερβολική πυκνότητα από την πρώτη συνεδρία. Κάθε επίπεδο αξιολογείται μετά την επούλωση, ώστε η επόμενη εφαρμογή να παραμένει ελεγχόμενη και αρμονική." : "We do not chase excessive density in the first session. Each layer is assessed after healing so the next application stays controlled and harmonious."}</p></section>
     </>
-  );
-}
-
-type GalleryPhoto = {
-  id: string;
-  alt: string;
-  uploadedAt: string;
-  url: string;
-};
-
-function PublicPhotoGallery({ lang }: { lang: Language }) {
-  const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
-
-  useEffect(() => {
-    let active = true;
-    fetch("/api/photos", { cache: "no-store" })
-      .then((response) => response.json())
-      .then((data: { photos?: GalleryPhoto[] }) => {
-        if (active) setPhotos(data.photos ?? []);
-      })
-      .catch(() => {
-        if (active) setPhotos([]);
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  if (photos.length === 0) return null;
-
-  return (
-    <div className="public-photo-section">
-      <div className="public-photo-heading">
-        <span className="eyebrow">{lang === "el" ? "Πραγματικά αποτελέσματα" : "Real results"}</span>
-        <p>
-          {lang === "el"
-            ? "Φωτογραφίες που έχουν επιλεγεί και δημοσιευτεί από το DermaDot."
-            : "Photos selected and published by DermaDot."}
-        </p>
-      </div>
-      <div className="public-photo-grid">
-        {photos.map((photo) => (
-          <figure className="public-photo" key={photo.id}>
-            <img src={photo.url} alt={photo.alt} loading="lazy" />
-            <figcaption>{photo.alt}</figcaption>
-          </figure>
-        ))}
-      </div>
-    </div>
   );
 }
 
