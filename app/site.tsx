@@ -6,6 +6,7 @@ type Language = "el" | "en";
 type Route =
   | "home"
   | "info"
+  | "applications"
   | "what-is-smp"
   | "results"
   | "procedure"
@@ -152,7 +153,7 @@ function Header({ lang, route, onLanguage }: { lang: Language; route: Route; onL
       <div className="nav-wrap">
         <nav className="main-nav" aria-label={lang === "el" ? "Κύρια πλοήγηση" : "Main navigation"}>
           {nav.map((item) => (
-            <a key={item.route} className={`nav-link ${route === item.route ? "active" : ""}`} href={url(item.href)}>
+            <a key={item.route} className={`nav-link ${route === item.route || (route === "applications" && item.route === "info") ? "active" : ""}`} href={url(item.href)}>
               {item.label[lang]}
             </a>
           ))}
@@ -274,38 +275,73 @@ function Home({ lang }: { lang: Language }) {
 
 const infoCards = [
   {
+    slug: "andriki-alopekia",
     title: c("Ανδρική αλωπεκία", "Male hair loss"),
     text: c("Δημιουργεί την εικόνα ενός φυσικά ξυρισμένου τριχωτού και επαναπροσδιορίζει διακριτικά τη γραμμή των μαλλιών.", "Creates the appearance of a naturally shaved scalp and subtly redefines the hairline."),
+    details: [
+      c("Η εφαρμογή σχεδιάζεται σύμφωνα με το σχήμα του προσώπου, την ηλικία και το υπάρχον μοτίβο αραίωσης. Η γραμμή των μαλλιών χαράσσεται συντηρητικά ώστε να παραμένει φυσική με την πάροδο του χρόνου.", "Treatment is designed around facial structure, age and the existing pattern of hair loss. The hairline is kept deliberately conservative so it continues to look natural over time."),
+      c("Με διαδοχικά, ελαφριά επίπεδα χρωστικής δημιουργείται η οπτική εικόνα πολύ κοντά ξυρισμένων τριχοθυλακίων, χωρίς να προστεθεί πραγματικός όγκος ή τρίχα.", "Successive light layers of pigment create the visual appearance of closely shaved follicles without adding actual volume or hair."),
+    ],
   },
   {
+    slug: "gynaikeia-araiosi",
     title: c("Γυναικεία αραίωση", "Female thinning"),
     text: c("Μειώνει την αντίθεση του ορατού δέρματος ανάμεσα στα υπάρχοντα μαλλιά, προσφέροντας την εντύπωση μεγαλύτερης πυκνότητας.", "Reduces the contrast of visible scalp between existing hairs, creating the impression of greater density."),
+    details: [
+      c("Το SMP τοποθετείται ανάμεσα στις υπάρχουσες τρίχες, με στόχο να μειώσει την έντονη αντίθεση ανάμεσα στο χρώμα των μαλλιών και το δέρμα.", "SMP is placed between existing hairs to reduce the strong contrast between hair colour and visible scalp."),
+      c("Η τεχνική δεν επιμηκύνει ούτε πυκνώνει τις τρίχες. Η καταλληλότητα εξαρτάται από τη σταθερότητα της αραίωσης, την κατάσταση του δέρματος και την επιθυμητή εικόνα.", "The technique does not lengthen or thicken hair. Suitability depends on the stability of thinning, scalp condition and the desired appearance."),
+    ],
   },
   {
+    slug: "oules-metamosxefsis",
     title: c("Ουλές από μεταμόσχευση", "Hair-transplant scars"),
     text: c("Ενσωματώνει οπτικά ώριμες ουλές FUE ή FUT στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
+    details: [
+      c("Οι πλήρως επουλωμένες ουλές FUE ή FUT αξιολογούνται ως προς το χρώμα, την υφή, το πάχος και τη θέση τους πριν ξεκινήσει οποιαδήποτε εφαρμογή.", "Fully healed FUE or FUT scars are assessed for colour, texture, thickness and position before any treatment begins."),
+      c("Μικροσκοπικά σημεία χρωστικής τοποθετούνται μέσα και γύρω από την ουλή ώστε να ελαττωθεί η οπτική διαφορά. Η ουλή δεν αφαιρείται, αλλά μπορεί να γίνει αισθητά λιγότερο εμφανής.", "Microscopic pigment impressions are placed within and around the scar to soften visual contrast. The scar is not removed, but it may become noticeably less visible."),
+    ],
   },
   {
+    slug: "oules-travmatismon",
     title: c("Ουλές από τραυματισμούς", "Trauma scars"),
     text: c("Μπορεί να καμουφλάρει επιλεγμένες, πλήρως επουλωμένες ουλές έπειτα από προσεκτική αξιολόγηση.", "Can camouflage selected, fully healed scars after careful assessment."),
+    details: [
+      c("Κάθε ουλή αντιδρά διαφορετικά στη χρωστική. Εξετάζουμε την ωριμότητα, την υφή και την αιμάτωσή της και προχωρούμε μόνο όταν η περιοχή είναι ασφαλής και σταθερή.", "Every scar responds differently to pigment. We examine maturity, texture and blood supply, proceeding only when the area is safe and stable."),
+      c("Ο σχεδιασμός ακολουθεί το φυσικό μοτίβο των γύρω τριχοθυλακίων ώστε η μετάβαση να είναι διακριτική και όχι ομοιόμορφα χρωματισμένη.", "The design follows the natural pattern of surrounding follicles so the transition looks subtle rather than uniformly coloured."),
+    ],
   },
   {
+    slug: "alopecia-areata",
     title: c("Alopecia Areata", "Alopecia Areata"),
     text: c("Σε σταθεροποιημένες περιπτώσεις μπορεί να μειώσει οπτικά τη διαφορά ανάμεσα στις περιοχές με και χωρίς τρίχες.", "In stable cases, it can visually reduce the contrast between areas with and without hair."),
+    details: [
+      c("Η εφαρμογή εξετάζεται μόνο όταν η κατάσταση είναι σταθερή και έχει προηγηθεί η κατάλληλη ιατρική καθοδήγηση. Το SMP είναι αισθητική κάλυψη και όχι θεραπεία της αιτίας.", "Treatment is considered only when the condition is stable and appropriate medical guidance has been obtained. SMP provides cosmetic camouflage; it does not treat the underlying cause."),
+      c("Η πυκνότητα και ο τόνος χτίζονται προσεκτικά ώστε οι περιοχές να δένουν οπτικά με τα σημεία όπου υπάρχουν φυσικές τρίχες.", "Density and tone are built carefully so treated areas visually blend with regions where natural hair remains."),
+    ],
   },
   {
+    slug: "genia",
     title: c("Γένια", "Beard"),
     text: c("Προσθέτει την οπτική εντύπωση πυκνότητας ή βοηθά στην εξισορρόπηση κενών στην περιοχή των γενιών.", "Adds the visual impression of density or helps balance gaps within the beard area."),
+    details: [
+      c("Η κατεύθυνση, το μέγεθος και η απόσταση των σημείων προσαρμόζονται στο φυσικό μοτίβο των γενιών και στη μορφολογία του προσώπου.", "Direction, size and spacing of impressions are adapted to the natural beard pattern and facial structure."),
+      c("Μπορούν να εξισορροπηθούν μικρά κενά ή να ενισχυθεί οπτικά η πυκνότητα σε κοντοξυρισμένο γένι, με σταδιακή εφαρμογή και ήπιους τόνους.", "Small gaps can be balanced or density visually enhanced in a closely trimmed beard through gradual application and restrained tones."),
+    ],
   },
   {
+    slug: "diorthosi-smp",
     title: c("Διόρθωση αποτυχημένου SMP", "Correction of previous SMP"),
     text: c("Αξιολογούμε χρώμα, βάθος, σχήμα και κατάσταση του δέρματος πριν προτείνουμε ασφαλή διόρθωση ή ανασχεδιασμό.", "We assess colour, depth, shape and skin condition before recommending a safe correction or redesign."),
+    details: [
+      c("Πρώτα εξετάζουμε αν η προηγούμενη εφαρμογή είναι υπερβολικά σκούρα, βαθιά, ψυχρή σε τόνο ή λανθασμένη ως προς το σχήμα. Δεν είναι κάθε περίπτωση κατάλληλη για άμεση κάλυψη.", "We first assess whether the previous treatment is too dark, deep, cool-toned or incorrectly shaped. Not every case is suitable for immediate camouflage."),
+      c("Ανάλογα με την κατάσταση μπορεί να προταθεί χρόνος αναμονής, αφαίρεση ή προσεκτική εξισορρόπηση. Το πλάνο συμφωνείται μόνο μετά από δια ζώσης αξιολόγηση.", "Depending on its condition, waiting, removal or careful rebalancing may be recommended. A plan is agreed only after an in-person assessment."),
+    ],
   },
 ];
 
 function Info({ lang }: { lang: Language }) {
   const [activeApplication, setActiveApplication] = useState(0);
-  const activeCard = infoCards[activeApplication];
+  const applicationUrl = (slug: string) => lang === "en" ? `/applications?lang=en#${slug}` : `/applications#${slug}`;
 
   const moveApplication = (direction: number) => {
     setActiveApplication((current) => {
@@ -327,58 +363,71 @@ function Info({ lang }: { lang: Language }) {
               : "Select an application to see how SMP is adapted to each individual need."}
           </p>
         </div>
-        <div className="applications-carousel">
-          <div className="applications-tabs" role="tablist" aria-label={lang === "el" ? "Εφαρμογές SMP" : "SMP applications"}>
-            {infoCards.map((card, index) => (
-              <button
-                className={`application-tab ${activeApplication === index ? "active" : ""}`}
-                id={`application-tab-${index}`}
-                key={card.title.en}
-                type="button"
-                role="tab"
-                aria-controls="application-panel"
-                aria-selected={activeApplication === index}
-                tabIndex={activeApplication === index ? 0 : -1}
-                onClick={() => setActiveApplication(index)}
-              >
-                <span>0{index + 1}</span>
-                <strong>{card.title[lang]}</strong>
-                <span aria-hidden="true">→</span>
-              </button>
-            ))}
-          </div>
-          <article
-            className="application-panel"
-            id="application-panel"
-            role="tabpanel"
-            aria-labelledby={`application-tab-${activeApplication}`}
-            key={`${lang}-${activeApplication}`}
-          >
-            <span className="application-panel-number">0{activeApplication + 1} / 07</span>
-            <div>
-              {activeApplication === 2 ? (
-                <h2 className="application-panel-sentence">
-                  {lang === "el"
-                    ? "Οι ουλές από μεταμόσχευση ενσωματώνονται οπτικά στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους."
-                    : "Hair-transplant scars are visually blended into the surrounding scalp, reducing their contrast."}
-                </h2>
-              ) : (
-                <>
-                  <h2>{activeCard.title[lang]}</h2>
-                  <p>{activeCard.text[lang]}</p>
-                </>
-              )}
-            </div>
+        <div className="applications-showcase">
+          <div className="applications-carousel-header">
+            <p aria-live="polite">
+              {String(activeApplication + 1).padStart(2, "0")} / 07
+            </p>
             <div className="application-controls">
               <button type="button" onClick={() => moveApplication(-1)} aria-label={lang === "el" ? "Προηγούμενη εφαρμογή" : "Previous application"}>←</button>
               <button type="button" onClick={() => moveApplication(1)} aria-label={lang === "el" ? "Επόμενη εφαρμογή" : "Next application"}>→</button>
             </div>
-          </article>
+          </div>
+          <div className="applications-viewport">
+            <div className="applications-track" style={{ transform: `translate3d(-${activeApplication * 100}%, 0, 0)` }}>
+              {infoCards.map((card, index) => (
+                <a
+                  className={`application-slide application-image-${index + 1}`}
+                  href={applicationUrl(card.slug)}
+                  key={card.slug}
+                  aria-label={`${card.title[lang]} — ${lang === "el" ? "περισσότερες πληροφορίες" : "more information"}`}
+                >
+                  <span className="application-slide-shade" />
+                  <span className="application-slide-copy">
+                    <small>0{index + 1}</small>
+                    <strong>{card.title[lang]}</strong>
+                    <span>{lang === "el" ? "Δείτε αναλυτικά" : "View details"} ↗</span>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
       <section className="section note-panel">
         <h2>{lang === "el" ? "Όχι μια γενική λύση." : "Never one-size-fits-all."}</h2>
         <p>{lang === "el" ? "Κάθε δέρμα, μοτίβο αραίωσης και προσδοκία είναι διαφορετικά. Η προσωπική αξιολόγηση προηγείται πάντα της θεραπείας και περιλαμβάνει ειλικρινή συζήτηση για το τι μπορεί — και τι δεν μπορεί — να προσφέρει η τεχνική." : "Every skin type, thinning pattern and expectation is different. A personal consultation always comes first, including an honest discussion of what the technique can — and cannot — achieve."}</p>
+      </section>
+    </>
+  );
+}
+
+function Applications({ lang }: { lang: Language }) {
+  const infoUrl = lang === "en" ? "/info?lang=en" : "/info";
+  return (
+    <>
+      <PageHero
+        index="02A"
+        lang={lang}
+        title={c("Εφαρμογές SMP", "SMP Applications")}
+        intro={c("Αναλυτικές πληροφορίες για τις επτά εξειδικευμένες εφαρμογές και τον τρόπο με τον οποίο προσαρμόζονται σε κάθε ανάγκη.", "Detailed information about seven specialist applications and how each is adapted to an individual need.")}
+      />
+      <section className="section applications-directory">
+        <a className="applications-back" href={infoUrl}>← {lang === "el" ? "Πίσω στις εφαρμογές" : "Back to applications"}</a>
+        {infoCards.map((card, index) => (
+          <article className="application-detail" id={card.slug} key={card.slug}>
+            <div className={`application-detail-image application-image-${index + 1}`} role="img" aria-label={card.title[lang]} />
+            <div className="application-detail-copy">
+              <span className="application-detail-number">0{index + 1} / 07</span>
+              <h2>{card.title[lang]}</h2>
+              <p className="application-detail-intro">{card.text[lang]}</p>
+              {card.details.map((paragraph) => <p key={paragraph.en}>{paragraph[lang]}</p>)}
+              <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
+                {lang === "el" ? "Κλείστε αξιολόγηση" : "Book a consultation"} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
       </section>
     </>
   );
@@ -551,6 +600,7 @@ export default function DermaDotSite({ route }: { route: Route }) {
   const pages: Record<Route, React.ReactNode> = {
     home: <Home lang={lang} />,
     info: <Info lang={lang} />,
+    applications: <Applications lang={lang} />,
     "what-is-smp": <WhatIsSmp lang={lang} />,
     results: <Results lang={lang} />,
     procedure: <Procedure lang={lang} />,
