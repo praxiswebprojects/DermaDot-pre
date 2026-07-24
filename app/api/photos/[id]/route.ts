@@ -1,5 +1,4 @@
 import { env } from "cloudflare:workers";
-import { getChatGPTUser } from "@/app/chatgpt-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -38,11 +37,6 @@ export async function DELETE(
   _request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
-  const user = await getChatGPTUser();
-  if (!user) {
-    return Response.json({ error: "Authentication required." }, { status: 401 });
-  }
-
   const { id: rawId } = await context.params;
   const id = safeId(rawId);
   if (!id) {

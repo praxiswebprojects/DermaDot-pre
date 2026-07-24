@@ -181,7 +181,7 @@ function Footer({ lang }: { lang: Language }) {
       <div className="footer-bottom">
         <span>© 2026 DERMADOT</span>
         <span>{lang === "el" ? "ΜΙΚΡΟΧΡΩΜΑΤΩΣΗ ΤΡΙΧΩΤΟΥ • ΑΘΗΝΑ" : "SCALP MICROPIGMENTATION • ATHENS"}</span>
-        <a href="/admin/photos">{lang === "el" ? "ΔΙΑΧΕΙΡΙΣΗ ΦΩΤΟΓΡΑΦΙΩΝ" : "MANAGE PHOTOS"}</a>
+        <a href="/photo-manager">{lang === "el" ? "ΔΙΑΧΕΙΡΙΣΗ ΦΩΤΟΓΡΑΦΙΩΝ" : "MANAGE PHOTOS"}</a>
       </div>
     </footer>
   );

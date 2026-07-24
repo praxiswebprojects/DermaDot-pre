@@ -1,5 +1,4 @@
 import { env } from "cloudflare:workers";
-import { getChatGPTUser } from "@/app/chatgpt-auth";
 
 export const dynamic = "force-dynamic";
 
@@ -56,11 +55,6 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const user = await getChatGPTUser();
-  if (!user) {
-    return Response.json({ error: "Authentication required." }, { status: 401 });
-  }
-
   const formData = await request.formData();
   const file = formData.get("photo");
   const alt = String(formData.get("alt") ?? "").trim();
@@ -108,7 +102,7 @@ export async function POST(request: Request) {
     customMetadata: {
       alt: encodeURIComponent(alt || "DermaDot SMP result"),
       uploadedAt,
-      uploadedBy: encodeURIComponent(user.email),
+      uploadedBy: "site-owner",
     },
   });
 

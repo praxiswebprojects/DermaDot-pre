@@ -1,11 +1,8 @@
-import { requireChatGPTUser, chatGPTSignOutPath } from "@/app/chatgpt-auth";
 import PhotoManager from "./photo-manager";
 
 export const dynamic = "force-dynamic";
 
-export default async function PhotoAdminPage() {
-  const user = await requireChatGPTUser("/admin/photos");
-
+export default function PhotoAdminPage() {
   return (
     <main className="photo-admin-shell">
       <header className="photo-admin-header">
@@ -13,8 +10,8 @@ export default async function PhotoAdminPage() {
           <img src="/logo.png" alt="DermaDot Plus — Andreas Petropoulos" />
         </a>
         <div className="photo-admin-account">
-          <span>{user.displayName}</span>
-          <a href={chatGPTSignOutPath("/admin/photos")}>Sign out</a>
+          <span>Owner access</span>
+          <a href="/">Επιστροφή στο site</a>
         </div>
       </header>
       <section className="photo-admin-intro">
