@@ -356,18 +356,8 @@ function Info({ lang }: { lang: Language }) {
           >
             <span className="application-panel-number">0{activeApplication + 1} / 07</span>
             <div>
-              {activeApplication === 2 ? (
-                <h2 className="application-panel-sentence">
-                  {lang === "el"
-                    ? "Οι ουλές από μεταμόσχευση ενσωματώνονται οπτικά στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους."
-                    : "Hair-transplant scars are visually blended into the surrounding scalp, reducing their contrast."}
-                </h2>
-              ) : (
-                <>
-                  <h2>{activeCard.title[lang]}</h2>
-                  <p>{activeCard.text[lang]}</p>
-                </>
-              )}
+              <h2>{activeCard.title[lang]}</h2>
+              <p>{activeCard.text[lang]}</p>
             </div>
             <div className="application-controls">
               <button type="button" onClick={() => moveApplication(-1)} aria-label={lang === "el" ? "Προηγούμενη εφαρμογή" : "Previous application"}>←</button>
@@ -377,8 +367,11 @@ function Info({ lang }: { lang: Language }) {
         </div>
       </section>
       <section className="section note-panel">
-        <h2>{lang === "el" ? "Όχι μια γενική λύση." : "Never one-size-fits-all."}</h2>
-        <p>{lang === "el" ? "Κάθε δέρμα, μοτίβο αραίωσης και προσδοκία είναι διαφορετικά. Η προσωπική αξιολόγηση προηγείται πάντα της θεραπείας και περιλαμβάνει ειλικρινή συζήτηση για το τι μπορεί — και τι δεν μπορεί — να προσφέρει η τεχνική." : "Every skin type, thinning pattern and expectation is different. A personal consultation always comes first, including an honest discussion of what the technique can — and cannot — achieve."}</p>
+        <p className="note-statement">
+          {lang === "el"
+            ? "Όχι μια γενική λύση: κάθε δέρμα, μοτίβο αραίωσης και προσδοκία είναι διαφορετικά, γι’ αυτό η προσωπική αξιολόγηση προηγείται πάντα της θεραπείας και περιλαμβάνει ειλικρινή συζήτηση για το τι μπορεί — και τι δεν μπορεί — να προσφέρει η τεχνική."
+            : "Never one-size-fits-all: every skin type, thinning pattern and expectation is different, so a personal consultation always comes first and includes an honest discussion of what the technique can — and cannot — achieve."}
+        </p>
       </section>
     </>
   );
