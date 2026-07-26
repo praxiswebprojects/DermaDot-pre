@@ -29,8 +29,8 @@ const RESULTS_ENABLED = false;
 const nav: { route: Route; href: string; label: Copy }[] = [
   { route: "home", href: "/", label: c("Αρχική", "Home") },
   { route: "info", href: "/info", label: c("Πληροφορίες", "Info") },
-  { route: "what-is-smp", href: "/what-is-smp", label: c("Τι είναι η μικροχρωμάτωση", "What is SMP") },
-  { route: "treatment-guide", href: "/treatment-guide", label: c("Μικροχρωμάτωση ή μεταμόσχευση;", "SMP or Transplant?") },
+  { route: "what-is-smp", href: "/what-is-smp", label: c("Τι είναι το SMP", "What is SMP") },
+  { route: "treatment-guide", href: "/treatment-guide", label: c("SMP ή μεταμόσχευση;", "SMP or Transplant?") },
   { route: "results", href: "/results", label: c("Πριν & Μετά", "Before & After") },
   { route: "procedure", href: "/procedure", label: c("Διαδικασία", "Procedure") },
   { route: "aftercare", href: "/aftercare", label: c("Φροντίδα", "Aftercare") },
@@ -42,7 +42,7 @@ const nav: { route: Route; href: string; label: Copy }[] = [
 const topicCards = [
   {
     href: "/what-is-smp",
-    title: c("Τι είναι η μικροχρωμάτωση", "What is SMP"),
+    title: c("Τι είναι το SMP", "What is SMP"),
     text: c("Η τεχνική, οι εφαρμογές και το φυσικό οπτικό αποτέλεσμα.", "The technique, its uses and the natural visual result."),
   },
   {
@@ -73,7 +73,7 @@ const faqItems = [
   c("Χρειάζεται συντήρηση;", "Does it need maintenance?"),
   c("Μπορώ να κάνω γυμναστική;", "Can I exercise?"),
   c("Μπορώ να πάω στη θάλασσα;", "Can I swim in the sea?"),
-  c("Μπορώ να κάνω μεταμόσχευση μετά από μικροχρωμάτωση;", "Can I have a hair transplant after SMP?"),
+  c("Μπορώ να κάνω μεταμόσχευση μετά από SMP;", "Can I have a hair transplant after SMP?"),
 ];
 
 const faqAnswers = [
@@ -106,7 +106,7 @@ const faqAnswers = [
     "Not immediately after a session. Sea water, pools and strong sun exposure should be avoided during initial healing; we will tell you when it is safe to return."
   ),
   c(
-    "Ναι, σε πολλές περιπτώσεις η μικροχρωμάτωση δεν αποκλείει μια μελλοντική μεταμόσχευση. Απαιτείται όμως κοινός σχεδιασμός με τον ιατρό μεταμόσχευσης και πλήρης αξιολόγηση πριν αποφασιστεί το επόμενο βήμα.",
+    "Ναι, σε πολλές περιπτώσεις το SMP δεν αποκλείει μια μελλοντική μεταμόσχευση. Απαιτείται όμως κοινός σχεδιασμός με τον ιατρό μεταμόσχευσης και πλήρης αξιολόγηση πριν αποφασιστεί το επόμενο βήμα.",
     "Yes, in many cases SMP does not prevent a future hair transplant. The next step should, however, be planned with your transplant surgeon after a full assessment."
   ),
 ];
@@ -219,7 +219,7 @@ function Header({ lang, route, onLanguage }: { lang: Language; route: Route; onL
             className="lang-toggle"
             type="button"
             onClick={() => onLanguage(lang === "el" ? "en" : "el")}
-            aria-label={lang === "el" ? "Μετάβαση στα Αγγλικά" : "Αλλαγή στα Ελληνικά"}
+            aria-label={lang === "el" ? "Switch to English" : "Αλλαγή στα Ελληνικά"}
           >
             <span className={lang === "el" ? "active" : ""}>ΕΛ</span>
             <span>/</span>
@@ -257,7 +257,7 @@ function Footer({ lang }: { lang: Language }) {
           <span className="eyebrow">{lang === "el" ? "Το επόμενο βήμα" : "Your next step"}</span>
           <p>
             {lang === "el"
-              ? "Μια ήρεμη, ιδιωτική συζήτηση είναι ο καλύτερος τρόπος να δούμε αν η μικροχρωμάτωση τριχωτού είναι κατάλληλη για εσάς."
+              ? "Μια ήρεμη, ιδιωτική συζήτηση είναι ο καλύτερος τρόπος να δούμε αν το SMP είναι κατάλληλο για εσάς."
               : "A calm, private conversation is the best way to see whether SMP is right for you."}
           </p>
           <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
@@ -267,7 +267,7 @@ function Footer({ lang }: { lang: Language }) {
       </div>
       <div className="footer-bottom">
         <span>© 2026 DERMA<span className="brand-inline-dot">DOT</span></span>
-        <span>{lang === "el" ? "ΜΙΚΡΟΧΡΩΜΑΤΩΣΗ ΤΡΙΧΩΤΟΥ • ΑΘΗΝΑ" : "SCALP MICROPIGMENTATION • ATHENS"}</span>
+        <span>SCALP MICROPIGMENTATION • {lang === "el" ? "ΑΘΗΝΑ" : "ATHENS"}</span>
       </div>
     </footer>
   );
@@ -281,7 +281,7 @@ function PageHero({ index, title, intro, lang }: { index: string; title: Copy; i
         <h1>{title[lang]}</h1>
       </div>
       <aside className="page-hero-aside">
-        <span className="page-code">{lang === "el" ? "ΜΙΚΡΟΧΡΩΜΑΤΩΣΗ" : "SMP"} — {index}</span>
+        <span className="page-code">SMP — {index}</span>
         <p>{intro[lang]}</p>
       </aside>
     </section>
@@ -297,13 +297,13 @@ function Home({ lang }: { lang: Language }) {
       <section className="template-hero">
         <div className="template-hero-shade" />
         <div className="template-hero-copy">
-          <p className="hero-kicker">{lang === "el" ? "Μικροχρωμάτωση τριχωτού • Αθήνα" : "Scalp Micropigmentation • Athens"}</p>
+          <p className="hero-kicker">{lang === "el" ? "Scalp Micropigmentation • Αθήνα" : "Scalp Micropigmentation • Athens"}</p>
           <h1>
             {lang === "el" ? <>Φυσική<br />Ακρίβεια.</> : <>Natural<br />Precision.</>}
           </h1>
           <p className="hero-lede">
             {lang === "el"
-              ? "Εξατομικευμένη μικροχρωμάτωση τριχωτού, σχεδιασμένη για να δείχνει αβίαστη, καθαρή και απόλυτα δική σας."
+              ? "Εξατομικευμένο SMP, σχεδιασμένο για να δείχνει αβίαστο, καθαρό και απόλυτα δικό σας."
               : "Individual scalp micropigmentation designed to look effortless, refined and entirely your own."}
           </p>
           <div className="hero-actions">
@@ -314,7 +314,7 @@ function Home({ lang }: { lang: Language }) {
         </div>
       </section>
       <section className="template-about home-reveal home-reveal-second" data-scroll-reveal>
-        <div className="about-image about-image-left" role="img" aria-label={lang === "el" ? "Λεπτομέρεια εφαρμογής μικροχρωμάτωσης" : "SMP treatment detail"} />
+        <div className="about-image about-image-left" role="img" aria-label={lang === "el" ? "Λεπτομέρεια εφαρμογής SMP" : "SMP treatment detail"} />
         <div className="about-center">
           <p className="about-label">— {lang === "el" ? "η προσέγγισή μας" : "our approach"} —</p>
           <h2>{lang === "el" ? "Ένας απλός τρόπος να ξαναβρείτε την αυτοπεποίθησή σας." : "A simple way to restore your confidence."}</h2>
@@ -326,10 +326,10 @@ function Home({ lang }: { lang: Language }) {
           <a className="button" href={url("/info")}>
             {lang === "el" ? "Μάθετε περισσότερα" : "Learn more"} <span aria-hidden="true">→</span>
           </a>
-          <div className="about-image about-image-wide" role="img" aria-label={lang === "el" ? "Φυσικό αποτέλεσμα μικροχρωμάτωσης" : "Natural SMP result"} />
+          <div className="about-image about-image-wide" role="img" aria-label={lang === "el" ? "Φυσικό αποτέλεσμα SMP" : "Natural SMP result"} />
         </div>
         <div className="about-right">
-          <div className="about-image about-image-right" role="img" aria-label={lang === "el" ? "Εξειδικευμένη φροντίδα μικροχρωμάτωσης" : "Specialist SMP care"} />
+          <div className="about-image about-image-right" role="img" aria-label={lang === "el" ? "Εξειδικευμένη φροντίδα SMP" : "Specialist SMP care"} />
           <div className="about-stat">
             <strong>2–3</strong>
             <span>{lang === "el" ? "συνεδρίες για ένα σταδιακό, φυσικό αποτέλεσμα" : "sessions for a gradual, natural result"}</span>
@@ -375,16 +375,16 @@ const infoCards = [
     title: c("Γυναικεία αραίωση", "Female thinning"),
     text: c("Μειώνει την αντίθεση του ορατού δέρματος ανάμεσα στα υπάρχοντα μαλλιά, προσφέροντας την εντύπωση μεγαλύτερης πυκνότητας.", "Reduces the contrast of visible scalp between existing hairs, creating the impression of greater density."),
     details: [
-      c("Η μικροχρωμάτωση τοποθετείται ανάμεσα στις υπάρχουσες τρίχες, με στόχο να μειώσει την έντονη αντίθεση ανάμεσα στο χρώμα των μαλλιών και το δέρμα.", "SMP is placed between existing hairs to reduce the strong contrast between hair colour and visible scalp."),
+      c("Το SMP τοποθετείται ανάμεσα στις υπάρχουσες τρίχες, με στόχο να μειώσει την έντονη αντίθεση ανάμεσα στο χρώμα των μαλλιών και το δέρμα.", "SMP is placed between existing hairs to reduce the strong contrast between hair colour and visible scalp."),
       c("Η τεχνική δεν επιμηκύνει ούτε πυκνώνει τις τρίχες. Η καταλληλότητα εξαρτάται από τη σταθερότητα της αραίωσης, την κατάσταση του δέρματος και την επιθυμητή εικόνα.", "The technique does not lengthen or thicken hair. Suitability depends on the stability of thinning, scalp condition and the desired appearance."),
     ],
   },
   {
     slug: "oules-metamosxefsis",
     title: c("Ουλές από μεταμόσχευση", "Hair-transplant scars"),
-    text: c("Ενσωματώνει οπτικά ώριμες ουλές μεταμόσχευσης στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
+    text: c("Ενσωματώνει οπτικά ώριμες ουλές FUE ή FUT στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
     details: [
-      c("Οι πλήρως επουλωμένες ουλές μεταμόσχευσης αξιολογούνται ως προς το χρώμα, την υφή, το πάχος και τη θέση τους πριν ξεκινήσει οποιαδήποτε εφαρμογή.", "Fully healed FUE or FUT scars are assessed for colour, texture, thickness and position before any treatment begins."),
+      c("Οι πλήρως επουλωμένες ουλές FUE ή FUT αξιολογούνται ως προς το χρώμα, την υφή, το πάχος και τη θέση τους πριν ξεκινήσει οποιαδήποτε εφαρμογή.", "Fully healed FUE or FUT scars are assessed for colour, texture, thickness and position before any treatment begins."),
       c("Μικροσκοπικά σημεία χρωστικής τοποθετούνται μέσα και γύρω από την ουλή ώστε να ελαττωθεί η οπτική διαφορά. Η ουλή δεν αφαιρείται, αλλά μπορεί να γίνει αισθητά λιγότερο εμφανής.", "Microscopic pigment impressions are placed within and around the scar to soften visual contrast. The scar is not removed, but it may become noticeably less visible."),
     ],
   },
@@ -399,10 +399,10 @@ const infoCards = [
   },
   {
     slug: "alopecia-areata",
-    title: c("Γυροειδής αλωπεκία", "Alopecia Areata"),
+    title: c("Alopecia Areata", "Alopecia Areata"),
     text: c("Σε σταθεροποιημένες περιπτώσεις μπορεί να μειώσει οπτικά τη διαφορά ανάμεσα στις περιοχές με και χωρίς τρίχες.", "In stable cases, it can visually reduce the contrast between areas with and without hair."),
     details: [
-      c("Η εφαρμογή εξετάζεται μόνο όταν η κατάσταση είναι σταθερή και έχει προηγηθεί η κατάλληλη ιατρική καθοδήγηση. Η μικροχρωμάτωση προσφέρει αισθητική κάλυψη και όχι θεραπεία της αιτίας.", "Treatment is considered only when the condition is stable and appropriate medical guidance has been obtained. SMP provides cosmetic camouflage; it does not treat the underlying cause."),
+      c("Η εφαρμογή εξετάζεται μόνο όταν η κατάσταση είναι σταθερή και έχει προηγηθεί η κατάλληλη ιατρική καθοδήγηση. Το SMP προσφέρει αισθητική κάλυψη και όχι θεραπεία της αιτίας.", "Treatment is considered only when the condition is stable and appropriate medical guidance has been obtained. SMP provides cosmetic camouflage; it does not treat the underlying cause."),
       c("Η πυκνότητα και ο τόνος χτίζονται προσεκτικά ώστε οι περιοχές να δένουν οπτικά με τα σημεία όπου υπάρχουν φυσικές τρίχες.", "Density and tone are built carefully so treated areas visually blend with regions where natural hair remains."),
     ],
   },
@@ -417,7 +417,7 @@ const infoCards = [
   },
   {
     slug: "diorthosi-smp",
-    title: c("Διόρθωση προηγούμενης μικροχρωμάτωσης", "Correction of previous SMP"),
+    title: c("Διόρθωση αποτυχημένου SMP", "Correction of previous SMP"),
     text: c("Αξιολογούμε χρώμα, βάθος, σχήμα και κατάσταση του δέρματος πριν προτείνουμε ασφαλή διόρθωση ή ανασχεδιασμό.", "We assess colour, depth, shape and skin condition before recommending a safe correction or redesign."),
     details: [
       c("Πρώτα εξετάζουμε αν η προηγούμενη εφαρμογή είναι υπερβολικά σκούρα, βαθιά, ψυχρή σε τόνο ή λανθασμένη ως προς το σχήμα. Δεν είναι κάθε περίπτωση κατάλληλη για άμεση κάλυψη.", "We first assess whether the previous treatment is too dark, deep, cool-toned or incorrectly shaped. Not every case is suitable for immediate camouflage."),
@@ -454,10 +454,10 @@ function Info({ lang }: { lang: Language }) {
     <>
       <section className="section applications-page">
         <div className="applications-heading">
-          <h1>{lang === "el" ? "Εξειδικευμένες εφαρμογές μικροχρωμάτωσης" : "Specialised SMP Applications"}</h1>
+          <h1>{lang === "el" ? "Εξειδικευμένες εφαρμογές SMP" : "Specialised SMP Applications"}</h1>
           <p>
             {lang === "el"
-              ? "Επιλέξτε μία εφαρμογή για να δείτε πώς η μικροχρωμάτωση προσαρμόζεται σε κάθε διαφορετική ανάγκη."
+              ? "Επιλέξτε μία εφαρμογή για να δείτε πώς το SMP προσαρμόζεται σε κάθε διαφορετική ανάγκη."
               : "Select an application to see how SMP is adapted to each individual need."}
           </p>
         </div>
@@ -507,7 +507,7 @@ function Applications({ lang }: { lang: Language }) {
       <PageHero
         index="02A"
         lang={lang}
-        title={c("Εφαρμογές μικροχρωμάτωσης", "SMP Applications")}
+        title={c("Εφαρμογές SMP", "SMP Applications")}
         intro={c("Αναλυτικές πληροφορίες για τις επτά εξειδικευμένες εφαρμογές και τον τρόπο με τον οποίο προσαρμόζονται σε κάθε ανάγκη.", "Detailed information about seven specialist applications and how each is adapted to an individual need.")}
       />
       <section className="section applications-directory">
@@ -540,13 +540,13 @@ function WhatIsSmp({ lang }: { lang: Language }) {
     c("Είναι ασφαλές;|Όταν εφαρμόζεται από εκπαιδευμένο επαγγελματία με σωστή υγιεινή, αποστειρωμένο εξοπλισμό και κατάλληλες χρωστικές, είναι μη χειρουργική και ελεγχόμενη διαδικασία.", "Is it safe?|When performed by a trained professional using proper hygiene, sterile equipment and suitable pigments, it is a controlled, non-surgical procedure."),
     c("Πόσες συνεδρίες χρειάζονται;|Συνήθως χρειάζονται 2–3 συνεδρίες, με χρόνο επούλωσης ανάμεσά τους ώστε η πυκνότητα να χτίζεται σταδιακά.", "How many sessions are needed?|Most treatments need 2–3 sessions, with healing time between them so density can be built gradually."),
     c("Πονάει;|Οι περισσότεροι περιγράφουν ήπια έως μέτρια ενόχληση. Η αίσθηση διαφέρει ανά περιοχή και από άτομο σε άτομο.", "Does it hurt?|Most clients report mild to moderate discomfort. Sensation varies by area and from person to person."),
-    c("Τι χρωστικές χρησιμοποιούνται|Χρησιμοποιούνται επαγγελματικές χρωστικές ειδικά επιλεγμένες για μικροχρωμάτωση τριχωτού και προσαρμοσμένες στον τόνο του δέρματος και των μαλλιών.", "Which pigments are used|Professional pigments selected specifically for SMP are matched to the tone of your skin and hair."),
+    c("Τι χρωστικές χρησιμοποιούνται|Χρησιμοποιούνται επαγγελματικές χρωστικές ειδικά επιλεγμένες για SMP και προσαρμοσμένες στον τόνο του δέρματος και των μαλλιών.", "Which pigments are used|Professional pigments selected specifically for SMP are matched to the tone of your skin and hair."),
   ];
   return (
     <>
-      <PageHero index="02" lang={lang} title={c("Τι είναι η μικροχρωμάτωση;", "What is SMP?")} intro={c("Μια εξειδικευμένη τεχνική που δημιουργεί την οπτική εντύπωση φυσικών θυλάκων τρίχας.", "A specialised technique that creates the visual impression of natural hair follicles.")} />
+      <PageHero index="02" lang={lang} title={c("Τι είναι το SMP;", "What is SMP?")} intro={c("Μια εξειδικευμένη τεχνική που δημιουργεί την οπτική εντύπωση φυσικών θυλάκων τρίχας.", "A specialised technique that creates the visual impression of natural hair follicles.")} />
       <section className="section">
-        <div className="section-head"><h2>{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2><p className="section-intro">{lang === "el" ? "Η μικροχρωμάτωση τριχωτού είναι μια μη χειρουργική τεχνική οπτικής αποκατάστασης. Οι βασικές απαντήσεις παρακάτω εξηγούν πώς εφαρμόζεται και τι να περιμένετε." : "SMP is a non-surgical visual restoration technique. The essentials below explain how it is performed and what to expect."}</p></div>
+        <div className="section-head"><h2>{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2><p className="section-intro">{lang === "el" ? "Η SMP είναι μια μη χειρουργική τεχνική οπτικής αποκατάστασης. Οι βασικές απαντήσεις παρακάτω εξηγούν πώς εφαρμόζεται και τι να περιμένετε." : "SMP is a non-surgical visual restoration technique. The essentials below explain how it is performed and what to expect."}</p></div>
         <div className="content-grid essentials-grid">
           {essentials.map((item) => {
             const [elTitle, elText] = item.el.split("|");
@@ -558,7 +558,7 @@ function WhatIsSmp({ lang }: { lang: Language }) {
       <section className="section treatment-guide-teaser scroll-reveal line-reveal" data-scroll-reveal>
         <span className="eyebrow">{lang === "el" ? "Ενημερωμένη επιλογή" : "An informed choice"}</span>
         <div>
-          <h2>{lang === "el" ? "Μικροχρωμάτωση ή μεταμόσχευση μαλλιών;" : "SMP or a hair transplant?"}</h2>
+          <h2>{lang === "el" ? "SMP ή μεταμόσχευση μαλλιών;" : "SMP or a hair transplant?"}</h2>
           <p>
             {lang === "el"
               ? "Δεν υπάρχει μία θεραπεία ιδανική για όλους. Δείτε πότε κάθε προσέγγιση μπορεί να έχει θέση και ποιοι παράγοντες πρέπει να αξιολογηθούν."
@@ -569,7 +569,7 @@ function WhatIsSmp({ lang }: { lang: Language }) {
           </a>
         </div>
       </section>
-      <section className="section note-panel"><h2>{lang === "el" ? "Δεν είναι τατουάζ μαλλιών." : "It is not a hair tattoo."}</h2><p>{lang === "el" ? "Η μικροχρωμάτωση χρησιμοποιεί εξειδικευμένα εργαλεία, χρωστικές και τεχνική σημείου για το τριχωτό. Το επιθυμητό αποτέλεσμα είναι απαλό, πολυεπίπεδο και προσαρμοσμένο στο δέρμα — όχι μια συμπαγής, επίπεδη επιφάνεια χρώματος." : "SMP uses specialised tools, pigments and scalp-specific dot technique. The intended result is soft, layered and adjusted to the skin — not a solid, flat block of colour."}</p></section>
+      <section className="section note-panel"><h2>{lang === "el" ? "Δεν είναι τατουάζ μαλλιών." : "It is not a hair tattoo."}</h2><p>{lang === "el" ? "Η SMP χρησιμοποιεί εξειδικευμένα εργαλεία, χρωστικές και τεχνική σημείου για το τριχωτό. Το επιθυμητό αποτέλεσμα είναι απαλό, πολυεπίπεδο και προσαρμοσμένο στο δέρμα — όχι μια συμπαγής, επίπεδη επιφάνεια χρώματος." : "SMP uses specialised tools, pigments and scalp-specific dot technique. The intended result is soft, layered and adjusted to the skin — not a solid, flat block of colour."}</p></section>
     </>
   );
 }
@@ -613,7 +613,7 @@ function TreatmentGuide({ lang }: { lang: Language }) {
       <PageHero
         index="02B"
         lang={lang}
-        title={c("Μικροχρωμάτωση ή μεταμόσχευση;", "SMP or a hair transplant?")}
+        title={c("SMP ή μεταμόσχευση;", "SMP or a hair transplant?")}
         intro={c("Μια ειλικρινής σύγκριση, ώστε η επιλογή να βασίζεται στην πραγματική σας περίπτωση και όχι σε μία γενική υπόσχεση.", "An honest comparison so your choice reflects your individual circumstances, not a general promise.")}
       />
 
@@ -649,10 +649,10 @@ function TreatmentGuide({ lang }: { lang: Language }) {
 
         <article className="treatment-option treatment-option-smp">
           <span className="treatment-option-code">02 / SMP</span>
-          <h2>{lang === "el" ? "Τι προσφέρει η μικροχρωμάτωση τριχωτού;" : "What does Scalp Micropigmentation offer?"}</h2>
+          <h2>{lang === "el" ? "Τι προσφέρει το Scalp Micropigmentation;" : "What does Scalp Micropigmentation offer?"}</h2>
           <p>
             {lang === "el"
-              ? "Η μικροχρωμάτωση δεν μεταφέρει ούτε δημιουργεί τρίχες. Δημιουργεί την οπτική εντύπωση φυσικών τριχοθυλακίων με μικροσκοπικά σημεία χρωστικής, χωρίς χειρουργική επέμβαση."
+              ? "Το SMP δεν μεταφέρει ούτε δημιουργεί τρίχες. Δημιουργεί την οπτική εντύπωση φυσικών τριχοθυλακίων με μικροσκοπικά σημεία χρωστικής, χωρίς χειρουργική επέμβαση."
               : "SMP does not move or create hair. It uses microscopic pigment impressions to create the visual appearance of natural follicles without surgery."}
           </p>
           <p>{lang === "el" ? "Δεν αφορά μόνο την ολική αλωπεκία. Μπορεί να χρησιμοποιηθεί για:" : "It is not limited to complete hair loss. It may be used for:"}</p>
@@ -678,7 +678,7 @@ function TreatmentGuide({ lang }: { lang: Language }) {
           </p>
           <p>
             {lang === "el"
-              ? "Οι τεχνικές λωρίδας και μεμονωμένης εξαγωγής αφήνουν διαφορετικού τύπου ουλές. Η τεχνική λωρίδας συνδέεται συνήθως με γραμμική ουλή, ενώ η μεμονωμένη εξαγωγή δημιουργεί πολλαπλές μικροσκοπικές σημειακές ουλές. Συχνά καλύπτονται από τα μαλλιά, αλλά μπορεί να γίνονται πιο ορατές σε πολύ κοντό ή ξυρισμένο κούρεμα."
+              ? "Οι τεχνικές FUT και FUE αφήνουν διαφορετικού τύπου ουλές. Η FUT συνδέεται συνήθως με γραμμική ουλή, ενώ η FUE δημιουργεί πολλαπλές μικροσκοπικές σημειακές ουλές. Συχνά καλύπτονται από τα μαλλιά, αλλά μπορεί να γίνονται πιο ορατές σε πολύ κοντό ή ξυρισμένο κούρεμα."
               : "FUT and FUE create different patterns of scarring. FUT commonly leaves a linear scar, while FUE creates multiple tiny punctate scars. These are often concealed by hair but may become more visible with a very short or shaved haircut."}
           </p>
         </div>
@@ -688,15 +688,15 @@ function TreatmentGuide({ lang }: { lang: Language }) {
         <div className="personal-smp-image" aria-hidden="true" />
         <div>
           <span className="eyebrow">{lang === "el" ? "Προσωπική εμπειρία" : "Personal experience"}</span>
-          <h2>{lang === "el" ? "Γιατί επέλεξα τη μικροχρωμάτωση." : "Why I chose SMP."}</h2>
+          <h2>{lang === "el" ? "Γιατί επέλεξα το SMP." : "Why I chose SMP."}</h2>
           <p>
             {lang === "el"
-              ? "Η προσωπική μου εμπειρία ήταν αυτή που με οδήγησε στη μικροχρωμάτωση. Έχοντας δει από κοντά τις δυνατότητες αλλά και τους περιορισμούς της μεταμόσχευσης μαλλιών, ανακάλυψα ότι η μικροχρωμάτωση τριχωτού μπορεί να προσφέρει λύσεις εκεί όπου πολλές φορές μια μεταμόσχευση από μόνη της δεν επαρκεί."
+              ? "Η προσωπική μου εμπειρία ήταν αυτή που με οδήγησε στο SMP. Έχοντας δει από κοντά τις δυνατότητες αλλά και τους περιορισμούς της μεταμόσχευσης μαλλιών, ανακάλυψα ότι το Scalp Micropigmentation μπορεί να προσφέρει λύσεις εκεί όπου πολλές φορές μια μεταμόσχευση από μόνη της δεν επαρκεί."
               : "My personal experience led me to SMP. Having seen both the possibilities and limitations of hair transplantation at close range, I discovered that Scalp Micropigmentation can offer options where a transplant alone may not be enough."}
           </p>
           <p>
             {lang === "el"
-              ? "Δεν επέλεξα τη μικροχρωμάτωση ως αντίπαλο της μεταμόσχευσης, αλλά ως μια διαφορετική, μη χειρουργική προσέγγιση που μπορεί να αλλάξει εντυπωσιακά την εικόνα και την αυτοπεποίθηση ενός ανθρώπου."
+              ? "Δεν επέλεξα το SMP ως αντίπαλο της μεταμόσχευσης, αλλά ως μια διαφορετική, μη χειρουργική προσέγγιση που μπορεί να αλλάξει εντυπωσιακά την εικόνα και την αυτοπεποίθηση ενός ανθρώπου."
               : "I did not choose SMP as an opponent to transplantation, but as a different, non-surgical approach that can meaningfully change a person’s appearance and confidence."}
           </p>
         </div>
@@ -707,12 +707,12 @@ function TreatmentGuide({ lang }: { lang: Language }) {
         <div>
           <p>
             {lang === "el"
-              ? "Δεν πιστεύω ότι η μικροχρωμάτωση αντικαθιστά τη μεταμόσχευση μαλλιών. Πιστεύω ότι κάθε θεραπεία έχει τη θέση της."
+              ? "Δεν πιστεύω ότι το SMP αντικαθιστά τη μεταμόσχευση μαλλιών. Πιστεύω ότι κάθε θεραπεία έχει τη θέση της."
               : "I do not believe SMP replaces hair transplantation. I believe each treatment has its place."}
           </p>
           <p>
             {lang === "el"
-              ? "Υπάρχουν άνθρωποι που είναι εξαιρετικοί υποψήφιοι για μεταμόσχευση και άλλοι που μπορεί να έχουν καλύτερο αισθητικό αποτέλεσμα με μικροχρωμάτωση. Υπάρχουν επίσης περιπτώσεις όπου, μετά από κατάλληλο σχεδιασμό, ο συνδυασμός των δύο μεθόδων μπορεί να προσφέρει το καλύτερο δυνατό αποτέλεσμα."
+              ? "Υπάρχουν άνθρωποι που είναι εξαιρετικοί υποψήφιοι για μεταμόσχευση και άλλοι που μπορεί να έχουν καλύτερο αισθητικό αποτέλεσμα με SMP. Υπάρχουν επίσης περιπτώσεις όπου, μετά από κατάλληλο σχεδιασμό, ο συνδυασμός των δύο μεθόδων μπορεί να προσφέρει το καλύτερο δυνατό αποτέλεσμα."
               : "Some people are excellent transplant candidates, while others may achieve a better aesthetic outcome with SMP. There are also cases where, with appropriate planning, combining the two approaches may offer the best result."}
           </p>
           <p>
@@ -739,7 +739,7 @@ function Results({ lang }: { lang: Language }) {
   const cases = [
     c("Ξυρισμένο αποτέλεσμα|Επανασχεδιασμός απαλής, ηλικιακά κατάλληλης γραμμής.", "Shaved finish|A soft, age-appropriate hairline redesign."),
     c("Αραίωση κορυφής|Μείωση της οπτικής αντίθεσης στην περιοχή της κορυφής.", "Crown thinning|Reduced visual contrast across the crown."),
-    c("Ουλή μεταμόσχευσης|Οπτική ενσωμάτωση ώριμης ουλής στο γύρω τριχωτό.", "FUE/FUT scar|Visual blending of a mature scar into surrounding hair."),
+    c("Ουλή FUE/FUT|Οπτική ενσωμάτωση ώριμης ουλής στο γύρω τριχωτό.", "FUE/FUT scar|Visual blending of a mature scar into surrounding hair."),
     c("Γυναικεία αραίωση|Διακριτική εντύπωση πυκνότητας ανάμεσα στα υπάρχοντα μαλλιά.", "Female thinning|A subtle impression of density between existing hairs."),
   ];
   return (
@@ -764,7 +764,7 @@ function Results({ lang }: { lang: Language }) {
 function Procedure({ lang }: { lang: Language }) {
   const steps = [
     c("Δωρεάν αξιολόγηση|Συζητάμε τον στόχο, το ιστορικό, το δέρμα και αν η τεχνική είναι κατάλληλη για εσάς.", "Free consultation|We discuss your goal, history, skin and whether the technique is right for you."),
-    c("Σχεδιασμός γραμμής μαλλιών|Σχεδιάζουμε μαζί μια φυσική, ηλικιακά κατάλληλη γραμμή και επιλέγουμε τον σωστό τόνο.", "Hairline design|Together, we map a natural, age-appropriate hairline and select the right tone."),
+    c("Σχεδιασμός hairline|Σχεδιάζουμε μαζί μια φυσική, ηλικιακά κατάλληλη γραμμή και επιλέγουμε τον σωστό τόνο.", "Hairline design|Together, we map a natural, age-appropriate hairline and select the right tone."),
     c("1η συνεδρία|Τοποθετούμε το πρώτο, απαλό επίπεδο σημείων που ορίζει τη βάση του αποτελέσματος.", "First session|We place the first subtle layer of impressions that establishes the foundation of the result."),
     c("2η συνεδρία|Μετά την επούλωση αξιολογούμε την απόκριση του δέρματος και χτίζουμε ελεγχόμενα την πυκνότητα.", "Second session|After healing, we assess the skin response and build density in a controlled way."),
     c("3η συνεδρία (αν χρειάζεται)|Προσθέτουμε τις τελευταίες λεπτομέρειες μόνο όπου χρειάζονται για ισορροπία και ομοιομορφία.", "Third session (if needed)|We add final refinements only where needed for balance and uniformity."),
@@ -834,14 +834,14 @@ function Doctor({ lang }: { lang: Language }) {
     },
     {
       number: "02",
-      title: c("Η προσωπική εμπειρία που με οδήγησε στη μικροχρωμάτωση", "The personal experience that led me to SMP"),
+      title: c("Η προσωπική εμπειρία που με οδήγησε στο SMP", "The personal experience that led me to SMP"),
       paragraphs: [
         c(
-          "Η πρώτη μου επαφή με τη μικροχρωμάτωση τριχωτού προέκυψε μέσα από μια προσωπική εμπειρία της οικογένειάς μου. Ο πατέρας μου αντιμετώπιζε για πολλά χρόνια αλωπεκία και είχε υποβληθεί σε αρκετές μεταμοσχεύσεις μαλλιών, χωρίς να πετύχει το αποτέλεσμα που επιθυμούσε. Όταν αποφάσισε να προχωρήσει σε μικροχρωμάτωση, η αλλαγή στην εμφάνισή του και, κυρίως, στην αυτοπεποίθησή του ήταν πραγματικά εντυπωσιακή.",
+          "Η πρώτη μου επαφή με το Scalp Micropigmentation (SMP) προέκυψε μέσα από μια προσωπική εμπειρία της οικογένειάς μου. Ο πατέρας μου αντιμετώπιζε για πολλά χρόνια αλωπεκία και είχε υποβληθεί σε αρκετές μεταμοσχεύσεις μαλλιών, χωρίς να πετύχει το αποτέλεσμα που επιθυμούσε. Όταν αποφάσισε να προχωρήσει σε θεραπεία SMP, η αλλαγή στην εμφάνισή του και, κυρίως, στην αυτοπεποίθησή του ήταν πραγματικά εντυπωσιακή.",
           "My first encounter with Scalp Micropigmentation (SMP) came through a personal experience in my family. My father had lived with alopecia for many years and had undergone several hair transplants without achieving the result he wanted. When he decided to have SMP treatment, the change in his appearance—and, above all, in his confidence—was truly remarkable."
         ),
         c(
-          "Αυτή η εμπειρία αποτέλεσε την αφορμή να γνωρίσω έναν εντελώς διαφορετικό κόσμο. Αποφάσισα να εμβαθύνω στην τεχνική της μικροχρωμάτωσης και να εκπαιδευτώ δίπλα σε καταξιωμένους επαγγελματίες του χώρου.",
+          "Αυτή η εμπειρία αποτέλεσε την αφορμή να γνωρίσω έναν εντελώς διαφορετικό κόσμο. Αποφάσισα να εμβαθύνω στην τεχνική του SMP και να εκπαιδευτώ δίπλα σε καταξιωμένους επαγγελματίες του χώρου.",
           "That experience introduced me to an entirely different world. I decided to study the SMP technique in depth and train alongside established professionals in the field."
         ),
       ],
@@ -851,7 +851,7 @@ function Doctor({ lang }: { lang: Language }) {
       title: c("Εξειδικευμένη εκπαίδευση", "Specialist training"),
       paragraphs: [
         c(
-          "Στο πλαίσιο αυτό, έχω παρακολουθήσει πληθώρα εξειδικευμένων εκπαιδευτικών προγραμμάτων και σεμιναρίων, τόσο εντός όσο και εκτός Ελλάδας, διευρύνοντας τις γνώσεις μου πάνω σε διαφορετικές τεχνικές, σύγχρονες μεθόδους εφαρμογής και τις πιο εξελιγμένες προσεγγίσεις της μικροχρωμάτωσης.",
+          "Στο πλαίσιο αυτό, έχω παρακολουθήσει πληθώρα εξειδικευμένων εκπαιδευτικών προγραμμάτων και σεμιναρίων, τόσο εντός όσο και εκτός Ελλάδας, διευρύνοντας τις γνώσεις μου πάνω σε διαφορετικές τεχνικές, σύγχρονες μεθόδους εφαρμογής και τις πιο εξελιγμένες προσεγγίσεις του SMP.",
           "As part of this journey, I have attended numerous specialist training programmes and seminars in Greece and abroad, expanding my knowledge of different techniques, modern application methods and the most advanced approaches to SMP."
         ),
       ],
@@ -861,11 +861,11 @@ function Doctor({ lang }: { lang: Language }) {
       title: c("Πάθος, τέχνη και προσωπική δέσμευση", "Passion, artistry and personal commitment"),
       paragraphs: [
         c(
-          "Δεν επέλεξα τη μικροχρωμάτωση απλώς ως επάγγελμα.",
+          "Δεν επέλεξα το SMP απλώς ως επάγγελμα.",
           "I did not choose SMP simply as a profession."
         ),
         c(
-          "Το επέλεξα γιατί πίστεψα πραγματικά στη δύναμή του να αλλάζει τη ζωή ενός ανθρώπου. Για εμένα, η μικροχρωμάτωση δεν είναι μόνο μια αισθητική εφαρμογή. Είναι ένας συνδυασμός τέχνης, τεχνικής ακρίβειας και ανθρώπινης ψυχολογίας, που μπορεί να χαρίσει ξανά αυτοπεποίθηση σε έναν άνθρωπο.",
+          "Το επέλεξα γιατί πίστεψα πραγματικά στη δύναμή του να αλλάζει τη ζωή ενός ανθρώπου. Για εμένα, το SMP δεν είναι μόνο μια αισθητική εφαρμογή. Είναι ένας συνδυασμός τέχνης, τεχνικής ακρίβειας και ανθρώπινης ψυχολογίας, που μπορεί να χαρίσει ξανά αυτοπεποίθηση σε έναν άνθρωπο.",
           "I chose it because I genuinely believed in its power to change a person’s life. To me, SMP is more than an aesthetic treatment. It combines artistry, technical precision and an understanding of human psychology, with the ability to restore someone’s confidence."
         ),
         c(
@@ -873,7 +873,7 @@ function Doctor({ lang }: { lang: Language }) {
           "Every treatment carries its own responsibility. My goal is for every person who trusts me to receive a completely natural result, tailored to their facial features and personal needs, so they can feel confident again whenever they look in the mirror."
         ),
         c(
-          "Για μένα, η μικροχρωμάτωση δεν είναι απλώς μια υπηρεσία ούτε απλώς ένα επάγγελμα.",
+          "Για μένα, το SMP δεν είναι απλώς μια υπηρεσία ούτε απλώς ένα επάγγελμα.",
           "For me, SMP is neither simply a service nor simply a profession."
         ),
       ],
@@ -886,7 +886,7 @@ function Doctor({ lang }: { lang: Language }) {
         index="08"
         lang={lang}
         title={c("Γνώρισε τον Ανδρέα Πετρόπουλο", "Meet Andreas Petropoulos")}
-        intro={c("Η προσωπική ιστορία, η εκπαίδευση και η φιλοσοφία πίσω από κάθε εφαρμογή μικροχρωμάτωσης.", "The personal story, training and philosophy behind every SMP treatment.")}
+        intro={c("Η προσωπική ιστορία, η εκπαίδευση και η φιλοσοφία πίσω από κάθε εφαρμογή SMP.", "The personal story, training and philosophy behind every SMP treatment.")}
       />
       <section className="section doctor-profile">
         <div className="doctor-portrait" role="img" aria-label={lang === "el" ? "Ανδρέας Πετρόπουλος — DermaDot" : "Andreas Petropoulos — DermaDot"}>
@@ -897,12 +897,12 @@ function Doctor({ lang }: { lang: Language }) {
           <h2>{lang === "el" ? <>Ανδρέας<br />Πετρόπουλος</> : <>Andreas<br />Petropoulos</>}</h2>
           <p className="doctor-lede">
             {lang === "el"
-              ? "Είμαι ο Ανδρέας Πετρόπουλος, απόφοιτος του Αρσακείου Σχολείου και του Πανεπιστημίου Κουίν Μάργκαρετ στη Σκωτία, όπου σπούδασα Διοίκηση Επιχειρήσεων."
+              ? "Είμαι ο Ανδρέας Πετρόπουλος, απόφοιτος του Αρσακείου Σχολείου και του Πανεπιστημίου Queen Margaret (Σκωτία), όπου σπούδασα Management."
               : "I am Andreas Petropoulos, a graduate of Arsakeio School and Queen Margaret University in Scotland, where I studied Management."}
           </p>
           <p>
             {lang === "el"
-              ? "Η πορεία μου συνδυάζει την πειθαρχία του αθλητισμού, την επιχειρηματική εμπειρία και τη βαθιά προσωπική σύνδεση με τη δύναμη της μικροχρωμάτωσης τριχωτού."
+              ? "Η πορεία μου συνδυάζει την πειθαρχία του αθλητισμού, την επιχειρηματική εμπειρία και τη βαθιά προσωπική σύνδεση με τη δύναμη του SMP."
               : "My journey brings together the discipline of sport, business experience and a deeply personal connection to the transformative power of Scalp Micropigmentation."}
           </p>
         </div>
@@ -957,7 +957,7 @@ function Contact({ lang }: { lang: Language }) {
           <div className="contact-details">
             <div className="contact-row"><span className="contact-label">{lang === "el" ? "Ώρες λειτουργίας" : "Hours"}</span><span className="contact-value appointment-only">{lang === "el" ? "Κατόπιν ραντεβού" : "By appointment only"}</span></div>
             <div className="contact-row"><span className="contact-label">{lang === "el" ? "Τηλέφωνο" : "Phone"}</span><span className="contact-value"><a href="tel:+302100000000">+30 210 000 0000</a></span></div>
-            <div className="contact-row"><span className="contact-label">{lang === "el" ? "Ηλεκτρονικό ταχυδρομείο" : "Email"}</span><span className="contact-value"><a href="mailto:hello@dermadot.gr">hello@dermadot.gr</a></span></div>
+            <div className="contact-row"><span className="contact-label">Email</span><span className="contact-value"><a href="mailto:hello@dermadot.gr">hello@dermadot.gr</a></span></div>
             <div className="contact-row"><span className="contact-label">{lang === "el" ? "Διεύθυνση" : "Address"}</span><span className="contact-value">{lang === "el" ? "Κολωνάκι, Αθήνα 106 73" : "Kolonaki, Athens 106 73"}</span></div>
           </div>
           <a className="map-card" href="https://maps.google.com/?q=Kolonaki+Athens" target="_blank" rel="noreferrer" aria-label={lang === "el" ? "Άνοιγμα χάρτη" : "Open map"}>
@@ -970,7 +970,7 @@ function Contact({ lang }: { lang: Language }) {
           <p className="eyebrow">{lang === "el" ? "Αίτημα αξιολόγησης" : "Consultation request"}</p>
           <form className="contact-form" onSubmit={submit}>
             <div className="field"><label htmlFor="name">{lang === "el" ? "Ονοματεπώνυμο" : "Full name"}</label><input id="name" name="name" autoComplete="name" required /></div>
-            <div className="field"><label htmlFor="contact">{lang === "el" ? "Τηλέφωνο ή ηλεκτρονικό ταχυδρομείο" : "Phone or email"}</label><input id="contact" name="contact" required /></div>
+            <div className="field"><label htmlFor="contact">{lang === "el" ? "Τηλέφωνο ή email" : "Phone or email"}</label><input id="contact" name="contact" required /></div>
             <div className="field"><label htmlFor="message">{lang === "el" ? "Πώς μπορούμε να βοηθήσουμε;" : "How can we help?"}</label><textarea id="message" name="message" required /></div>
             <button className="button" type="submit">{lang === "el" ? "Αποστολή αιτήματος" : "Send request"}</button>
             <p className="form-note">{lang === "el" ? "Με την αποστολή συμφωνείτε να επικοινωνήσουμε μαζί σας σχετικά με το αίτημά σας." : "By sending, you agree that we may contact you about your request."}</p>
