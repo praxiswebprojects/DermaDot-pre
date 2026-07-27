@@ -2460,6 +2460,11 @@ h1::first-letter,
   line-height: 1.25;
 }
 
+.doctor-emphasis-inline {
+  color: #F4F1EC !important;
+  font-weight: 700;
+}
+
 .doctor-quote {
   display: grid;
   gap: 38px;

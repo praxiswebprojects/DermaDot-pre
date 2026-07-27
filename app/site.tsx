@@ -851,7 +851,7 @@ function Doctor({ lang }: { lang: Language }) {
       title: c("Εξειδικευμένη εκπαίδευση", "Specialist training"),
       paragraphs: [
         c(
-          "Στο πλαίσιο αυτό, έχω παρακολουθήσει πληθώρα εξειδικευμένων εκπαιδευτικών προγραμμάτων και σεμιναρίων, τόσο εντός όσο και εκτός Ελλάδας, διευρύνοντας τις γνώσεις μου πάνω σε διαφορετικές τεχνικές, σύγχρονες μεθόδους εφαρμογής και τις πιο εξελιγμένες προσεγγίσεις του SMP.",
+          "Στο πλαίσιο της συνεχούς εξέλιξης και εξειδίκευσής του, έχει παρακολουθήσει πλήθος εκπαιδευτικών προγραμμάτων και εξειδικευμένων σεμιναρίων στην Ελλάδα και το εξωτερικό. Μέσα από τη συνεχή εκπαίδευση, έχει διευρύνει τις γνώσεις του στις διαφορετικές τεχνικές, τις σύγχρονες μεθόδους εφαρμογής και τις πλέον εξελιγμένες προσεγγίσεις του Scalp Micropigmentation (SMP), με στόχο την επίτευξη φυσικών και υψηλής ποιότητας αποτελεσμάτων.",
           "As part of this journey, I have attended numerous specialist training programmes and seminars in Greece and abroad, expanding my knowledge of different techniques, modern application methods and the most advanced approaches to SMP."
         ),
       ],
@@ -861,19 +861,19 @@ function Doctor({ lang }: { lang: Language }) {
       title: c("Πάθος, τέχνη και προσωπική δέσμευση", "Passion, artistry and personal commitment"),
       paragraphs: [
         c(
-          "Δεν επέλεξα το SMP απλώς ως επάγγελμα.",
+          "Δεν επέλεξα το SMP απλώς ως επαγγελματική κατεύθυνση. Το επέλεξα γιατί πιστεύω βαθιά στη δύναμή του να επηρεάζει θετικά τη ζωή και την αυτοπεποίθηση ενός ανθρώπου. Για εμένα, το Scalp Micropigmentation αποτελεί έναν συνδυασμό τεχνικής ακρίβειας, αισθητικής αντίληψης και κατανόησης της ανθρώπινης ψυχολογίας.",
           "I did not choose SMP simply as a profession."
         ),
         c(
-          "Το επέλεξα γιατί πίστεψα πραγματικά στη δύναμή του να αλλάζει τη ζωή ενός ανθρώπου. Για εμένα, το SMP δεν είναι μόνο μια αισθητική εφαρμογή. Είναι ένας συνδυασμός τέχνης, τεχνικής ακρίβειας και ανθρώπινης ψυχολογίας, που μπορεί να χαρίσει ξανά αυτοπεποίθηση σε έναν άνθρωπο.",
+          "Κάθε εφαρμογή αποτελεί μια ξεχωριστή ευθύνη και μια προσωπική δέσμευση. Στόχος μου είναι κάθε άνθρωπος που με εμπιστεύεται να αποκτά ένα απόλυτα φυσικό αποτέλεσμα, προσαρμοσμένο στα ιδιαίτερα χαρακτηριστικά του και στις προσωπικές του ανάγκες, ώστε να νιώθει ξανά αυτοπεποίθηση και ασφάλεια με την εικόνα του.",
           "I chose it because I genuinely believed in its power to change a person’s life. To me, SMP is more than an aesthetic treatment. It combines artistry, technical precision and an understanding of human psychology, with the ability to restore someone’s confidence."
         ),
         c(
-          "Κάθε εφαρμογή αποτελεί μια ξεχωριστή ευθύνη. Στόχος μου είναι κάθε άνθρωπος που με εμπιστεύεται να αποκτά ένα αποτέλεσμα απόλυτα φυσικό, προσαρμοσμένο στα χαρακτηριστικά του προσώπου του και στις προσωπικές του ανάγκες, ώστε να αισθάνεται ξανά σιγουριά κάθε φορά που κοιτάζει τον εαυτό του στον καθρέφτη.",
+          "Για μένα, το SMP δεν είναι απλώς μια υπηρεσία. Είναι μια διαδικασία αποκατάστασης της εικόνας, της αυτοπεποίθησης και της σχέσης του ανθρώπου με τον εαυτό του.",
           "Every treatment carries its own responsibility. My goal is for every person who trusts me to receive a completely natural result, tailored to their facial features and personal needs, so they can feel confident again whenever they look in the mirror."
         ),
         c(
-          "Για μένα, το SMP δεν είναι απλώς μια υπηρεσία ούτε απλώς ένα επάγγελμα.",
+          "",
           "For me, SMP is neither simply a service nor simply a profession."
         ),
       ],
@@ -920,13 +920,21 @@ function Doctor({ lang }: { lang: Language }) {
               <span>{chapter.number}</span>
               <div>
                 <h3>{chapter.title[lang]}</h3>
-                {chapter.paragraphs.map((paragraph, index) =>
-                  paragraph[lang] ? (
+                {chapter.paragraphs.map((paragraph, index) => {
+                  if (!paragraph[lang]) return null;
+                  if (lang === "el" && chapter.number === "04" && index === 0) {
+                    return (
+                      <p key={paragraph.en}>
+                        <strong className="doctor-emphasis-inline">Δεν επέλεξα το SMP απλώς ως επαγγελματική κατεύθυνση</strong>. Το επέλεξα γιατί πιστεύω βαθιά στη δύναμή του να επηρεάζει θετικά τη ζωή και την αυτοπεποίθηση ενός ανθρώπου. Για εμένα, το Scalp Micropigmentation αποτελεί έναν συνδυασμό τεχνικής ακρίβειας, αισθητικής αντίληψης και κατανόησης της ανθρώπινης ψυχολογίας.
+                      </p>
+                    );
+                  }
+                  return (
                     <p className={chapter.number === "04" && index === 0 ? "doctor-emphasis" : ""} key={paragraph.en}>
                       {paragraph[lang]}
                     </p>
-                  ) : null
-                )}
+                  );
+                })}
               </div>
             </article>
           ))}
