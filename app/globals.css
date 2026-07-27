@@ -3150,13 +3150,3 @@ p {
     font-size: clamp(20px, 6.2vw, 27px);
   }
 }
-
-/* Editorial serif treatment reserved for primary hero titles */
-.hero h1,
-.template-hero h1,
-.page-hero h1,
-.applications-heading h1 {
-  font-family: var(--font-cormorant-garamond), var(--font-noto-serif), Georgia, serif;
-  font-weight: 700;
-  letter-spacing: -.025em;
-}
