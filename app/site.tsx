@@ -790,15 +790,15 @@ function Procedure({ lang }: { lang: Language }) {
 
 function Aftercare({ lang }: { lang: Language }) {
   const cards = [
-    c("Πρώτες ημέρες|Κρατήστε την περιοχή στεγνή, μην την αγγίζετε και αποφύγετε έντονη άσκηση ή ιδρώτα.", "First days|Keep the area dry, do not touch it, and avoid intense exercise or heavy sweating."),
-    c("Πρώτη εβδομάδα|Αποφύγετε πισίνα, σάουνα, ατμό, ξύρισμα πάνω στην περιοχή και προϊόντα που δεν έχουν εγκριθεί.", "First week|Avoid pools, saunas, steam, shaving over the area and any products not approved for use."),
-    c("Μετά την επούλωση|Προστατεύετε καθημερινά από τον ήλιο και ακολουθείτε την ήπια ρουτίνα που έχει προταθεί.", "After healing|Use daily sun protection and follow the gentle routine recommended for you."),
+    c("Πρώτες ημέρες|Οι πρώτες ημέρες είναι σημαντικές για τη σωστή σταθεροποίηση της χρωστικής. Διατηρήστε την περιοχή καθαρή και στεγνή, αποφεύγοντας την επαφή, τον ιδρώτα και οποιαδήποτε δραστηριότητα μπορεί να επηρεάσει τη διαδικασία επούλωσης.", "First days|The first few days are important for the pigment to settle correctly. Keep the area clean and dry, avoiding contact, perspiration and any activity that could affect the healing process."),
+    c("Πρώτη εβδομάδα|Κατά την πρώτη εβδομάδα, η περιοχή χρειάζεται ήπια φροντίδα και προστασία. Αποφύγετε την έντονη έκθεση στον ήλιο, την υπερβολική εφίδρωση και ακολουθήστε τις οδηγίες για τη διατήρηση ενός ομοιόμορφου και φυσικού αποτελέσματος.", "First week|During the first week, the area requires gentle care and protection. Avoid intense sun exposure and excessive perspiration, and follow the guidance provided to maintain an even, natural-looking result."),
+    c("Μετά την επούλωση|Μετά την ολοκλήρωση της επούλωσης, η σωστή προστασία της περιοχής συμβάλλει στη μακροχρόνια διατήρηση του αποτελέσματος. Η χρήση αντηλιακής προστασίας και η κατάλληλη περιποίηση βοηθούν στη διατήρηση της έντασης και της φυσικότητας της εφαρμογής.", "After healing|Once healing is complete, proper protection of the area contributes to maintaining the result over time. Sun protection and appropriate care help preserve the intensity and natural appearance of the treatment."),
   ];
   return (
     <>
-      <PageHero index="05" lang={lang} title={c("Φροντίδα μετά", "Aftercare")} intro={c("Λίγες απλές συνήθειες προστατεύουν την επούλωση και βοηθούν το αποτέλεσμα να σταθεροποιηθεί σωστά.", "A few simple habits protect healing and help the result settle correctly.")} />
+      <PageHero index="05" lang={lang} title={c("Φροντίδα", "Aftercare")} intro={c("Λίγες απλές συνήθειες προστατεύουν την επούλωση και βοηθούν το αποτέλεσμα να σταθεροποιηθεί σωστά.", "A few simple habits protect healing and help the result settle correctly.")} />
       <section className="section">
-        <div className="section-head"><h2>{lang === "el" ? "Η επούλωση είναι μέρος της θεραπείας." : "Healing is part of treatment."}</h2><p className="section-intro">{lang === "el" ? "Θα λάβετε ακριβείς, προσωπικές οδηγίες μετά από κάθε συνεδρία. Αυτή είναι μια γενική εικόνα." : "You will receive precise, personal guidance after every session. This is a general overview."}</p></div>
+        <div className="section-head"><h2>{lang === "el" ? "Η επούλωση είναι μέρος της θεραπείας." : "Healing is part of treatment."}</h2><p className="section-intro">{lang === "el" ? "Θα λάβετε ακριβείς, προσωπικές οδηγίες μετά από κάθε συνεδρία." : "You will receive precise, personal guidance after every session."}</p></div>
         <div className="content-grid">
           {cards.map((item) => {
             const [elTitle, elText] = item.el.split("|");
@@ -807,7 +807,7 @@ function Aftercare({ lang }: { lang: Language }) {
           })}
         </div>
       </section>
-      <section className="section note-panel"><h2>{lang === "el" ? "Αφήστε το αποτέλεσμα να ηρεμήσει." : "Let the result settle."}</h2><p>{lang === "el" ? "Τις πρώτες ημέρες το χρώμα μπορεί να φαίνεται πιο έντονο. Καθώς η επιφάνεια του δέρματος επουλώνεται, ο τόνος μαλακώνει. Μην κρίνετε το τελικό αποτέλεσμα πριν από τον προβλεπόμενο χρόνο επανελέγχου." : "Pigment may look stronger in the first few days. As the skin surface heals, the tone softens. Do not judge the final result before your scheduled review."}</p></section>
+      <section className="section note-panel"><h2>{lang === "el" ? "Δώστε χρόνο στο αποτέλεσμα να σταθεροποιηθεί." : "Allow the result time to stabilise."}</h2><p>{lang === "el" ? "Τις πρώτες ημέρες η απόχρωση μπορεί να εμφανίζεται πιο έντονη. Κατά τη διάρκεια της επούλωσης, το χρώμα σταδιακά μαλακώνει και προσαρμόζεται, αποκαλύπτοντας το τελικό φυσικό αποτέλεσμα. Η αξιολόγηση πραγματοποιείται στον χρόνο επανελέγχου." : "During the first few days, the shade may appear more intense. As healing progresses, the colour gradually softens and settles, revealing the final natural-looking result. The result is assessed at the scheduled follow-up appointment."}</p></section>
     </>
   );
 }
