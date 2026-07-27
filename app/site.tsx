@@ -819,15 +819,15 @@ function Doctor({ lang }: { lang: Language }) {
       title: c("Πειθαρχία και προσωπική διαδρομή", "Discipline and personal journey"),
       paragraphs: [
         c(
-          "Από πολύ μικρή ηλικία έμαθα να λειτουργώ με πειθαρχία, συνέπεια και αφοσίωση στους στόχους μου. Ο αθλητισμός αποτελεί αναπόσπαστο κομμάτι της ζωής μου από την ηλικία των πέντε ετών και μου δίδαξε ότι η πραγματική επιτυχία χτίζεται μέσα από καθημερινή προσπάθεια, συνεχή εξέλιξη και σεβασμό προς τον εαυτό μας.",
+          "Από μικρή ηλικία, η πειθαρχία, η συνέπεια και η προσήλωση στους στόχους αποτέλεσαν θεμελιώδεις αξίες στην πορεία του Ανδρέα Πετρόπουλου. Η πολυετής ενασχόλησή του με τον αθλητισμό διαμόρφωσε μια φιλοσοφία συνεχούς εξέλιξης, επιμονής και δέσμευσης στην προσπάθεια για το καλύτερο δυνατό αποτέλεσμα. Με την ίδια φιλοσοφία προσεγγίζει και κάθε επαγγελματική πρόκληση, θέτοντας ως προτεραιότητα την ποιότητα, την υπευθυνότητα και τη δημιουργία σχέσεων εμπιστοσύνης.",
           "From a very young age, I learned to approach life with discipline, consistency and dedication to my goals. Sport has been an inseparable part of my life since the age of five, teaching me that real success is built through daily effort, continuous development and respect for ourselves."
         ),
         c(
-          "Την ίδια φιλοσοφία ακολουθώ και στην επαγγελματική μου πορεία. Πιστεύω πως όταν αναλαμβάνεις κάτι, οφείλεις να δίνεις το 100% του εαυτού σου, χωρίς εκπτώσεις στην ποιότητα και στο τελικό αποτέλεσμα.",
+          "",
           "I follow the same philosophy throughout my professional life. I believe that when you undertake something, you must give it one hundred per cent, without compromising on quality or the final result."
         ),
         c(
-          "Παράλληλα, δραστηριοποιούμαι επιχειρηματικά στη Γερμανία, όπου διατηρώ επιχείρηση στον χώρο της εμπορίας τροφίμων.",
+          "",
           "Alongside my work in SMP, I am also active in business in Germany, where I run a company in the food-trading sector."
         ),
       ],
@@ -837,11 +837,11 @@ function Doctor({ lang }: { lang: Language }) {
       title: c("Η προσωπική εμπειρία που με οδήγησε στο SMP", "The personal experience that led me to SMP"),
       paragraphs: [
         c(
-          "Η πρώτη μου επαφή με το Scalp Micropigmentation (SMP) προέκυψε μέσα από μια προσωπική εμπειρία της οικογένειάς μου. Ο πατέρας μου αντιμετώπιζε για πολλά χρόνια αλωπεκία και είχε υποβληθεί σε αρκετές μεταμοσχεύσεις μαλλιών, χωρίς να πετύχει το αποτέλεσμα που επιθυμούσε. Όταν αποφάσισε να προχωρήσει σε θεραπεία SMP, η αλλαγή στην εμφάνισή του και, κυρίως, στην αυτοπεποίθησή του ήταν πραγματικά εντυπωσιακή.",
+          "Η πρώτη μου επαφή με το Scalp Micropigmentation (SMP) προέκυψε μέσα από μια προσωπική οικογενειακή εμπειρία, η οποία άλλαξε τον τρόπο με τον οποίο αντιλαμβανόμουν την αποκατάσταση της εικόνας και της αυτοπεποίθησης. Η αντιμετώπιση της αλωπεκίας από ένα κοντινό μου πρόσωπο και η εντυπωσιακή αλλαγή που έφερε η θεραπεία SMP αποτέλεσαν την αφετηρία για να γνωρίσω σε βάθος αυτή τη σύγχρονη τεχνική.",
           "My first encounter with Scalp Micropigmentation (SMP) came through a personal experience in my family. My father had lived with alopecia for many years and had undergone several hair transplants without achieving the result he wanted. When he decided to have SMP treatment, the change in his appearance—and, above all, in his confidence—was truly remarkable."
         ),
         c(
-          "Αυτή η εμπειρία αποτέλεσε την αφορμή να γνωρίσω έναν εντελώς διαφορετικό κόσμο. Αποφάσισα να εμβαθύνω στην τεχνική του SMP και να εκπαιδευτώ δίπλα σε καταξιωμένους επαγγελματίες του χώρου.",
+          "Με κίνητρο την ουσιαστική κατανόηση της μεθόδου και των δυνατοτήτων της, αποφάσισα να εκπαιδευτώ δίπλα σε καταξιωμένους επαγγελματίες του χώρου και να αφιερωθώ στην εξέλιξη της τεχνικής μου, με στόχο να προσφέρω φυσικά αποτελέσματα και μια εμπειρία που ενισχύει την αυτοπεποίθηση κάθε ανθρώπου που με εμπιστεύεται.",
           "That experience introduced me to an entirely different world. I decided to study the SMP technique in depth and train alongside established professionals in the field."
         ),
       ],
@@ -897,14 +897,12 @@ function Doctor({ lang }: { lang: Language }) {
           <h2>{lang === "el" ? <>Ανδρέας<br />Πετρόπουλος</> : <>Andreas<br />Petropoulos</>}</h2>
           <p className="doctor-lede">
             {lang === "el"
-              ? "Είμαι ο Ανδρέας Πετρόπουλος, απόφοιτος του Αρσακείου Σχολείου και του Πανεπιστημίου Queen Margaret (Σκωτία), όπου σπούδασα Management."
+              ? "Ο Ανδρέας Πετρόπουλος είναι απόφοιτος του Αρσακείου Σχολείου και του Πανεπιστημίου Queen Margaret στη Σκωτία, όπου ολοκλήρωσε τις σπουδές του στον τομέα του Management. Η ακαδημαϊκή του πορεία και η διεπιστημονική του προσέγγιση αποτελούν τη βάση για τη διαμόρφωση μιας σύγχρονης αντίληψης γύρω από την οργάνωση, τη διοίκηση και την παροχή υψηλού επιπέδου υπηρεσιών υγείας."
               : "I am Andreas Petropoulos, a graduate of Arsakeio School and Queen Margaret University in Scotland, where I studied Management."}
           </p>
-          <p>
-            {lang === "el"
-              ? "Η πορεία μου συνδυάζει την πειθαρχία του αθλητισμού, την επιχειρηματική εμπειρία και τη βαθιά προσωπική σύνδεση με τη δύναμη του SMP."
-              : "My journey brings together the discipline of sport, business experience and a deeply personal connection to the transformative power of Scalp Micropigmentation."}
-          </p>
+          {lang === "en" && (
+            <p>My journey brings together the discipline of sport, business experience and a deeply personal connection to the transformative power of Scalp Micropigmentation.</p>
+          )}
         </div>
       </section>
       <section className="section doctor-story">
@@ -912,7 +910,7 @@ function Doctor({ lang }: { lang: Language }) {
           <h2>{lang === "el" ? "Η ιστορία μου." : "My story."}</h2>
           <p className="section-intro">
             {lang === "el"
-              ? "Μια πορεία που ξεκίνησε από την πειθαρχία, διαμορφώθηκε μέσα από μια οικογενειακή εμπειρία και εξελίχθηκε σε προσωπική δέσμευση προς κάθε άνθρωπο που με εμπιστεύεται."
+              ? "Με επίκεντρο τον άνθρωπο και τη σύγχρονη προσέγγιση στη φροντίδα υγείας, ο Ανδρέας Πετρόπουλος συνδυάζει συνέπεια, επιστημονική κατάρτιση και αφοσίωση, δημιουργώντας σχέσεις εμπιστοσύνης με κάθε ασθενή."
               : "A journey that began with discipline, was shaped by a family experience and grew into a personal commitment to every person who places their trust in me."}
           </p>
         </div>
@@ -922,11 +920,13 @@ function Doctor({ lang }: { lang: Language }) {
               <span>{chapter.number}</span>
               <div>
                 <h3>{chapter.title[lang]}</h3>
-                {chapter.paragraphs.map((paragraph, index) => (
-                  <p className={chapter.number === "04" && index === 0 ? "doctor-emphasis" : ""} key={paragraph.en}>
-                    {paragraph[lang]}
-                  </p>
-                ))}
+                {chapter.paragraphs.map((paragraph, index) =>
+                  paragraph[lang] ? (
+                    <p className={chapter.number === "04" && index === 0 ? "doctor-emphasis" : ""} key={paragraph.en}>
+                      {paragraph[lang]}
+                    </p>
+                  ) : null
+                )}
               </div>
             </article>
           ))}
