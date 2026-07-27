@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Noto_Sans, Open_Sans } from "next/font/google";
+import { Cormorant_Garamond, Montserrat, Noto_Sans, Noto_Serif, Open_Sans } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 
@@ -18,6 +18,18 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin", "greek"],
   weight: ["400", "600", "700"],
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant-garamond",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
+
+const notoSerif = Noto_Serif({
+  variable: "--font-noto-serif",
+  subsets: ["latin", "greek"],
+  weight: ["600", "700"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -60,7 +72,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="el">
-      <body className={`${notoSans.variable} ${montserrat.variable} ${openSans.variable}`}>{children}</body>
+      <body className={`${notoSans.variable} ${montserrat.variable} ${openSans.variable} ${cormorantGaramond.variable} ${notoSerif.variable}`}>{children}</body>
     </html>
   );
 }
