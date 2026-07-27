@@ -983,18 +983,46 @@ function Contact({ lang }: { lang: Language }) {
 }
 
 function FAQ({ lang }: { lang: Language }) {
+  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
   useScrollReveal();
+
+  const toggleQuestion = (index: number) => {
+    setOpenQuestion((current) => (current === index ? null : index));
+  };
+
   return (
     <>
       <PageHero index="07" lang={lang} title={c("Συχνές Ερωτήσεις", "FAQ")} intro={c("Σύντομες, ξεκάθαρες απαντήσεις στα θέματα που συζητάμε πιο συχνά στην πρώτη αξιολόγηση.", "Clear, concise answers to the topics we discuss most often during a first consultation.")} />
       <section className="section">
         <div className="faq-list">
-          {faqItems.map((question, i) => (
-            <article className="faq-row scroll-reveal scroll-reveal-question line-reveal" data-scroll-reveal key={question.en}>
-              <h2 className="faq-question">{question[lang]}</h2>
-              <p className="faq-answer">{faqAnswers[i][lang]}</p>
-            </article>
-          ))}
+          {faqItems.map((question, i) => {
+            const isOpen = openQuestion === i;
+            const answerId = `faq-answer-${i}`;
+
+            return (
+              <article
+                className={`faq-row scroll-reveal scroll-reveal-question ${isOpen ? "is-open" : ""}`}
+                data-scroll-reveal
+                key={question.en}
+              >
+                <button
+                  className="faq-toggle"
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                  onClick={() => toggleQuestion(i)}
+                >
+                  <h2 className="faq-question">{question[lang]}</h2>
+                  <span className="faq-icon" aria-hidden="true" />
+                </button>
+                <div className="faq-answer-wrap" id={answerId} aria-hidden={!isOpen}>
+                  <div>
+                    <p className="faq-answer">{faqAnswers[i][lang]}</p>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
     </>
