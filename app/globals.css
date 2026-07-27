@@ -1706,7 +1706,7 @@ h1::first-letter,
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.faq-row.is-open .faq-icon::after {
+.faq-row[data-open="true"] .faq-icon::after {
   transform: translate(-50%, -50%) rotate(0deg);
 }
 
@@ -1734,7 +1734,7 @@ h1::first-letter,
   overflow: hidden;
 }
 
-.faq-row.is-open .faq-answer-wrap {
+.faq-row[data-open="true"] .faq-answer-wrap {
   grid-template-rows: 1fr;
   opacity: 1;
 }

@@ -1001,8 +1001,9 @@ function FAQ({ lang }: { lang: Language }) {
 
             return (
               <article
-                className={`faq-row scroll-reveal scroll-reveal-question ${isOpen ? "is-open" : ""}`}
+                className="faq-row scroll-reveal scroll-reveal-question line-reveal"
                 data-scroll-reveal
+                data-open={isOpen ? "true" : "false"}
                 key={question.en}
               >
                 <button
