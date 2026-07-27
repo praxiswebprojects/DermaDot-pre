@@ -79,35 +79,35 @@ const faqItems = [
 const faqAnswers = [
   c(
     "Η θεραπεία SMP προκαλεί μόνο ήπια ενόχληση, την οποία οι περισσότεροι περιγράφουν ως ένα ελαφρύ τσίμπημα. Η ένταση διαφέρει από άτομο σε άτομο, ενώ η διαδικασία πραγματοποιείται με προσοχή, ώστε η εμπειρία να είναι όσο το δυνατόν πιο άνετη.",
-    "Most clients describe mild to moderate discomfort that is usually well tolerated. Sensation varies by area and from person to person."
+    "SMP treatment causes only mild discomfort, which most people describe as a light prickling sensation. The intensity varies from person to person, and the procedure is carried out with care to make the experience as comfortable as possible."
   ),
   c(
     "Το κόστος της θεραπείας εξαρτάται από την έκταση της περιοχής, την εφαρμογή που απαιτείται και τον αριθμό των συνεδριών. Μετά από μια δωρεάν αξιολόγηση, λαμβάνετε μια σαφή και εξατομικευμένη προσφορά, πλήρως προσαρμοσμένη στις ανάγκες και τους στόχους σας, χωρίς καμία δέσμευση.",
-    "Cost depends on the treatment area, application and number of sessions. After your free consultation, you receive a clear, personalised quote."
+    "The cost of treatment depends on the size of the area, the application required and the number of sessions. Following a free consultation, you will receive a clear, personalised quotation tailored to your needs and goals, with no obligation."
   ),
   c(
     "Το SMP προσφέρει ένα μακροχρόνιο αποτέλεσμα που κρατάει αρκετά χρόνια. Για τη διατήρηση της άριστης αισθητικής του εικόνας, μπορεί να πραγματοποιηθεί μια σύντομη συνεδρία ανανέωσης, εφόσον αυτό κριθεί απαραίτητο.",
-    "Results usually last for several years. Longevity is influenced by skin type, sun exposure, lifestyle and proper aftercare."
+    "SMP offers a long-lasting result that remains visible for several years. To maintain its optimal aesthetic appearance, a short refresh session can be carried out if considered necessary."
   ),
   c(
     "Το αποτέλεσμα διατηρείται για πολλά χρόνια με φυσική εμφάνιση. Εάν στο μέλλον θελήσετε να ανανεώσετε την έντασή του, αυτό γίνεται εύκολα με μια σύντομη συνεδρία συντήρησης.",
-    "Yes. The pigment softens and fades gradually over time. This normal progression helps the result remain subtle as your appearance changes."
+    "The result maintains a natural appearance for many years. If you wish to refresh its intensity in the future, this can be done easily with a short maintenance session."
   ),
   c(
     "Το SMP δεν απαιτεί συχνή συντήρηση. Μια συνεδρία ανανέωσης μετά από αρκετά χρόνια αρκεί για να διατηρηθεί το αποτέλεσμα άψογο, εφόσον το επιθυμείτε.",
-    "A refresh session may be useful after several years. Daily sun protection makes a meaningful difference to colour retention."
+    "SMP does not require frequent maintenance. A refresh session after several years is usually enough to keep the result looking its best, should you wish to have one."
   ),
   c(
     "Μετά τη συνεδρία SMP συνιστάται να αποφεύγεται η έντονη γυμναστική για τις πρώτες ημέρες, ώστε να προστατευτεί η εφαρμογή και να επιτευχθεί η καλύτερη δυνατή επούλωση. Στη συνέχεια μπορείτε να επιστρέψετε κανονικά στις καθημερινές σας δραστηριότητες.",
-    "Avoid intense exercise and heavy sweating during the first few days. Return gradually, following the personal aftercare guidance you receive."
+    "After an SMP session, intense exercise should be avoided for the first few days to protect the treatment and support the best possible healing. You can then return to your normal daily activities."
   ),
   c(
     "Μετά τη συνεδρία SMP συνιστάται η αποφυγή θάλασσας για λίγες ημέρες, ώστε να διασφαλιστεί η σωστή σταθεροποίηση της χρωστικής. Έπειτα μπορείτε να απολαύσετε ξανά τις καθημερινές σας δραστηριότητες, ακολουθώντας τις οδηγίες φροντίδας για τη διατήρηση του αποτελέσματος.",
-    "Not immediately after a session. Sea water, pools and strong sun exposure should be avoided during initial healing; we will tell you when it is safe to return."
+    "After an SMP session, swimming in the sea should be avoided for a few days to allow the pigment to settle correctly. You can then resume your usual activities while following the aftercare guidance provided to maintain the result."
   ),
   c(
     "Ναι, μπορείτε να πραγματοποιήσετε μεταμόσχευση μαλλιών μετά από SMP. Η θεραπεία μπορεί να λειτουργήσει συμπληρωματικά, ενισχύοντας τη συνολική εικόνα και το φυσικό αποτέλεσμα, με τον κατάλληλο σχεδιασμό από εξειδικευμένους επαγγελματίες.",
-    "Yes, in many cases SMP does not prevent a future hair transplant. The next step should, however, be planned with your transplant surgeon after a full assessment."
+    "Yes, you can have a hair transplant after SMP. With appropriate planning by qualified professionals, the two treatments can work together to enhance the overall appearance and create a natural result."
   ),
 ];
 
@@ -820,15 +820,15 @@ function Doctor({ lang }: { lang: Language }) {
       paragraphs: [
         c(
           "Από μικρή ηλικία, η πειθαρχία, η συνέπεια και η προσήλωση στους στόχους αποτέλεσαν θεμελιώδεις αξίες στην πορεία του Ανδρέα Πετρόπουλου. Η πολυετής ενασχόλησή του με τον αθλητισμό διαμόρφωσε μια φιλοσοφία συνεχούς εξέλιξης, επιμονής και δέσμευσης στην προσπάθεια για το καλύτερο δυνατό αποτέλεσμα. Με την ίδια φιλοσοφία προσεγγίζει και κάθε επαγγελματική πρόκληση, θέτοντας ως προτεραιότητα την ποιότητα, την υπευθυνότητα και τη δημιουργία σχέσεων εμπιστοσύνης.",
-          "From a very young age, I learned to approach life with discipline, consistency and dedication to my goals. Sport has been an inseparable part of my life since the age of five, teaching me that real success is built through daily effort, continuous development and respect for ourselves."
+          "From an early age, discipline, consistency and commitment to his goals have been fundamental values throughout Andreas Petropoulos’s journey. His many years of involvement in sport shaped a philosophy of continuous development, perseverance and dedication to achieving the best possible result. He approaches every professional challenge with the same philosophy, prioritising quality, responsibility and the development of relationships built on trust."
         ),
         c(
           "",
-          "I follow the same philosophy throughout my professional life. I believe that when you undertake something, you must give it one hundred per cent, without compromising on quality or the final result."
+          ""
         ),
         c(
           "",
-          "Alongside my work in SMP, I am also active in business in Germany, where I run a company in the food-trading sector."
+          ""
         ),
       ],
     },
@@ -838,11 +838,11 @@ function Doctor({ lang }: { lang: Language }) {
       paragraphs: [
         c(
           "Η πρώτη μου επαφή με το Scalp Micropigmentation (SMP) προέκυψε μέσα από μια προσωπική οικογενειακή εμπειρία, η οποία άλλαξε τον τρόπο με τον οποίο αντιλαμβανόμουν την αποκατάσταση της εικόνας και της αυτοπεποίθησης. Η αντιμετώπιση της αλωπεκίας από ένα κοντινό μου πρόσωπο και η εντυπωσιακή αλλαγή που έφερε η θεραπεία SMP αποτέλεσαν την αφετηρία για να γνωρίσω σε βάθος αυτή τη σύγχρονη τεχνική.",
-          "My first encounter with Scalp Micropigmentation (SMP) came through a personal experience in my family. My father had lived with alopecia for many years and had undergone several hair transplants without achieving the result he wanted. When he decided to have SMP treatment, the change in his appearance—and, above all, in his confidence—was truly remarkable."
+          "My first encounter with Scalp Micropigmentation (SMP) came through a personal family experience that changed the way I understood the restoration of appearance and confidence. Seeing someone close to me address alopecia, and witnessing the remarkable change brought about by SMP treatment, became the starting point for exploring this modern technique in depth."
         ),
         c(
           "Με κίνητρο την ουσιαστική κατανόηση της μεθόδου και των δυνατοτήτων της, αποφάσισα να εκπαιδευτώ δίπλα σε καταξιωμένους επαγγελματίες του χώρου και να αφιερωθώ στην εξέλιξη της τεχνικής μου, με στόχο να προσφέρω φυσικά αποτελέσματα και μια εμπειρία που ενισχύει την αυτοπεποίθηση κάθε ανθρώπου που με εμπιστεύεται.",
-          "That experience introduced me to an entirely different world. I decided to study the SMP technique in depth and train alongside established professionals in the field."
+          "Motivated by a desire to understand the method and its possibilities thoroughly, I decided to train alongside established professionals in the field and dedicate myself to developing my technique, with the aim of delivering natural results and an experience that strengthens the confidence of every person who places their trust in me."
         ),
       ],
     },
@@ -852,7 +852,7 @@ function Doctor({ lang }: { lang: Language }) {
       paragraphs: [
         c(
           "Στο πλαίσιο της συνεχούς εξέλιξης και εξειδίκευσής του, έχει παρακολουθήσει πλήθος εκπαιδευτικών προγραμμάτων και εξειδικευμένων σεμιναρίων στην Ελλάδα και το εξωτερικό. Μέσα από τη συνεχή εκπαίδευση, έχει διευρύνει τις γνώσεις του στις διαφορετικές τεχνικές, τις σύγχρονες μεθόδους εφαρμογής και τις πλέον εξελιγμένες προσεγγίσεις του Scalp Micropigmentation (SMP), με στόχο την επίτευξη φυσικών και υψηλής ποιότητας αποτελεσμάτων.",
-          "As part of this journey, I have attended numerous specialist training programmes and seminars in Greece and abroad, expanding my knowledge of different techniques, modern application methods and the most advanced approaches to SMP."
+          "As part of his continuous development and specialisation, he has attended numerous training programmes and specialist seminars in Greece and abroad. Through ongoing education, he has expanded his knowledge of different techniques, modern application methods and the most advanced approaches to Scalp Micropigmentation (SMP), with the aim of achieving natural, high-quality results."
         ),
       ],
     },
@@ -862,19 +862,19 @@ function Doctor({ lang }: { lang: Language }) {
       paragraphs: [
         c(
           "Δεν επέλεξα το SMP απλώς ως επαγγελματική κατεύθυνση. Το επέλεξα γιατί πιστεύω βαθιά στη δύναμή του να επηρεάζει θετικά τη ζωή και την αυτοπεποίθηση ενός ανθρώπου. Για εμένα, το Scalp Micropigmentation αποτελεί έναν συνδυασμό τεχνικής ακρίβειας, αισθητικής αντίληψης και κατανόησης της ανθρώπινης ψυχολογίας.",
-          "I did not choose SMP simply as a profession."
+          "I did not choose SMP simply as a career path. I chose it because I deeply believe in its ability to make a positive difference to a person’s life and confidence. To me, Scalp Micropigmentation combines technical precision, aesthetic awareness and an understanding of human psychology."
         ),
         c(
           "Κάθε εφαρμογή αποτελεί μια ξεχωριστή ευθύνη και μια προσωπική δέσμευση. Στόχος μου είναι κάθε άνθρωπος που με εμπιστεύεται να αποκτά ένα απόλυτα φυσικό αποτέλεσμα, προσαρμοσμένο στα ιδιαίτερα χαρακτηριστικά του και στις προσωπικές του ανάγκες, ώστε να νιώθει ξανά αυτοπεποίθηση και ασφάλεια με την εικόνα του.",
-          "I chose it because I genuinely believed in its power to change a person’s life. To me, SMP is more than an aesthetic treatment. It combines artistry, technical precision and an understanding of human psychology, with the ability to restore someone’s confidence."
+          "Every treatment carries a distinct responsibility and a personal commitment. My goal is for every person who places their trust in me to receive a completely natural result, tailored to their individual features and personal needs, so they can feel confident and comfortable with their appearance again."
         ),
         c(
           "Για μένα, το SMP δεν είναι απλώς μια υπηρεσία. Είναι μια διαδικασία αποκατάστασης της εικόνας, της αυτοπεποίθησης και της σχέσης του ανθρώπου με τον εαυτό του.",
-          "Every treatment carries its own responsibility. My goal is for every person who trusts me to receive a completely natural result, tailored to their facial features and personal needs, so they can feel confident again whenever they look in the mirror."
+          "For me, SMP is not simply a service. It is a process of restoring a person’s appearance, confidence and relationship with themselves."
         ),
         c(
           "",
-          "For me, SMP is neither simply a service nor simply a profession."
+          ""
         ),
       ],
     },
@@ -898,11 +898,8 @@ function Doctor({ lang }: { lang: Language }) {
           <p className="doctor-lede">
             {lang === "el"
               ? "Ο Ανδρέας Πετρόπουλος είναι απόφοιτος του Αρσακείου Σχολείου και του Πανεπιστημίου Queen Margaret στη Σκωτία, όπου ολοκλήρωσε τις σπουδές του στον τομέα του Management. Η ακαδημαϊκή του πορεία και η διεπιστημονική του προσέγγιση αποτελούν τη βάση για τη διαμόρφωση μιας σύγχρονης αντίληψης γύρω από την οργάνωση, τη διοίκηση και την παροχή υψηλού επιπέδου υπηρεσιών υγείας."
-              : "I am Andreas Petropoulos, a graduate of Arsakeio School and Queen Margaret University in Scotland, where I studied Management."}
+              : "Andreas Petropoulos is a graduate of Arsakeio School and Queen Margaret University in Scotland, where he completed his studies in Management. His academic journey and interdisciplinary approach form the foundation of a modern perspective on organisation, management and the delivery of high-quality healthcare services."}
           </p>
-          {lang === "en" && (
-            <p>My journey brings together the discipline of sport, business experience and a deeply personal connection to the transformative power of Scalp Micropigmentation.</p>
-          )}
         </div>
       </section>
       <section className="section doctor-story">
@@ -911,7 +908,7 @@ function Doctor({ lang }: { lang: Language }) {
           <p className="section-intro">
             {lang === "el"
               ? "Με επίκεντρο τον άνθρωπο και τη σύγχρονη προσέγγιση στη φροντίδα υγείας, ο Ανδρέας Πετρόπουλος συνδυάζει συνέπεια, επιστημονική κατάρτιση και αφοσίωση, δημιουργώντας σχέσεις εμπιστοσύνης με κάθε ασθενή."
-              : "A journey that began with discipline, was shaped by a family experience and grew into a personal commitment to every person who places their trust in me."}
+              : "With a people-centred focus and a modern approach to healthcare, Andreas Petropoulos combines consistency, professional expertise and dedication, building relationships of trust with every client."}
           </p>
         </div>
         <div className="doctor-biography">
@@ -922,10 +919,18 @@ function Doctor({ lang }: { lang: Language }) {
                 <h3>{chapter.title[lang]}</h3>
                 {chapter.paragraphs.map((paragraph, index) => {
                   if (!paragraph[lang]) return null;
-                  if (lang === "el" && chapter.number === "04" && index === 0) {
+                  if (chapter.number === "04" && index === 0) {
                     return (
                       <p key={paragraph.en}>
-                        <strong className="doctor-emphasis-inline">Δεν επέλεξα το SMP απλώς ως επαγγελματική κατεύθυνση</strong>. Το επέλεξα γιατί πιστεύω βαθιά στη δύναμή του να επηρεάζει θετικά τη ζωή και την αυτοπεποίθηση ενός ανθρώπου. Για εμένα, το Scalp Micropigmentation αποτελεί έναν συνδυασμό τεχνικής ακρίβειας, αισθητικής αντίληψης και κατανόησης της ανθρώπινης ψυχολογίας.
+                        {lang === "el" ? (
+                          <>
+                            <strong className="doctor-emphasis-inline">Δεν επέλεξα το SMP απλώς ως επαγγελματική κατεύθυνση</strong>. Το επέλεξα γιατί πιστεύω βαθιά στη δύναμή του να επηρεάζει θετικά τη ζωή και την αυτοπεποίθηση ενός ανθρώπου. Για εμένα, το Scalp Micropigmentation αποτελεί έναν συνδυασμό τεχνικής ακρίβειας, αισθητικής αντίληψης και κατανόησης της ανθρώπινης ψυχολογίας.
+                          </>
+                        ) : (
+                          <>
+                            <strong className="doctor-emphasis-inline">I did not choose SMP simply as a career path</strong>. I chose it because I deeply believe in its ability to make a positive difference to a person’s life and confidence. To me, Scalp Micropigmentation combines technical precision, aesthetic awareness and an understanding of human psychology.
+                          </>
+                        )}
                       </p>
                     );
                   }
@@ -941,7 +946,7 @@ function Doctor({ lang }: { lang: Language }) {
         </div>
       </section>
       <section className="section doctor-quote">
-        <p>{lang === "el" ? "«Πιστεύω πως κάθε άνθρωπος αξίζει να νιώθει καλά με την εικόνα του. Το SMP για μένα είναι η δυνατότητα να συμβάλλω σε αυτή την αλλαγή.»" : "“It is passion, artistry and a personal commitment to every person who chooses to place their trust in me.”"}</p>
+        <p>{lang === "el" ? "«Πιστεύω πως κάθε άνθρωπος αξίζει να νιώθει καλά με την εικόνα του. Το SMP για μένα είναι η δυνατότητα να συμβάλλω σε αυτή την αλλαγή.»" : "“I believe that everyone deserves to feel good about their appearance. For me, SMP is an opportunity to contribute to that change.”"}</p>
         <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
           {lang === "el" ? "Γνωρίστε μας από κοντά" : "Meet us in person"} <span aria-hidden="true">→</span>
         </a>
