@@ -941,7 +941,7 @@ function Doctor({ lang }: { lang: Language }) {
         </div>
       </section>
       <section className="section doctor-quote">
-        <p>{lang === "el" ? "«Είναι πάθος, τέχνη και προσωπική δέσμευση απέναντι σε κάθε άνθρωπο που επιλέγει να με εμπιστευτεί.»" : "“It is passion, artistry and a personal commitment to every person who chooses to place their trust in me.”"}</p>
+        <p>{lang === "el" ? "«Πιστεύω πως κάθε άνθρωπος αξίζει να νιώθει καλά με την εικόνα του. Το SMP για μένα είναι η δυνατότητα να συμβάλλω σε αυτή την αλλαγή.»" : "“It is passion, artistry and a personal commitment to every person who chooses to place their trust in me.”"}</p>
         <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
           {lang === "el" ? "Γνωρίστε μας από κοντά" : "Meet us in person"} <span aria-hidden="true">→</span>
         </a>
