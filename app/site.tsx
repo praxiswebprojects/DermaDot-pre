@@ -298,7 +298,7 @@ function Home({ lang }: { lang: Language }) {
         <div className="template-hero-shade" />
         <div className="template-hero-copy">
           <p className="hero-kicker">{lang === "el" ? "Scalp Micropigmentation • Αθήνα" : "Scalp Micropigmentation • Athens"}</p>
-          <h1>
+          <h1 className="editorial-title">
             {lang === "el" ? <>Απόλυτα φυσικό<br />αποτέλεσμα.</> : <>A completely natural<br />result.</>}
           </h1>
           <p className="hero-lede">
@@ -317,7 +317,7 @@ function Home({ lang }: { lang: Language }) {
         <div className="about-image about-image-left" role="img" aria-label={lang === "el" ? "Λεπτομέρεια εφαρμογής SMP" : "SMP treatment detail"} />
         <div className="about-center">
           <p className="about-label">— {lang === "el" ? "η προσέγγισή μας" : "our approach"} —</p>
-          <h2>{lang === "el" ? "Ένας απλός τρόπος να ξαναβρείτε την αυτοπεποίθησή σας." : "A simple way to restore your confidence."}</h2>
+          <h2 className="editorial-title">{lang === "el" ? "Ένας απλός τρόπος να ξαναβρείτε την αυτοπεποίθησή σας." : "A simple way to restore your confidence."}</h2>
           <p>
             {lang === "el"
               ? "Με ακρίβεια στον σχεδιασμό, εξειδικευμένη τεχνική και απόλυτη προσήλωση στη λεπτομέρεια, δημιουργούμε ένα φυσικό αποτέλεσμα SMP που αναδεικνύει την εικόνα σας και ανταποκρίνεται στις προσωπικές σας ανάγκες."
