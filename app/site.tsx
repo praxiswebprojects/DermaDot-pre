@@ -484,6 +484,50 @@ function ApplicationComparison({
   );
 }
 
+function ApplicationImageToggle({
+  card,
+  lang,
+}: {
+  card: (typeof infoCards)[number];
+  lang: Language;
+}) {
+  const [showAfter, setShowAfter] = useState(false);
+  const title = card.title[lang];
+
+  return (
+    <div className="application-toggle">
+      <div className="application-toggle-frame">
+        <img
+          className={!showAfter ? "is-visible" : ""}
+          src={card.images.before}
+          alt={lang === "el" ? `${title}, πριν από την εφαρμογή` : `${title}, before treatment`}
+        />
+        <img
+          className={showAfter ? "is-visible" : ""}
+          src={card.images.after}
+          alt={lang === "el" ? `${title}, μετά την εφαρμογή` : `${title}, after treatment`}
+        />
+        <button
+          className={`application-toggle-button ${showAfter ? "show-after" : "show-before"}`}
+          type="button"
+          aria-pressed={showAfter}
+          aria-label={
+            showAfter
+              ? (lang === "el" ? "Εμφάνιση φωτογραφίας πριν" : "Show before photo")
+              : (lang === "el" ? "Εμφάνιση φωτογραφίας μετά" : "Show after photo")
+          }
+          onClick={() => setShowAfter((current) => !current)}
+        >
+          {showAfter ? (lang === "el" ? "ΜΕΤΑ" : "AFTER") : (lang === "el" ? "ΠΡΙΝ" : "BEFORE")}
+        </button>
+      </div>
+      <small className="application-ai-note">
+        {lang === "el" ? "Ενδεικτική απεικόνιση με AI" : "Illustrative AI visualisation"}
+      </small>
+    </div>
+  );
+}
+
 function Info({ lang }: { lang: Language }) {
   const [activeApplication, setActiveApplication] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -524,24 +568,29 @@ function Info({ lang }: { lang: Language }) {
             <div className="applications-viewport" ref={carouselRef}>
               <div className="applications-track">
                 {infoCards.map((card, index) => (
-                  <a
+                  <article
                     className="application-slide"
-                    href={applicationUrl(card.slug)}
                     key={card.slug}
                     data-slide={index}
-                    aria-label={`${card.title[lang]} — ${lang === "el" ? "περισσότερες πληροφορίες" : "more information"}`}
                   >
-                    <span className="application-slide-image">
-                      <ApplicationComparison card={card} lang={lang} />
-                    </span>
-                    <span className="application-slide-copy">
+                    <a
+                      className="application-slide-navigation"
+                      href={applicationUrl(card.slug)}
+                      aria-label={`${card.title[lang]} — ${lang === "el" ? "περισσότερες πληροφορίες" : "more information"}`}
+                    />
+                    <div className="application-slide-image">
+                      {index === 0
+                        ? <ApplicationImageToggle card={card} lang={lang} />
+                        : <ApplicationComparison card={card} lang={lang} />}
+                    </div>
+                    <div className="application-slide-copy">
                       <span className="application-slide-meta">
                         <span aria-hidden="true">↗</span>
                       </span>
                       <strong>{card.title[lang]}</strong>
                       <span className="application-slide-link">{lang === "el" ? "Δείτε περισσότερα" : "View more"}</span>
-                    </span>
-                  </a>
+                    </div>
+                  </article>
                 ))}
               </div>
             </div>

@@ -1840,6 +1840,8 @@ h1::first-letter,
 }
 
 .application-slide {
+  position: relative;
+  isolation: isolate;
   display: flex;
   min-width: calc((100% - 44px) / 3);
   min-height: 690px;
@@ -1851,6 +1853,18 @@ h1::first-letter,
   color: #F4F1EC;
   text-decoration: none;
   transition: border-color .25s ease, transform .35s ease;
+}
+
+.application-slide-navigation {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.application-slide-navigation:focus-visible {
+  outline: 2px solid #B8955A;
+  outline-offset: -5px;
 }
 
 .application-slide:hover {
@@ -1925,6 +1939,124 @@ h1::first-letter,
   letter-spacing: .035em;
   line-height: 1.2;
   text-align: center;
+}
+
+@property --application-toggle-border {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.application-toggle {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  background: #0A0A0A;
+}
+
+.application-toggle-frame {
+  position: relative;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+  background: #101010;
+}
+
+.application-toggle-frame img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 34%;
+  opacity: 0;
+  transform: scale(1.015);
+  transition:
+    opacity .5s cubic-bezier(.22, 1, .36, 1),
+    transform .8s cubic-bezier(.22, 1, .36, 1);
+}
+
+.application-toggle-frame img.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.application-toggle-button {
+  --application-toggle-border: 0deg;
+  position: absolute;
+  z-index: 3;
+  bottom: 16px;
+  left: 50%;
+  min-width: 94px;
+  padding: 11px 20px;
+  overflow: hidden;
+  border: 1px solid #333333;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, .86);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .3);
+  color: #F4F1EC !important;
+  cursor: pointer;
+  font-family: var(--font-subheading);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .13em;
+  line-height: 1;
+  transform: translateX(-50%);
+  transition: background-color .25s ease, transform .25s ease;
+}
+
+.application-toggle-button::before {
+  position: absolute;
+  inset: -1px;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from -90deg,
+    #B8955A 0deg,
+    #B8955A var(--application-toggle-border),
+    transparent var(--application-toggle-border),
+    transparent 360deg
+  );
+  content: "";
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.application-toggle-button.show-before::before {
+  animation: application-toggle-border-before .75s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.application-toggle-button.show-after::before {
+  animation: application-toggle-border-after .75s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.application-toggle-button:hover {
+  background: #202020;
+}
+
+.application-toggle-button:focus-visible {
+  outline: 2px solid #F4F1EC;
+  outline-offset: 3px;
+}
+
+@keyframes application-toggle-border-before {
+  from { --application-toggle-border: 0deg; }
+  to { --application-toggle-border: 360deg; }
+}
+
+@keyframes application-toggle-border-after {
+  from { --application-toggle-border: 0deg; }
+  to { --application-toggle-border: 360deg; }
 }
 
 .application-slide-copy {
