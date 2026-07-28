@@ -579,9 +579,7 @@ function Info({ lang }: { lang: Language }) {
                       aria-label={`${card.title[lang]} — ${lang === "el" ? "περισσότερες πληροφορίες" : "more information"}`}
                     />
                     <div className="application-slide-image">
-                      {index === 0
-                        ? <ApplicationImageToggle card={card} lang={lang} />
-                        : <ApplicationComparison card={card} lang={lang} />}
+                      <ApplicationImageToggle card={card} lang={lang} />
                     </div>
                     <div className="application-slide-copy">
                       <span className="application-slide-meta">
@@ -624,9 +622,7 @@ function Applications({ lang }: { lang: Language }) {
         {infoCards.map((card, cardIndex) => (
           <article className="application-detail" id={card.slug} key={card.slug}>
             <div className="application-detail-image">
-              {cardIndex === 0
-                ? <ApplicationImageToggle card={card} lang={lang} />
-                : <ApplicationComparison card={card} lang={lang} />}
+              <ApplicationImageToggle card={card} lang={lang} />
             </div>
             <div className="application-detail-copy">
               <span className="application-detail-number">0{cardIndex + 1} / 07</span>
