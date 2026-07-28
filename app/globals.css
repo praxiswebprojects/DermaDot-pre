@@ -3171,8 +3171,7 @@ p {
   flex-direction: column;
   overflow: hidden;
   border-color: #333333;
-  cursor: pointer;
-  transition: background-color .25s ease, box-shadow .35s ease;
+  transition: background-color .25s ease;
 }
 
 .treatment-option::before {
@@ -3201,24 +3200,16 @@ p {
   mask-composite: exclude;
 }
 
-.treatment-option[data-active="true"] {
-  box-shadow: 0 20px 54px rgba(0, 0, 0, .24);
+@media (hover: hover) {
+  .treatment-option:hover::before {
+    --treatment-border-angle: 360deg;
+  }
 }
 
-.treatment-option[data-active="true"]::before,
-.treatment-option:hover::before,
-.treatment-option:focus-visible::before {
-  --treatment-border-angle: 360deg;
-}
-
-.treatment-comparison:has(.treatment-option:hover)
-  .treatment-option[data-active="true"]:not(:hover)::before {
-  --treatment-border-angle: 0deg;
-}
-
-.treatment-option:focus-visible {
-  outline: 2px solid #B8955A;
-  outline-offset: 5px;
+@media (hover: none) {
+  .treatment-option:active::before {
+    --treatment-border-angle: 360deg;
+  }
 }
 
 .treatment-option h2 {
