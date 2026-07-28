@@ -299,12 +299,12 @@ function Home({ lang }: { lang: Language }) {
         <div className="template-hero-copy">
           <p className="hero-kicker">{lang === "el" ? "Scalp Micropigmentation • Αθήνα" : "Scalp Micropigmentation • Athens"}</p>
           <h1>
-            {lang === "el" ? <>Φυσική<br />Ακρίβεια.</> : <>Natural<br />Precision.</>}
+            {lang === "el" ? <>Απόλυτα φυσικό<br />αποτέλεσμα.</> : <>A completely natural<br />result.</>}
           </h1>
           <p className="hero-lede">
             {lang === "el"
-              ? "Εξατομικευμένο SMP, σχεδιασμένο για να δείχνει αβίαστο, καθαρό και απόλυτα δικό σας."
-              : "Individual scalp micropigmentation designed to look effortless, refined and entirely your own."}
+              ? "Κάθε θεραπεία SMP σχεδιάζεται αποκλειστικά για εσάς, προσφέροντας ένα διακριτικό, ρεαλιστικό αποτέλεσμα που εναρμονίζεται φυσικά με τα χαρακτηριστικά σας και την εικόνα σας."
+              : "Every SMP treatment is designed exclusively for you, delivering a subtle, realistic result that harmonises naturally with your features and overall appearance."}
           </p>
           <div className="hero-actions">
             <a className="button" href={url("/contact")}>
@@ -320,8 +320,8 @@ function Home({ lang }: { lang: Language }) {
           <h2>{lang === "el" ? "Ένας απλός τρόπος να ξαναβρείτε την αυτοπεποίθησή σας." : "A simple way to restore your confidence."}</h2>
           <p>
             {lang === "el"
-              ? "Με προσεκτικό σχεδιασμό, ελεγχόμενη τεχνική και χρόνο για κάθε λεπτομέρεια, δημιουργούμε ένα φυσικό αποτέλεσμα προσαρμοσμένο αποκλειστικά σε εσάς."
-              : "Through considered design, controlled technique and time for every detail, we create a natural result tailored entirely to you."}
+              ? "Με ακρίβεια στον σχεδιασμό, εξειδικευμένη τεχνική και απόλυτη προσήλωση στη λεπτομέρεια, δημιουργούμε ένα φυσικό αποτέλεσμα SMP που αναδεικνύει την εικόνα σας και ανταποκρίνεται στις προσωπικές σας ανάγκες."
+              : "With precision in design, specialist technique and an unwavering attention to detail, we create a natural SMP result that enhances your appearance and responds to your individual needs."}
           </p>
           <a className="button" href={url("/info")}>
             {lang === "el" ? "Μάθετε περισσότερα" : "Learn more"} <span aria-hidden="true">→</span>
@@ -330,10 +330,6 @@ function Home({ lang }: { lang: Language }) {
         </div>
         <div className="about-right">
           <div className="about-image about-image-right" role="img" aria-label={lang === "el" ? "Εξειδικευμένη φροντίδα SMP" : "Specialist SMP care"} />
-          <div className="about-stat">
-            <strong>2–3</strong>
-            <span>{lang === "el" ? "συνεδρίες για ένα σταδιακό, φυσικό αποτέλεσμα" : "sessions for a gradual, natural result"}</span>
-          </div>
         </div>
       </section>
       <section className="section template-topics home-reveal home-reveal-third line-reveal" data-scroll-reveal>
