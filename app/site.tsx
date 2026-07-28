@@ -572,6 +572,23 @@ function WhatIsSmp({ lang }: { lang: Language }) {
 
 function TreatmentGuide({ lang }: { lang: Language }) {
   useScrollReveal();
+  const [activeTreatment, setActiveTreatment] = useState<"transplant" | "smp" | null>(null);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => setActiveTreatment("smp"));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const handleTreatmentKeyDown = (
+    event: React.KeyboardEvent<HTMLElement>,
+    treatment: "transplant" | "smp",
+  ) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setActiveTreatment(treatment);
+    }
+  };
+
   const transplantPoints = lang === "el"
     ? [
         "Μικρή ή μέτρια έκταση αλωπεκίας.",
@@ -631,7 +648,16 @@ function TreatmentGuide({ lang }: { lang: Language }) {
       </section>
 
       <section className="section treatment-comparison">
-        <article className="treatment-option">
+        <article
+          className="treatment-option"
+          data-active={activeTreatment === "transplant" ? "true" : "false"}
+          role="button"
+          tabIndex={0}
+          aria-pressed={activeTreatment === "transplant"}
+          aria-label={lang === "el" ? "Επιλογή μεταμόσχευσης μαλλιών" : "Hair transplant option"}
+          onClick={() => setActiveTreatment("transplant")}
+          onKeyDown={(event) => handleTreatmentKeyDown(event, "transplant")}
+        >
           <span className="treatment-option-code">01 / {lang === "el" ? "Ιατρική επέμβαση" : "Medical procedure"}</span>
           <h2>{lang === "el" ? "Πότε η μεταμόσχευση μαλλιών αποτελεί καλή επιλογή;" : "When can a hair transplant be a good option?"}</h2>
           <p>
@@ -643,7 +669,16 @@ function TreatmentGuide({ lang }: { lang: Language }) {
           <ul>{transplantPoints.map((point) => <li key={point}>{point}</li>)}</ul>
         </article>
 
-        <article className="treatment-option treatment-option-smp">
+        <article
+          className="treatment-option treatment-option-smp"
+          data-active={activeTreatment === "smp" ? "true" : "false"}
+          role="button"
+          tabIndex={0}
+          aria-pressed={activeTreatment === "smp"}
+          aria-label={lang === "el" ? "Επιλογή Scalp Micropigmentation" : "Scalp Micropigmentation option"}
+          onClick={() => setActiveTreatment("smp")}
+          onKeyDown={(event) => handleTreatmentKeyDown(event, "smp")}
+        >
           <span className="treatment-option-code">02 / SMP</span>
           <h2>{lang === "el" ? "Τι προσφέρει το Scalp Micropigmentation;" : "What does Scalp Micropigmentation offer?"}</h2>
           <p>
