@@ -453,8 +453,8 @@ function Info({ lang }: { lang: Language }) {
           <h1>{lang === "el" ? "Εξειδικευμένες εφαρμογές SMP" : "Specialised SMP Applications"}</h1>
           <p>
             {lang === "el"
-              ? "Επιλέξτε μία εφαρμογή για να δείτε πώς το SMP προσαρμόζεται σε κάθε διαφορετική ανάγκη."
-              : "Select an application to see how SMP is adapted to each individual need."}
+              ? "Κάθε περίπτωση απαιτεί διαφορετική προσέγγιση. Δείτε πώς η SMP προσαρμόζεται σε διαφορετικές ανάγκες, προσφέροντας φυσικά και εξατομικευμένα αποτελέσματα."
+              : "Every case requires a different approach. See how SMP adapts to different needs, delivering natural, personalised results."}
           </p>
         </div>
         <div className="applications-showcase">
@@ -490,7 +490,7 @@ function Info({ lang }: { lang: Language }) {
       </section>
       <section className="section note-panel">
         <h2>{lang === "el" ? "Όχι μια γενική λύση." : "Never one-size-fits-all."}</h2>
-        <p>{lang === "el" ? "Κάθε δέρμα, μοτίβο αραίωσης και προσδοκία είναι διαφορετικά. Η προσωπική αξιολόγηση προηγείται πάντα της θεραπείας και περιλαμβάνει ειλικρινή συζήτηση για το τι μπορεί — και τι δεν μπορεί — να προσφέρει η τεχνική." : "Every skin type, thinning pattern and expectation is different. A personal consultation always comes first, including an honest discussion of what the technique can — and cannot — achieve."}</p>
+        <p>{lang === "el" ? "Η φυσικότητα ενός αποτελέσματος SMP ξεκινά πριν από την εφαρμογή. Μελετάμε τη συνολική εικόνα, κατανοούμε τους στόχους σας και σχεδιάζουμε μια προσέγγιση που αντανακλά τη δική σας αισθητική." : "The natural appearance of an SMP result begins before treatment. We study the overall picture, understand your goals and design an approach that reflects your own aesthetic."}</p>
       </section>
     </>
   );
@@ -531,18 +531,18 @@ function WhatIsSmp({ lang }: { lang: Language }) {
   useScrollReveal();
   const essentials = [
     c("Πώς λειτουργεί|Με εξειδικευμένη βελόνα δημιουργούνται μικροσκοπικά σημεία χρωστικής στο ανώτερο στρώμα του δέρματος, μιμούμενα φυσικούς θύλακες.", "How it works|A specialist needle places microscopic pigment impressions in the upper layer of the skin, mimicking natural follicles."),
-    c("Πόσο διαρκεί|Το αποτέλεσμα συνήθως παραμένει ορατό για αρκετά χρόνια, ανάλογα με το δέρμα, τον ήλιο, τον τρόπο ζωής και τη φροντίδα.", "How long it lasts|Results usually remain visible for several years, depending on skin, sun exposure, lifestyle and aftercare."),
+    c("Πόσο διαρκεί|Το αποτέλεσμα της SMP έχει μεγάλη διάρκεια και παραμένει σταθερό για αρκετά χρόνια. Η διάρκεια μπορεί να επηρεαστεί από παράγοντες όπως ο τύπος δέρματος, η έκθεση στον ήλιο και η σωστή φροντίδα.", "How long it lasts|SMP results are long-lasting and remain stable for several years. Longevity may be affected by factors such as skin type, sun exposure and proper aftercare."),
     c("Μόνιμο ή ημιμόνιμο;|Θεωρείται μακράς διάρκειας αλλά όχι αμετάβλητο. Η χρωστική μαλακώνει και ξεθωριάζει σταδιακά με τον χρόνο.", "Permanent or semi-permanent?|It is long-lasting but not unchanging. Pigment softens and fades gradually over time."),
-    c("Είναι ασφαλές;|Όταν εφαρμόζεται από εκπαιδευμένο επαγγελματία με σωστή υγιεινή, αποστειρωμένο εξοπλισμό και κατάλληλες χρωστικές, είναι μη χειρουργική και ελεγχόμενη διαδικασία.", "Is it safe?|When performed by a trained professional using proper hygiene, sterile equipment and suitable pigments, it is a controlled, non-surgical procedure."),
-    c("Πόσες συνεδρίες χρειάζονται;|Συνήθως χρειάζονται 2–3 συνεδρίες, με χρόνο επούλωσης ανάμεσά τους ώστε η πυκνότητα να χτίζεται σταδιακά.", "How many sessions are needed?|Most treatments need 2–3 sessions, with healing time between them so density can be built gradually."),
+    c("Είναι ασφαλές;|Ναι, η SMP είναι μια ασφαλής μη χειρουργική τεχνική όταν εφαρμόζεται από εξειδικευμένο επαγγελματία, με σωστά πρωτόκολλα υγιεινής και κατάλληλη προετοιμασία.", "Is it safe?|Yes, SMP is a safe, non-surgical technique when performed by a qualified specialist using appropriate hygiene protocols and proper preparation."),
+    c("Πόσες συνεδρίες χρειάζονται;|Ο αριθμός των συνεδριών διαφέρει ανάλογα με τις ανάγκες κάθε περίπτωσης. Στις περισσότερες περιπτώσεις πραγματοποιούνται 2–3 συνεδρίες, ώστε η χρωστική να ενσωματώνεται σταδιακά και να επιτυγχάνεται ένα φυσικό αποτέλεσμα.", "How many sessions are needed?|The number of sessions varies according to the needs of each case. In most cases, 2–3 sessions are carried out so the pigment can be integrated gradually and a natural result achieved."),
     c("Πονάει;|Οι περισσότεροι περιγράφουν ήπια έως μέτρια ενόχληση. Η αίσθηση διαφέρει ανά περιοχή και από άτομο σε άτομο.", "Does it hurt?|Most clients report mild to moderate discomfort. Sensation varies by area and from person to person."),
-    c("Τι χρωστικές χρησιμοποιούνται|Χρησιμοποιούνται επαγγελματικές χρωστικές ειδικά επιλεγμένες για SMP και προσαρμοσμένες στον τόνο του δέρματος και των μαλλιών.", "Which pigments are used|Professional pigments selected specifically for SMP are matched to the tone of your skin and hair."),
+    c("Τι χρωστικές χρησιμοποιούνται|Χρησιμοποιούνται εξειδικευμένες χρωστικές υψηλής ποιότητας, σχεδιασμένες για τη δημιουργία φυσικής εμφάνισης τριχοθυλακίων. Η επιλογή και η προσαρμογή της απόχρωσης πραγματοποιούνται με βάση τα χαρακτηριστικά του κάθε ατόμου και το επιθυμητό αποτέλεσμα.", "Which pigments are used|Specialist, high-quality pigments designed to create the natural appearance of hair follicles are used. The shade is selected and adjusted according to each person’s characteristics and desired result."),
   ];
   return (
     <>
       <PageHero index="02" lang={lang} title={c("Τι είναι το SMP;", "What is SMP?")} intro={c("Μια εξειδικευμένη τεχνική που δημιουργεί την οπτική εντύπωση φυσικών θυλάκων τρίχας.", "A specialised technique that creates the visual impression of natural hair follicles.")} />
       <section className="section">
-        <div className="section-head"><h2>{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2><p className="section-intro">{lang === "el" ? "Η SMP είναι μια μη χειρουργική τεχνική οπτικής αποκατάστασης. Οι βασικές απαντήσεις παρακάτω εξηγούν πώς εφαρμόζεται και τι να περιμένετε." : "SMP is a non-surgical visual restoration technique. The essentials below explain how it is performed and what to expect."}</p></div>
+        <div className="section-head"><h2>{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2><p className="section-intro">{lang === "el" ? "Η SMP αποτελεί μια σύγχρονη, μη χειρουργική τεχνική που έχει σχεδιαστεί για να βελτιώνει την εικόνα του τριχωτού με φυσικό και διακριτικό τρόπο. Παρακάτω θα βρείτε απαντήσεις στις πιο συχνές ερωτήσεις σχετικά με τη διαδικασία, την εφαρμογή και το αποτέλεσμα." : "SMP is a modern, non-surgical technique designed to improve the appearance of the scalp in a natural and subtle way. Below you will find answers to the most frequently asked questions about the procedure, its application and the result."}</p></div>
         <div className="content-grid essentials-grid">
           {essentials.map((item) => {
             const [elTitle, elText] = item.el.split("|");
@@ -565,7 +565,7 @@ function WhatIsSmp({ lang }: { lang: Language }) {
           </a>
         </div>
       </section>
-      <section className="section note-panel"><h2>{lang === "el" ? "Δεν είναι τατουάζ μαλλιών." : "It is not a hair tattoo."}</h2><p>{lang === "el" ? "Η SMP χρησιμοποιεί εξειδικευμένα εργαλεία, χρωστικές και τεχνική σημείου για το τριχωτό. Το επιθυμητό αποτέλεσμα είναι απαλό, πολυεπίπεδο και προσαρμοσμένο στο δέρμα — όχι μια συμπαγής, επίπεδη επιφάνεια χρώματος." : "SMP uses specialised tools, pigments and scalp-specific dot technique. The intended result is soft, layered and adjusted to the skin — not a solid, flat block of colour."}</p></section>
+      <section className="section note-panel"><h2>{lang === "el" ? "Η διαφορά από ένα τατουάζ." : "How SMP differs from a tattoo."}</h2><p>{lang === "el" ? "Η SMP πραγματοποιείται με εξειδικευμένα εργαλεία και ειδικά σχεδιασμένες χρωστικές, μέσω μιας τεχνικής ακριβών μικροσκοπικών σημείων. Το αποτέλεσμα δημιουργείται σταδιακά, με φυσική διαβάθμιση και προσαρμογή στα χαρακτηριστικά του δέρματος." : "SMP is performed using specialist tools and purpose-designed pigments, through a technique of precise microscopic impressions. The result is built gradually, with natural gradation and adaptation to the characteristics of the skin."}</p></section>
     </>
   );
 }
