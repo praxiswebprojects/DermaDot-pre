@@ -624,7 +624,9 @@ function Applications({ lang }: { lang: Language }) {
         {infoCards.map((card, cardIndex) => (
           <article className="application-detail" id={card.slug} key={card.slug}>
             <div className="application-detail-image">
-              <ApplicationComparison card={card} lang={lang} />
+              {cardIndex === 0
+                ? <ApplicationImageToggle card={card} lang={lang} />
+                : <ApplicationComparison card={card} lang={lang} />}
             </div>
             <div className="application-detail-copy">
               <span className="application-detail-number">0{cardIndex + 1} / 07</span>
