@@ -267,7 +267,7 @@ function Footer({ lang }: { lang: Language }) {
       </div>
       <div className="footer-bottom">
         <span>© 2026 DERMA<span className="brand-inline-dot">DOT</span></span>
-        <span>SCALP MICROPIGMENTATION • {lang === "el" ? "ΑΘΉΝΑ" : "ATHENS"}</span>
+        <span>SCALP MICROPIGMENTATION • {lang === "el" ? "ΑΘΗΝΑ" : "ATHENS"}</span>
       </div>
     </footer>
   );
@@ -338,7 +338,7 @@ function Home({ lang }: { lang: Language }) {
           <p className="section-intro">
             {lang === "el"
               ? "Ανακαλύψτε τη διαδικασία της θεραπείας SMP βήμα προς βήμα, από την αρχική αξιολόγηση έως το τελικό αποτέλεσμα."
-              : "Discover the SMP treatment process step by step, from the initial consultation to the final result."}
+              : "Discover the SMP treatment process step by step, from the initial assessment through to the final result."}
           </p>
         </div>
         <div className="topic-grid">
