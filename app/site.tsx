@@ -257,8 +257,8 @@ function Footer({ lang }: { lang: Language }) {
           <span className="eyebrow">{lang === "el" ? "Το επόμενο βήμα" : "Your next step"}</span>
           <p>
             {lang === "el"
-              ? "Μια ήρεμη, ιδιωτική συζήτηση είναι ο καλύτερος τρόπος να δούμε αν το SMP είναι κατάλληλο για εσάς."
-              : "A calm, private conversation is the best way to see whether SMP is right for you."}
+              ? "Μια προσωπική συνάντηση είναι η αρχή για να κατανοήσουμε τις ανάγκες σας και να δημιουργήσουμε ένα αποτέλεσμα που σας ταιριάζει."
+              : "A personal consultation is the first step towards understanding your needs and creating a result that suits you."}
           </p>
           <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
             {lang === "el" ? "Κλείστε αξιολόγηση" : "Book a consultation"}
