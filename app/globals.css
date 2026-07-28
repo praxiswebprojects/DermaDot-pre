@@ -1859,22 +1859,73 @@ h1::first-letter,
 }
 
 .application-slide-image {
-  display: block;
+  display: flex;
   min-height: 390px;
-  background-image:
-    linear-gradient(0deg, rgba(5, 5, 5, .16), rgba(5, 5, 5, .08)),
-    url("/hero.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #0A0A0A;
 }
 
-.application-image-1 { background-position: 68% center; }
-.application-image-2 { background-position: 74% center; }
-.application-image-3 { background-position: 82% 46%; }
-.application-image-4 { background-position: 62% 50%; }
-.application-image-5 { background-position: 88% 52%; }
-.application-image-6 { background-position: 76% 58%; }
-.application-image-7 { background-position: 92% 42%; }
+.application-comparison {
+  display: flex;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  background: #0A0A0A;
+}
+
+.application-comparison-pair {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+  background: #333333;
+}
+
+.application-comparison-image {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #141414;
+}
+
+.application-comparison-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.application-comparison-label {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px 8px;
+  border: 1px solid rgba(244, 241, 236, .16);
+  border-radius: 4px;
+  background: rgba(10, 10, 10, .76);
+  color: #F4F1EC !important;
+  font-family: var(--font-subheading);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 1;
+}
+
+.application-ai-note {
+  display: block;
+  padding: 7px 12px 8px;
+  color: #8F8F8A !important;
+  font-family: var(--font-subheading);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: .035em;
+  line-height: 1.2;
+  text-align: center;
+}
 
 .application-slide-copy {
   display: flex;
@@ -1976,14 +2027,12 @@ h1::first-letter,
 }
 
 .application-detail-image {
+  display: flex;
   min-height: clamp(380px, 60vw, 660px);
+  overflow: hidden;
   border: 1px solid #333333;
   border-radius: 28px;
-  background-image:
-    linear-gradient(0deg, rgba(5, 5, 5, .22), rgba(5, 5, 5, .08)),
-    url("/hero.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #0A0A0A;
 }
 
 .application-detail-copy {

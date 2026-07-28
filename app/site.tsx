@@ -360,6 +360,10 @@ const infoCards = [
   {
     slug: "andriki-alopekia",
     title: c("Ανδρική αλωπεκία", "Male hair loss"),
+    images: {
+      before: "/cases/male-hair-loss-before.webp",
+      after: "/cases/male-hair-loss-after.webp",
+    },
     text: c("Δημιουργεί την εικόνα ενός φυσικά ξυρισμένου τριχωτού και επαναπροσδιορίζει διακριτικά τη γραμμή των μαλλιών.", "Creates the appearance of a naturally shaved scalp and subtly redefines the hairline."),
     details: [
       c("Η εφαρμογή σχεδιάζεται σύμφωνα με το σχήμα του προσώπου, την ηλικία και το υπάρχον μοτίβο αραίωσης. Η γραμμή των μαλλιών χαράσσεται συντηρητικά ώστε να παραμένει φυσική με την πάροδο του χρόνου.", "Treatment is designed around facial structure, age and the existing pattern of hair loss. The hairline is kept deliberately conservative so it continues to look natural over time."),
@@ -369,6 +373,10 @@ const infoCards = [
   {
     slug: "gynaikeia-araiosi",
     title: c("Γυναικεία αραίωση", "Female thinning"),
+    images: {
+      before: "/cases/female-thinning-before.webp",
+      after: "/cases/female-thinning-after.webp",
+    },
     text: c("Μειώνει την αντίθεση του ορατού δέρματος ανάμεσα στα υπάρχοντα μαλλιά, προσφέροντας την εντύπωση μεγαλύτερης πυκνότητας.", "Reduces the contrast of visible scalp between existing hairs, creating the impression of greater density."),
     details: [
       c("Το SMP τοποθετείται ανάμεσα στις υπάρχουσες τρίχες, με στόχο να μειώσει την έντονη αντίθεση ανάμεσα στο χρώμα των μαλλιών και το δέρμα.", "SMP is placed between existing hairs to reduce the strong contrast between hair colour and visible scalp."),
@@ -378,6 +386,10 @@ const infoCards = [
   {
     slug: "oules-metamosxefsis",
     title: c("Ουλές από μεταμόσχευση", "Hair-transplant scars"),
+    images: {
+      before: "/cases/hair-transplant-scar-before.webp",
+      after: "/cases/hair-transplant-scar-after.webp",
+    },
     text: c("Ενσωματώνει οπτικά ώριμες ουλές FUE ή FUT στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
     details: [
       c("Οι πλήρως επουλωμένες ουλές FUE ή FUT αξιολογούνται ως προς το χρώμα, την υφή, το πάχος και τη θέση τους πριν ξεκινήσει οποιαδήποτε εφαρμογή.", "Fully healed FUE or FUT scars are assessed for colour, texture, thickness and position before any treatment begins."),
@@ -387,6 +399,10 @@ const infoCards = [
   {
     slug: "oules-travmatismon",
     title: c("Ουλές από τραυματισμούς", "Trauma scars"),
+    images: {
+      before: "/cases/trauma-scar-before.webp",
+      after: "/cases/trauma-scar-after.webp",
+    },
     text: c("Μπορεί να καμουφλάρει επιλεγμένες, πλήρως επουλωμένες ουλές έπειτα από προσεκτική αξιολόγηση.", "Can camouflage selected, fully healed scars after careful assessment."),
     details: [
       c("Κάθε ουλή αντιδρά διαφορετικά στη χρωστική. Εξετάζουμε την ωριμότητα, την υφή και την αιμάτωσή της και προχωρούμε μόνο όταν η περιοχή είναι ασφαλής και σταθερή.", "Every scar responds differently to pigment. We examine maturity, texture and blood supply, proceeding only when the area is safe and stable."),
@@ -396,6 +412,10 @@ const infoCards = [
   {
     slug: "alopecia-areata",
     title: c("Alopecia Areata", "Alopecia Areata"),
+    images: {
+      before: "/cases/alopecia-areata-before.webp",
+      after: "/cases/alopecia-areata-after.webp",
+    },
     text: c("Σε σταθεροποιημένες περιπτώσεις μπορεί να μειώσει οπτικά τη διαφορά ανάμεσα στις περιοχές με και χωρίς τρίχες.", "In stable cases, it can visually reduce the contrast between areas with and without hair."),
     details: [
       c("Η εφαρμογή εξετάζεται μόνο όταν η κατάσταση είναι σταθερή και έχει προηγηθεί η κατάλληλη ιατρική καθοδήγηση. Το SMP προσφέρει αισθητική κάλυψη και όχι θεραπεία της αιτίας.", "Treatment is considered only when the condition is stable and appropriate medical guidance has been obtained. SMP provides cosmetic camouflage; it does not treat the underlying cause."),
@@ -405,6 +425,10 @@ const infoCards = [
   {
     slug: "genia",
     title: c("Γένια", "Beard"),
+    images: {
+      before: "/cases/beard-density-before.webp",
+      after: "/cases/beard-density-after.webp",
+    },
     text: c("Προσθέτει την οπτική εντύπωση πυκνότητας ή βοηθά στην εξισορρόπηση κενών στην περιοχή των γενιών.", "Adds the visual impression of density or helps balance gaps within the beard area."),
     details: [
       c("Η κατεύθυνση, το μέγεθος και η απόσταση των σημείων προσαρμόζονται στο φυσικό μοτίβο των γενιών και στη μορφολογία του προσώπου.", "Direction, size and spacing of impressions are adapted to the natural beard pattern and facial structure."),
@@ -414,6 +438,10 @@ const infoCards = [
   {
     slug: "diorthosi-smp",
     title: c("Διόρθωση αποτυχημένου SMP", "Correction of previous SMP"),
+    images: {
+      before: "/cases/failed-smp-correction-before.webp",
+      after: "/cases/failed-smp-correction-after.webp",
+    },
     text: c("Αξιολογούμε χρώμα, βάθος, σχήμα και κατάσταση του δέρματος πριν προτείνουμε ασφαλή διόρθωση ή ανασχεδιασμό.", "We assess colour, depth, shape and skin condition before recommending a safe correction or redesign."),
     details: [
       c("Πρώτα εξετάζουμε αν η προηγούμενη εφαρμογή είναι υπερβολικά σκούρα, βαθιά, ψυχρή σε τόνο ή λανθασμένη ως προς το σχήμα. Δεν είναι κάθε περίπτωση κατάλληλη για άμεση κάλυψη.", "We first assess whether the previous treatment is too dark, deep, cool-toned or incorrectly shaped. Not every case is suitable for immediate camouflage."),
@@ -421,6 +449,40 @@ const infoCards = [
     ],
   },
 ];
+
+function ApplicationComparison({
+  card,
+  lang,
+}: {
+  card: (typeof infoCards)[number];
+  lang: Language;
+}) {
+  const title = card.title[lang];
+
+  return (
+    <div className="application-comparison">
+      <div className="application-comparison-pair">
+        <span className="application-comparison-image">
+          <img
+            src={card.images.before}
+            alt={lang === "el" ? `${title}, πριν από την εφαρμογή` : `${title}, before treatment`}
+          />
+          <span className="application-comparison-label">{lang === "el" ? "ΠΡΙΝ" : "BEFORE"}</span>
+        </span>
+        <span className="application-comparison-image">
+          <img
+            src={card.images.after}
+            alt={lang === "el" ? `${title}, μετά την ενδεικτική εφαρμογή` : `${title}, after the illustrative treatment`}
+          />
+          <span className="application-comparison-label">{lang === "el" ? "ΜΕΤΑ" : "AFTER"}</span>
+        </span>
+      </div>
+      <small className="application-ai-note">
+        {lang === "el" ? "Ενδεικτική απεικόνιση με AI" : "Illustrative AI visualisation"}
+      </small>
+    </div>
+  );
+}
 
 function Info({ lang }: { lang: Language }) {
   const [activeApplication, setActiveApplication] = useState(0);
@@ -469,7 +531,9 @@ function Info({ lang }: { lang: Language }) {
                     data-slide={index}
                     aria-label={`${card.title[lang]} — ${lang === "el" ? "περισσότερες πληροφορίες" : "more information"}`}
                   >
-                    <span className={`application-slide-image application-image-${index + 1}`} />
+                    <span className="application-slide-image">
+                      <ApplicationComparison card={card} lang={lang} />
+                    </span>
                     <span className="application-slide-copy">
                       <span className="application-slide-meta">
                         <span aria-hidden="true">↗</span>
@@ -508,9 +572,11 @@ function Applications({ lang }: { lang: Language }) {
       />
       <section className="section applications-directory">
         <a className="applications-back" href={infoUrl}>← {lang === "el" ? "Πίσω στις εφαρμογές" : "Back to applications"}</a>
-        {infoCards.map((card, index) => (
+        {infoCards.map((card) => (
           <article className="application-detail" id={card.slug} key={card.slug}>
-            <div className={`application-detail-image application-image-${index + 1}`} role="img" aria-label={card.title[lang]} />
+            <div className="application-detail-image">
+              <ApplicationComparison card={card} lang={lang} />
+            </div>
             <div className="application-detail-copy">
               <span className="application-detail-number">0{index + 1} / 07</span>
               <h2>{card.title[lang]}</h2>
