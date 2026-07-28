@@ -572,13 +572,13 @@ function Applications({ lang }: { lang: Language }) {
       />
       <section className="section applications-directory">
         <a className="applications-back" href={infoUrl}>← {lang === "el" ? "Πίσω στις εφαρμογές" : "Back to applications"}</a>
-        {infoCards.map((card) => (
+        {infoCards.map((card, cardIndex) => (
           <article className="application-detail" id={card.slug} key={card.slug}>
             <div className="application-detail-image">
               <ApplicationComparison card={card} lang={lang} />
             </div>
             <div className="application-detail-copy">
-              <span className="application-detail-number">0{index + 1} / 07</span>
+              <span className="application-detail-number">0{cardIndex + 1} / 07</span>
               <h2>{card.title[lang]}</h2>
               <p className="application-detail-intro">{card.text[lang]}</p>
               {card.details.map((paragraph) => <p key={paragraph.en}>{paragraph[lang]}</p>)}
