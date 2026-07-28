@@ -3205,8 +3205,15 @@ p {
   box-shadow: 0 20px 54px rgba(0, 0, 0, .24);
 }
 
-.treatment-option[data-active="true"]::before {
+.treatment-option[data-active="true"]::before,
+.treatment-option:hover::before,
+.treatment-option:focus-visible::before {
   --treatment-border-angle: 360deg;
+}
+
+.treatment-comparison:has(.treatment-option:hover)
+  .treatment-option[data-active="true"]:not(:hover)::before {
+  --treatment-border-angle: 0deg;
 }
 
 .treatment-option:focus-visible {
