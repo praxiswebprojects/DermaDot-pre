@@ -3231,7 +3231,7 @@ p {
 .doctor-chapter p,
 .faq-row .faq-answer {
   font-family: var(--font-subheading);
-  font-size: clamp(15px, 1.2vw, 17px);
+  font-size: clamp(17px, calc(1.2vw + 2px), 19px);
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.75;
