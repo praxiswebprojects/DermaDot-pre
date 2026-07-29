@@ -297,7 +297,7 @@ function PageHero({
         <p className="eyebrow"><span>Derma</span><span className="brand-inline-dot">Dot</span></p>
         <h1>{title[lang]}</h1>
       </div>
-      <aside className={`page-hero-aside ${showCode ? "" : "page-hero-aside-no-code"}`}>
+      <aside className={`page-hero-aside ${showCode ? "" : "page-hero-aside-no-code"} ${index === "02" ? "page-hero-aside-photo" : ""}`}>
         {showCode ? <span className="page-code">SMP — {index}</span> : null}
         <p>{intro[lang]}</p>
       </aside>
