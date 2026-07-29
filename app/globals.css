@@ -1267,13 +1267,13 @@ h1::first-letter,
   border: 1px solid #2c2c2c;
   border-radius: 18px;
   background-color: #080808;
-  background-image: url("/api/admin/images/file/hero");
   background-repeat: no-repeat;
   filter: grayscale(1);
 }
 
 .about-image-left {
   min-height: 330px;
+  background-image: url("/api/admin/images/file/home-about-left");
   background-position: 76% 58%;
   background-size: 250%;
 }
@@ -1313,6 +1313,7 @@ h1::first-letter,
 .about-image-wide {
   width: 100%;
   min-height: 190px;
+  background-image: url("/api/admin/images/file/home-about-wide");
   margin-top: 48px;
   background-position: 72% 54%;
   background-size: 155%;
@@ -1325,6 +1326,7 @@ h1::first-letter,
 
 .about-image-right {
   min-height: 365px;
+  background-image: url("/api/admin/images/file/home-about-right");
   background-position: 91% 43%;
   background-size: 250%;
 }
@@ -2450,7 +2452,7 @@ h1::first-letter,
   border-radius: 28px;
   background:
     linear-gradient(0deg, rgba(10, 10, 10, .3), rgba(10, 10, 10, .04)),
-    url("/api/admin/images/file/hero") 82% center / cover no-repeat;
+    url("/api/admin/images/file/personal-experience") 82% center / cover no-repeat;
 }
 
 .personal-smp-choice h2 {
@@ -2557,7 +2559,7 @@ h1::first-letter,
   border-radius: 30px;
   background:
     linear-gradient(0deg, rgba(5, 5, 5, .42), rgba(5, 5, 5, .02) 55%),
-    url("/api/admin/images/file/hero") 83% center / cover no-repeat;
+    url("/api/admin/images/file/doctor-portrait") 83% center / cover no-repeat;
 }
 
 .doctor-portrait span {

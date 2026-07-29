@@ -22,8 +22,8 @@ export default async function AdminPage() {
         <p className="eyebrow">Private administration</p>
         <h1>Website Image Manager</h1>
         <p>
-          Every active image is mapped to its exact page and section. Replacing
-          an image here updates all of its listed placements automatically.
+          Every designed image frame has its own independent control, even when
+          several frames currently use the same original file.
         </p>
       </section>
       <ImageDashboard />
