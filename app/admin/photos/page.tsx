@@ -2,6 +2,7 @@ import { chatGPTSignOutPath } from "@/app/chatgpt-auth";
 import { requirePhotoAdmin } from "@/app/photo-admin-auth";
 import Link from "next/link";
 import PhotoManager from "./photo-manager";
+import SiteImageManager from "./site-image-manager";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +30,7 @@ export default async function PhotoAdminPage() {
         </p>
       </section>
 
+      <SiteImageManager />
       <PhotoManager />
     </main>
   );

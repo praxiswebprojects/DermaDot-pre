@@ -378,8 +378,8 @@ const infoCards = [
     slug: "andriki-alopekia",
     title: c("Ανδρική αλωπεκία", "Male hair loss"),
     images: {
-      before: "/cases/male-hair-loss-before.webp",
-      after: "/cases/male-hair-loss-after.webp",
+      before: "/api/site-images/file/male-before",
+      after: "/api/site-images/file/male-after",
     },
     text: c("Δημιουργεί την εικόνα ενός φυσικά ξυρισμένου τριχωτού και επαναπροσδιορίζει διακριτικά τη γραμμή των μαλλιών.", "Creates the appearance of a naturally shaved scalp and subtly redefines the hairline."),
     details: [
@@ -391,8 +391,8 @@ const infoCards = [
     slug: "gynaikeia-araiosi",
     title: c("Γυναικεία αραίωση", "Female thinning"),
     images: {
-      before: "/cases/female-thinning-before.webp",
-      after: "/cases/female-thinning-after.webp",
+      before: "/api/site-images/file/female-before",
+      after: "/api/site-images/file/female-after",
     },
     text: c("Μειώνει την αντίθεση του ορατού δέρματος ανάμεσα στα υπάρχοντα μαλλιά, προσφέροντας την εντύπωση μεγαλύτερης πυκνότητας.", "Reduces the contrast of visible scalp between existing hairs, creating the impression of greater density."),
     details: [
@@ -404,8 +404,8 @@ const infoCards = [
     slug: "oules-metamosxefsis",
     title: c("Ουλές από μεταμόσχευση", "Hair-transplant scars"),
     images: {
-      before: "/cases/hair-transplant-scar-before.webp",
-      after: "/cases/hair-transplant-scar-after.webp",
+      before: "/api/site-images/file/transplant-before",
+      after: "/api/site-images/file/transplant-after",
     },
     text: c("Ενσωματώνει οπτικά ώριμες ουλές FUE ή FUT στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
     details: [
@@ -417,8 +417,8 @@ const infoCards = [
     slug: "oules-travmatismon",
     title: c("Ουλές από τραυματισμούς", "Trauma scars"),
     images: {
-      before: "/cases/trauma-scar-before.webp",
-      after: "/cases/trauma-scar-after.webp",
+      before: "/api/site-images/file/trauma-before",
+      after: "/api/site-images/file/trauma-after",
     },
     text: c("Μπορεί να καμουφλάρει επιλεγμένες, πλήρως επουλωμένες ουλές έπειτα από προσεκτική αξιολόγηση.", "Can camouflage selected, fully healed scars after careful assessment."),
     details: [
@@ -430,8 +430,8 @@ const infoCards = [
     slug: "alopecia-areata",
     title: c("Alopecia Areata", "Alopecia Areata"),
     images: {
-      before: "/cases/alopecia-areata-before.webp",
-      after: "/cases/alopecia-areata-after.webp",
+      before: "/api/site-images/file/alopecia-before",
+      after: "/api/site-images/file/alopecia-after",
     },
     text: c("Σε σταθεροποιημένες περιπτώσεις μπορεί να μειώσει οπτικά τη διαφορά ανάμεσα στις περιοχές με και χωρίς τρίχες.", "In stable cases, it can visually reduce the contrast between areas with and without hair."),
     details: [
@@ -443,8 +443,8 @@ const infoCards = [
     slug: "genia",
     title: c("Γένια", "Beard"),
     images: {
-      before: "/cases/beard-density-before.webp",
-      after: "/cases/beard-density-after.webp",
+      before: "/api/site-images/file/beard-before",
+      after: "/api/site-images/file/beard-after",
     },
     text: c("Προσθέτει την οπτική εντύπωση πυκνότητας ή βοηθά στην εξισορρόπηση κενών στην περιοχή των γενιών.", "Adds the visual impression of density or helps balance gaps within the beard area."),
     details: [
@@ -456,8 +456,8 @@ const infoCards = [
     slug: "diorthosi-smp",
     title: c("Διόρθωση αποτυχημένου SMP", "Correction of previous SMP"),
     images: {
-      before: "/cases/failed-smp-correction-before.webp",
-      after: "/cases/failed-smp-correction-after.webp",
+      before: "/api/site-images/file/correction-before",
+      after: "/api/site-images/file/correction-after",
     },
     text: c("Αξιολογούμε χρώμα, βάθος, σχήμα και κατάσταση του δέρματος πριν προτείνουμε ασφαλή διόρθωση ή ανασχεδιασμό.", "We assess colour, depth, shape and skin condition before recommending a safe correction or redesign."),
     details: [
@@ -482,6 +482,7 @@ function ApplicationComparison({
         <span className="application-comparison-image">
           <img
             src={card.images.before}
+            data-site-image={card.images.before.split("/").pop()}
             alt={lang === "el" ? `${title}, πριν από την εφαρμογή` : `${title}, before treatment`}
           />
           <span className="application-comparison-label">{lang === "el" ? "ΠΡΙΝ" : "BEFORE"}</span>
@@ -489,6 +490,7 @@ function ApplicationComparison({
         <span className="application-comparison-image">
           <img
             src={card.images.after}
+            data-site-image={card.images.after.split("/").pop()}
             alt={lang === "el" ? `${title}, μετά την ενδεικτική εφαρμογή` : `${title}, after the illustrative treatment`}
           />
           <span className="application-comparison-label">{lang === "el" ? "ΜΕΤΑ" : "AFTER"}</span>
@@ -517,11 +519,13 @@ function ApplicationImageToggle({
         <img
           className={!showAfter ? "is-visible" : ""}
           src={card.images.before}
+          data-site-image={card.images.before.split("/").pop()}
           alt={lang === "el" ? `${title}, πριν από την εφαρμογή` : `${title}, before treatment`}
         />
         <img
           className={showAfter ? "is-visible" : ""}
           src={card.images.after}
+          data-site-image={card.images.after.split("/").pop()}
           alt={lang === "el" ? `${title}, μετά την εφαρμογή` : `${title}, after treatment`}
         />
         <button
@@ -957,6 +961,45 @@ function PublicPhotoGallery({ lang }: { lang: Language }) {
   );
 }
 
+function SiteImageSettings() {
+  useEffect(() => {
+    let active = true;
+    const style = document.createElement("style");
+    style.dataset.siteImageSettings = "true";
+    document.head.appendChild(style);
+
+    fetch("/api/site-images", { cache: "no-store" })
+      .then((response) => response.json())
+      .then((data: { images?: Array<{ slot: string; fileId: string | null; x: number; y: number; zoom: number }> }) => {
+        if (!active) return;
+        const images = (data.images ?? []).filter((image) => image.fileId);
+        const rules = images.map((image) => (
+          `img[data-site-image="${image.slot}"]{object-position:${image.x}% ${image.y}%!important;transform:scale(${image.zoom})!important;}`
+        ));
+        const hero = images.find((image) => image.slot === "hero");
+        const equipment = images.find((image) => image.slot === "equipment");
+        const crown = images.find((image) => image.slot === "crown");
+        if (hero) {
+          rules.push(`.template-hero,.about-image,.personal-smp-image,.doctor-portrait{background-position:${hero.x}% ${hero.y}%!important;background-size:${Math.round(hero.zoom * 100)}% auto!important;}`);
+        }
+        if (equipment) {
+          rules.push(`.page-hero-aside-photo{background-position:${equipment.x}% ${equipment.y}%!important;background-size:${Math.round(equipment.zoom * 100)}% auto!important;}`);
+        }
+        if (crown) {
+          rules.push(`.case-visual-crown{background-position:${crown.x}% ${crown.y}%!important;background-size:${Math.round(crown.zoom * 100)}% auto!important;}`);
+        }
+        style.textContent = rules.join("\n");
+      })
+      .catch(() => undefined);
+
+    return () => {
+      active = false;
+      style.remove();
+    };
+  }, []);
+  return null;
+}
+
 function Procedure({ lang }: { lang: Language }) {
   const steps = [
     c("Δωρεάν αξιολόγηση|Συζητάμε τον στόχο, το ιστορικό, το δέρμα και αν η τεχνική είναι κατάλληλη για εσάς.", "Free consultation|We discuss your goal, history, skin and whether the technique is right for you."),
@@ -1308,6 +1351,7 @@ export default function DermaDotSite({ route }: { route: Route }) {
   };
   return (
     <div className="site-shell">
+      <SiteImageSettings />
       <Header lang={lang} route={activeRoute} onLanguage={change} />
       <main className="page" key={`${activeRoute}-${lang}`}>{pages[activeRoute]}</main>
       <Footer lang={lang} />
