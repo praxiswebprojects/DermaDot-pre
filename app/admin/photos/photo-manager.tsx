@@ -178,7 +178,7 @@ export default function PhotoManager() {
     <section className="photo-manager">
       <form className="photo-upload-card" ref={uploadForm} onSubmit={upload}>
         <div className="photo-upload-heading">
-          <span className="photo-admin-step">02</span>
+          <span className="photo-admin-step">01</span>
           <h2>Νέο αποτέλεσμα</h2>
           <p>JPG, PNG, WebP ή AVIF, έως 15 MB ανά φωτογραφία.</p>
         </div>
@@ -219,7 +219,7 @@ export default function PhotoManager() {
 
       <div className="photo-library-head">
         <div>
-          <span className="photo-admin-step">03</span>
+          <span className="photo-admin-step">02</span>
           <h2>Βιβλιοθήκη</h2>
         </div>
         <span>{photos.length} αποτελέσματα</span>

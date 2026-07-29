@@ -536,7 +536,7 @@ h1::first-letter,
   background-image:
     linear-gradient(180deg, rgba(10, 10, 10, .38) 0%, rgba(10, 10, 10, .2) 42%, rgba(10, 10, 10, .9) 100%),
     linear-gradient(90deg, rgba(10, 10, 10, .24), rgba(10, 10, 10, .48)),
-    url("/api/site-images/file/equipment");
+    url("/smp-02-equipment.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -645,7 +645,7 @@ h1::first-letter,
 
 .case-visual-crown {
   background-color: #181817;
-  background-image: url("/api/site-images/file/crown");
+  background-image: url("/crown-thinning.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1192,7 +1192,7 @@ h1::first-letter,
   margin: 0;
   overflow: hidden;
   border-radius: 28px;
-  background: #0A0A0A url("/api/site-images/file/hero") center right / cover no-repeat;
+  background: #0A0A0A url("/hero.png") center right / cover no-repeat;
 }
 
 .template-hero-shade {
@@ -1267,7 +1267,7 @@ h1::first-letter,
   border: 1px solid #2c2c2c;
   border-radius: 18px;
   background-color: #080808;
-  background-image: url("/api/site-images/file/hero");
+  background-image: url("/hero.png");
   background-repeat: no-repeat;
   filter: grayscale(1);
 }
@@ -2450,7 +2450,7 @@ h1::first-letter,
   border-radius: 28px;
   background:
     linear-gradient(0deg, rgba(10, 10, 10, .3), rgba(10, 10, 10, .04)),
-    url("/api/site-images/file/hero") 82% center / cover no-repeat;
+    url("/hero.png") 82% center / cover no-repeat;
 }
 
 .personal-smp-choice h2 {
@@ -2557,7 +2557,7 @@ h1::first-letter,
   border-radius: 30px;
   background:
     linear-gradient(0deg, rgba(5, 5, 5, .42), rgba(5, 5, 5, .02) 55%),
-    url("/api/site-images/file/hero") 83% center / cover no-repeat;
+    url("/hero.png") 83% center / cover no-repeat;
 }
 
 .doctor-portrait span {
@@ -3916,111 +3916,5 @@ p {
 
   .public-photo-heading {
     display: grid;
-  }
-}
-
-.site-image-help {
-  max-width: 720px;
-  margin: -8px 0 28px;
-  color: #999;
-  line-height: 1.65;
-}
-
-.site-image-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.site-image-card {
-  overflow: hidden;
-  border: 1px solid #303030;
-  background: #111;
-}
-
-.site-image-preview {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: #050505;
-}
-
-.site-image-preview img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform-origin: center;
-}
-
-.site-image-card-body {
-  display: grid;
-  gap: 15px;
-  padding: 22px;
-}
-
-.site-image-title {
-  display: flex;
-  gap: 16px;
-  align-items: start;
-  justify-content: space-between;
-}
-
-.site-image-title h3 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.site-image-title span {
-  color: #999;
-  font-size: 9px;
-  text-align: right;
-}
-
-.site-image-card label {
-  display: grid;
-  gap: 7px;
-  color: #999;
-  font-size: 10px;
-}
-
-.site-image-card input[type="file"] {
-  width: 100%;
-  min-height: 44px;
-  padding: 9px;
-  border: 1px solid #383838;
-  background: #0a0a0a;
-  color: #f4f1ec;
-}
-
-.site-image-card input[type="range"] {
-  width: 100%;
-  accent-color: #b8955a;
-}
-
-.site-image-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.site-image-actions button {
-  min-height: 40px;
-  padding: 9px 14px;
-  border: 1px solid #444;
-  background: transparent;
-  color: #f4f1ec;
-  cursor: pointer;
-}
-
-.site-image-actions .photo-save-button {
-  border-color: #b8955a;
-  background: #b8955a;
-  color: #0a0a0a;
-  font-weight: 700;
-}
-
-@media (max-width: 800px) {
-  .site-image-grid {
-    grid-template-columns: 1fr;
   }
 }
