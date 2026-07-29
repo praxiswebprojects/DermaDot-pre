@@ -378,8 +378,8 @@ const infoCards = [
     slug: "andriki-alopekia",
     title: c("Ανδρική αλωπεκία", "Male hair loss"),
     images: {
-      before: "/cases/male-hair-loss-before.webp",
-      after: "/cases/male-hair-loss-after.webp",
+      before: "/api/admin/images/file/male-before",
+      after: "/api/admin/images/file/male-after",
     },
     text: c("Δημιουργεί την εικόνα ενός φυσικά ξυρισμένου τριχωτού και επαναπροσδιορίζει διακριτικά τη γραμμή των μαλλιών.", "Creates the appearance of a naturally shaved scalp and subtly redefines the hairline."),
     details: [
@@ -391,8 +391,8 @@ const infoCards = [
     slug: "gynaikeia-araiosi",
     title: c("Γυναικεία αραίωση", "Female thinning"),
     images: {
-      before: "/cases/female-thinning-before.webp",
-      after: "/cases/female-thinning-after.webp",
+      before: "/api/admin/images/file/female-before",
+      after: "/api/admin/images/file/female-after",
     },
     text: c("Μειώνει την αντίθεση του ορατού δέρματος ανάμεσα στα υπάρχοντα μαλλιά, προσφέροντας την εντύπωση μεγαλύτερης πυκνότητας.", "Reduces the contrast of visible scalp between existing hairs, creating the impression of greater density."),
     details: [
@@ -404,8 +404,8 @@ const infoCards = [
     slug: "oules-metamosxefsis",
     title: c("Ουλές από μεταμόσχευση", "Hair-transplant scars"),
     images: {
-      before: "/cases/hair-transplant-scar-before.webp",
-      after: "/cases/hair-transplant-scar-after.webp",
+      before: "/api/admin/images/file/transplant-before",
+      after: "/api/admin/images/file/transplant-after",
     },
     text: c("Ενσωματώνει οπτικά ώριμες ουλές FUE ή FUT στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
     details: [
@@ -417,8 +417,8 @@ const infoCards = [
     slug: "oules-travmatismon",
     title: c("Ουλές από τραυματισμούς", "Trauma scars"),
     images: {
-      before: "/cases/trauma-scar-before.webp",
-      after: "/cases/trauma-scar-after.webp",
+      before: "/api/admin/images/file/trauma-before",
+      after: "/api/admin/images/file/trauma-after",
     },
     text: c("Μπορεί να καμουφλάρει επιλεγμένες, πλήρως επουλωμένες ουλές έπειτα από προσεκτική αξιολόγηση.", "Can camouflage selected, fully healed scars after careful assessment."),
     details: [
@@ -430,8 +430,8 @@ const infoCards = [
     slug: "alopecia-areata",
     title: c("Alopecia Areata", "Alopecia Areata"),
     images: {
-      before: "/cases/alopecia-areata-before.webp",
-      after: "/cases/alopecia-areata-after.webp",
+      before: "/api/admin/images/file/alopecia-before",
+      after: "/api/admin/images/file/alopecia-after",
     },
     text: c("Σε σταθεροποιημένες περιπτώσεις μπορεί να μειώσει οπτικά τη διαφορά ανάμεσα στις περιοχές με και χωρίς τρίχες.", "In stable cases, it can visually reduce the contrast between areas with and without hair."),
     details: [
@@ -443,8 +443,8 @@ const infoCards = [
     slug: "genia",
     title: c("Γένια", "Beard"),
     images: {
-      before: "/cases/beard-density-before.webp",
-      after: "/cases/beard-density-after.webp",
+      before: "/api/admin/images/file/beard-before",
+      after: "/api/admin/images/file/beard-after",
     },
     text: c("Προσθέτει την οπτική εντύπωση πυκνότητας ή βοηθά στην εξισορρόπηση κενών στην περιοχή των γενιών.", "Adds the visual impression of density or helps balance gaps within the beard area."),
     details: [
@@ -456,8 +456,8 @@ const infoCards = [
     slug: "diorthosi-smp",
     title: c("Διόρθωση αποτυχημένου SMP", "Correction of previous SMP"),
     images: {
-      before: "/cases/failed-smp-correction-before.webp",
-      after: "/cases/failed-smp-correction-after.webp",
+      before: "/api/admin/images/file/correction-before",
+      after: "/api/admin/images/file/correction-after",
     },
     text: c("Αξιολογούμε χρώμα, βάθος, σχήμα και κατάσταση του δέρματος πριν προτείνουμε ασφαλή διόρθωση ή ανασχεδιασμό.", "We assess colour, depth, shape and skin condition before recommending a safe correction or redesign."),
     details: [
