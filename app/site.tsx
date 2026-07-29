@@ -278,15 +278,27 @@ function Footer({ lang }: { lang: Language }) {
   );
 }
 
-function PageHero({ index, title, intro, lang }: { index: string; title: Copy; intro: Copy; lang: Language }) {
+function PageHero({
+  index,
+  title,
+  intro,
+  lang,
+  showCode = true,
+}: {
+  index: string;
+  title: Copy;
+  intro: Copy;
+  lang: Language;
+  showCode?: boolean;
+}) {
   return (
     <section className="page-hero">
       <div className="page-hero-main">
-        <p className="eyebrow"><span>Derma</span><span className="brand-inline-dot">Dot</span> / {index}</p>
+        <p className="eyebrow"><span>Derma</span><span className="brand-inline-dot">Dot</span></p>
         <h1>{title[lang]}</h1>
       </div>
-      <aside className="page-hero-aside">
-        <span className="page-code">SMP — {index}</span>
+      <aside className={`page-hero-aside ${showCode ? "" : "page-hero-aside-no-code"}`}>
+        {showCode ? <span className="page-code">SMP — {index}</span> : null}
         <p>{intro[lang]}</p>
       </aside>
     </section>
@@ -619,6 +631,7 @@ function Applications({ lang }: { lang: Language }) {
       <PageHero
         index="02A"
         lang={lang}
+        showCode={false}
         title={c("Εφαρμογές SMP", "SMP Applications")}
         intro={c("Αναλυτικές πληροφορίες για τις επτά εξειδικευμένες εφαρμογές και τον τρόπο με τον οποίο προσαρμόζονται σε κάθε ανάγκη.", "Detailed information about seven specialist applications and how each is adapted to an individual need.")}
       />
@@ -840,11 +853,6 @@ function TreatmentGuide({ lang }: { lang: Language }) {
         </div>
       </section>
 
-      <p className="section treatment-disclaimer-standalone">
-        {lang === "el"
-          ? "Το περιεχόμενο είναι γενική ενημέρωση και δεν αποτελεί ιατρική διάγνωση ή σύσταση. Η καταλληλότητα για μεταμόσχευση μαλλιών πρέπει να αξιολογείται από κατάλληλα καταρτισμένο ιατρό."
-          : "This content provides general information and is not a medical diagnosis or recommendation. Suitability for hair transplantation must be assessed by an appropriately qualified physician."}
-      </p>
     </>
   );
 }
@@ -1158,6 +1166,38 @@ function FAQ({ lang }: { lang: Language }) {
 }
 
 function BackToTop({ lang }: { lang: Language }) {
+  const [buttonBottom, setButtonBottom] = useState<number | null>(null);
+
+  useEffect(() => {
+    let animationFrame = 0;
+
+    const updatePosition = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(() => {
+        const footerDivider = document.querySelector<HTMLElement>(".footer-bottom");
+        if (!footerDivider) return;
+
+        const baseBottom = window.innerWidth <= 700
+          ? 18
+          : Math.max(22, Math.min(window.innerWidth * .03, 42));
+        const footerDividerTop = footerDivider.getBoundingClientRect().top;
+        const stoppedBottom = window.innerHeight - footerDividerTop - 10;
+
+        setButtonBottom(Math.max(baseBottom, stoppedBottom));
+      });
+    };
+
+    updatePosition();
+    window.addEventListener("scroll", updatePosition, { passive: true });
+    window.addEventListener("resize", updatePosition);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", updatePosition);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, []);
+
   const returnToTop = () => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
@@ -1167,6 +1207,7 @@ function BackToTop({ lang }: { lang: Language }) {
     <button
       className="back-to-top"
       type="button"
+      style={buttonBottom === null ? undefined : { bottom: `${buttonBottom}px` }}
       aria-label={lang === "el" ? "Επιστροφή στην αρχή της σελίδας" : "Return to the top of the page"}
       onClick={returnToTop}
     >

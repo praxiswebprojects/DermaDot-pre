@@ -527,6 +527,10 @@ h1::first-letter,
   line-height: 1.55;
 }
 
+.page-hero-aside-no-code {
+  justify-content: flex-end;
+}
+
 .content-grid,
 .steps {
   display: grid;
@@ -2151,7 +2155,7 @@ h1::first-letter,
 .applications-back {
   width: fit-content;
   color: #B8B8B3;
-  font-size: 13px;
+  font-size: 21px;
   text-decoration: none;
 }
 
@@ -2567,6 +2571,10 @@ h1::first-letter,
 
 .doctor-story {
   border-top: 1px solid #333333;
+}
+
+.doctor-story .section-head {
+  align-items: start;
 }
 
 .doctor-values {
