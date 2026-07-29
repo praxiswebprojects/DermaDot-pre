@@ -11,7 +11,6 @@
   --font: var(--font-geist), Arial, sans-serif;
   --font-display: var(--font-montserrat), var(--font-geist), Arial, sans-serif;
   --font-subheading: var(--font-open-sans), Arial, sans-serif;
-  --font-editorial-stack: "Joanna", var(--font-editorial), "Noto Serif", Georgia, serif;
 }
 
 * {
@@ -3057,9 +3056,9 @@ body {
 
 .template-hero h1.editorial-title,
 .about-center h2.editorial-title {
-  font-family: var(--font-editorial-stack);
-  font-weight: 700;
-  letter-spacing: -.045em;
+  font-family: var(--font-geist), Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -.035em;
 }
 
 .eyebrow,

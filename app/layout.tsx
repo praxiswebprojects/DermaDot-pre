@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Noto_Sans, Noto_Serif, Open_Sans } from "next/font/google";
+import { Montserrat, Noto_Sans, Open_Sans } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 
@@ -11,19 +11,13 @@ const notoSans = Noto_Sans({
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["500", "600", "700"],
 });
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin", "greek"],
   weight: ["400", "600", "700"],
-});
-
-const notoSerif = Noto_Serif({
-  variable: "--font-editorial",
-  subsets: ["latin", "greek"],
-  weight: ["700"],
 });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -66,7 +60,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="el">
-      <body className={`${notoSans.variable} ${montserrat.variable} ${openSans.variable} ${notoSerif.variable}`}>{children}</body>
+      <body className={`${notoSans.variable} ${montserrat.variable} ${openSans.variable}`}>{children}</body>
     </html>
   );
 }
