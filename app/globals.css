@@ -1115,6 +1115,10 @@ h1::first-letter,
   letter-spacing: .02em;
 }
 
+.header-call-icon {
+  display: none;
+}
+
 .lang-toggle:hover,
 .header-call:hover {
   background: rgba(255, 255, 255, .12);
@@ -1454,12 +1458,16 @@ h1::first-letter,
   .header-call {
     width: 42px;
     padding: 0;
-    overflow: hidden;
-    font-size: 0;
   }
 
-  .header-call span {
-    font-size: 16px;
+  .header-call-text {
+    display: none;
+  }
+
+  .header-call-icon {
+    display: inline-flex;
+    font-size: 18px;
+    line-height: 1;
   }
 
   .lang-toggle {
@@ -3059,6 +3067,12 @@ body {
   font-family: var(--font-geist), Arial, sans-serif;
   font-weight: 500;
   letter-spacing: -.035em;
+}
+
+.slim-title.slim-title {
+  font-family: var(--font-geist), Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -.025em;
 }
 
 .eyebrow,

@@ -225,8 +225,13 @@ function Header({ lang, route, onLanguage }: { lang: Language; route: Route; onL
             <span>/</span>
             <span className={lang === "en" ? "active" : ""}>EN</span>
           </button>
-          <a className="header-call" href="tel:+302100000000">
-            {lang === "el" ? "Καλέστε τώρα" : "Call now"}
+          <a
+            className="header-call"
+            href="tel:+302100000000"
+            aria-label={lang === "el" ? "Καλέστε τώρα" : "Call now"}
+          >
+            <span className="header-call-text">{lang === "el" ? "Καλέστε τώρα" : "Call now"}</span>
+            <span className="header-call-icon" aria-hidden="true">☎</span>
           </a>
         </div>
       </div>
@@ -334,7 +339,7 @@ function Home({ lang }: { lang: Language }) {
       </section>
       <section className="section template-topics home-reveal home-reveal-third line-reveal" data-scroll-reveal>
         <div className="section-head">
-          <h2>{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2>
+          <h2 className="slim-title">{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2>
           <p className="section-intro">
             {lang === "el"
               ? "Ανακαλύψτε τη διαδικασία της θεραπείας SMP βήμα προς βήμα, από την αρχική αξιολόγηση έως το τελικό αποτέλεσμα."
@@ -655,7 +660,7 @@ function WhatIsSmp({ lang }: { lang: Language }) {
     <>
       <PageHero index="02" lang={lang} title={c("Τι είναι το SMP;", "What is SMP?")} intro={c("Μια εξειδικευμένη τεχνική που δημιουργεί την οπτική εντύπωση φυσικών θυλάκων τρίχας.", "A specialised technique that creates the visual impression of natural hair follicles.")} />
       <section className="section">
-        <div className="section-head"><h2>{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2><p className="section-intro">{lang === "el" ? "Η SMP αποτελεί μια σύγχρονη, μη χειρουργική τεχνική που έχει σχεδιαστεί για να βελτιώνει την εικόνα του τριχωτού με φυσικό και διακριτικό τρόπο. Παρακάτω θα βρείτε απαντήσεις στις πιο συχνές ερωτήσεις σχετικά με τη διαδικασία, την εφαρμογή και το αποτέλεσμα." : "SMP is a modern, non-surgical technique designed to improve the appearance of the scalp in a natural and subtle way. Below you will find answers to the most frequently asked questions about the procedure, its application and the result."}</p></div>
+        <div className="section-head"><h2 className="slim-title">{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2><p className="section-intro">{lang === "el" ? "Η SMP αποτελεί μια σύγχρονη, μη χειρουργική τεχνική που έχει σχεδιαστεί για να βελτιώνει την εικόνα του τριχωτού με φυσικό και διακριτικό τρόπο. Παρακάτω θα βρείτε απαντήσεις στις πιο συχνές ερωτήσεις σχετικά με τη διαδικασία, την εφαρμογή και το αποτέλεσμα." : "SMP is a modern, non-surgical technique designed to improve the appearance of the scalp in a natural and subtle way. Below you will find answers to the most frequently asked questions about the procedure, its application and the result."}</p></div>
         <div className="content-grid essentials-grid">
           {essentials.map((item) => {
             const [elTitle, elText] = item.el.split("|");
@@ -729,7 +734,7 @@ function TreatmentGuide({ lang }: { lang: Language }) {
       <section className="section treatment-choice-intro">
         <span className="eyebrow">{lang === "el" ? "Η σωστή επιλογή για εσάς" : "The right choice for you"}</span>
         <div>
-          <h2>{lang === "el" ? "Δεν υπάρχει μία θεραπεία ιδανική για όλους." : "There is no single ideal treatment for everyone."}</h2>
+          <h2 className="slim-title">{lang === "el" ? "Δεν υπάρχει μία θεραπεία ιδανική για όλους." : "There is no single ideal treatment for everyone."}</h2>
           <p>
             {lang === "el"
               ? "Η σωστή επιλογή εξαρτάται από το είδος της αλωπεκίας, την έκταση της τριχόπτωσης, τη δότρια περιοχή, τις προσδοκίες του κάθε ανθρώπου και το αποτέλεσμα που θέλει να πετύχει."
@@ -883,7 +888,7 @@ function Procedure({ lang }: { lang: Language }) {
     <>
       <PageHero index="04" lang={lang} title={c("Η διαδικασία", "The procedure")} intro={c("Σαφές πλάνο, ήρεμος ρυθμός και έλεγχος σε κάθε στάδιο.", "A clear plan, calm pace and control at every stage.")} />
       <section className="section">
-        <div className="section-head"><h2>{lang === "el" ? "Από την ιδέα στο επουλωμένο αποτέλεσμα." : "From first idea to healed result."}</h2><p className="section-intro">{lang === "el" ? "Η θεραπεία ολοκληρώνεται σταδιακά, ώστε το δέρμα να επουλώνεται και το αποτέλεσμα να αξιολογείται αντικειμενικά." : "Treatment is completed gradually so the skin can heal and the result can be assessed objectively."}</p></div>
+        <div className="section-head"><h2 className="slim-title">{lang === "el" ? "Από την ιδέα στο επουλωμένο αποτέλεσμα." : "From first idea to healed result."}</h2><p className="section-intro">{lang === "el" ? "Η θεραπεία ολοκληρώνεται σταδιακά, ώστε το δέρμα να επουλώνεται και το αποτέλεσμα να αξιολογείται αντικειμενικά." : "Treatment is completed gradually so the skin can heal and the result can be assessed objectively."}</p></div>
         <div className="steps">
           {steps.map((item, i) => {
             const [elTitle, elText] = item.el.split("|");
@@ -907,7 +912,7 @@ function Aftercare({ lang }: { lang: Language }) {
     <>
       <PageHero index="05" lang={lang} title={c("Φροντίδα", "Aftercare")} intro={c("Λίγες απλές συνήθειες προστατεύουν την επούλωση και βοηθούν το αποτέλεσμα να σταθεροποιηθεί σωστά.", "A few simple habits protect healing and help the result settle correctly.")} />
       <section className="section">
-        <div className="section-head"><h2>{lang === "el" ? "Η επούλωση είναι μέρος της θεραπείας." : "Healing is part of treatment."}</h2><p className="section-intro">{lang === "el" ? "Θα λάβετε ακριβείς, προσωπικές οδηγίες μετά από κάθε συνεδρία." : "You will receive precise, personal guidance after every session."}</p></div>
+        <div className="section-head"><h2 className="slim-title">{lang === "el" ? "Η επούλωση είναι μέρος της θεραπείας." : "Healing is part of treatment."}</h2><p className="section-intro">{lang === "el" ? "Θα λάβετε ακριβείς, προσωπικές οδηγίες μετά από κάθε συνεδρία." : "You will receive precise, personal guidance after every session."}</p></div>
         <div className="content-grid">
           {cards.map((item) => {
             const [elTitle, elText] = item.el.split("|");
@@ -1003,7 +1008,7 @@ function Doctor({ lang }: { lang: Language }) {
         </div>
         <div className="doctor-introduction">
           <p className="eyebrow">{lang === "el" ? "Προσωπικό προφίλ" : "Personal profile"}</p>
-          <h2>{lang === "el" ? <>Ανδρέας<br />Πετρόπουλος</> : <>Andreas<br />Petropoulos</>}</h2>
+          <h2 className="slim-title">{lang === "el" ? <>Ανδρέας<br />Πετρόπουλος</> : <>Andreas<br />Petropoulos</>}</h2>
           <p className="doctor-lede">
             {lang === "el"
               ? "Ο Ανδρέας Πετρόπουλος είναι απόφοιτος του Αρσακείου Σχολείου και του Πανεπιστημίου Queen Margaret στη Σκωτία, όπου ολοκλήρωσε τις σπουδές του στον τομέα του Management. Η ακαδημαϊκή του πορεία και η διεπιστημονική του προσέγγιση αποτελούν τη βάση για τη διαμόρφωση μιας σύγχρονης αντίληψης γύρω από την οργάνωση, τη διοίκηση και την παροχή υψηλού επιπέδου υπηρεσιών υγείας."
@@ -1025,7 +1030,7 @@ function Doctor({ lang }: { lang: Language }) {
             <article className="doctor-chapter" key={chapter.number}>
               <span>{chapter.number}</span>
               <div>
-                <h3>{chapter.title[lang]}</h3>
+                <h3 className="slim-title">{chapter.title[lang]}</h3>
                 {chapter.paragraphs.map((paragraph, index) => {
                   if (!paragraph[lang]) return null;
                   if (chapter.number === "04" && index === 0) {
