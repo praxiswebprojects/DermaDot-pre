@@ -3004,6 +3004,21 @@ body {
     padding: 10px;
   }
 
+  .header-top {
+    height: 44px;
+  }
+
+  .menu-toggle {
+    top: 0;
+    height: 44px;
+  }
+
+  .header-top .brand {
+    top: 50%;
+    left: 52px;
+    transform: translateY(-50%);
+  }
+
   .site-header .main-nav {
     grid-template-columns: 1fr;
   }
