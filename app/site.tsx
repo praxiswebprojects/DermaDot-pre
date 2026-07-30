@@ -301,19 +301,23 @@ function PageHero({
   showCode?: boolean;
 }) {
   const photo = pageHeroImages[index];
+  const isFullPhoto = index === "02" && Boolean(photo);
 
   return (
-    <section className={`page-hero ${photo ? "page-hero-with-photo" : ""}`} data-smp-index={index}>
+    <section
+      className={`page-hero ${photo ? "page-hero-with-photo" : ""} ${isFullPhoto ? "page-hero-full-photo" : ""}`}
+      data-smp-index={index}
+      style={photo ? {
+        "--page-hero-image": `url("${photo.src}")`,
+        "--page-hero-position": photo.position,
+      } as React.CSSProperties : undefined}
+    >
       <div className="page-hero-main">
         <p className="eyebrow"><span>Derma</span><span className="brand-inline-dot">Dot</span></p>
         <h1>{title[lang]}</h1>
       </div>
       <aside
         className={`page-hero-aside ${showCode ? "" : "page-hero-aside-no-code"} ${photo ? "page-hero-aside-photo" : ""}`}
-        style={photo ? {
-          "--page-hero-image": `url("${photo.src}")`,
-          "--page-hero-position": photo.position,
-        } as React.CSSProperties : undefined}
       >
         {showCode ? <span className="page-code">SMP — {index}</span> : null}
         <p>{intro[lang]}</p>

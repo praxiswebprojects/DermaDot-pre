@@ -557,6 +557,78 @@ h1::first-letter,
   color: #F4F1EC !important;
 }
 
+.page-hero.page-hero-full-photo {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 660px;
+  overflow: hidden;
+  background-color: #0A0A0A;
+  background-image:
+    linear-gradient(90deg, rgba(5, 5, 5, .82) 0%, rgba(5, 5, 5, .48) 48%, rgba(5, 5, 5, .18) 100%),
+    linear-gradient(180deg, rgba(5, 5, 5, .22) 0%, rgba(5, 5, 5, .08) 42%, rgba(5, 5, 5, .9) 100%),
+    var(--page-hero-image);
+  background-position: var(--page-hero-position, center);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-hero-full-photo::after {
+  position: absolute;
+  z-index: 1;
+  inset: 18px;
+  border: 1px solid rgba(244, 241, 236, .16);
+  content: "";
+  pointer-events: none;
+}
+
+.page-hero-full-photo .page-hero-main {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 660px;
+  padding: 34px 28px 210px;
+}
+
+.page-hero-full-photo .page-hero-main .eyebrow {
+  color: #F4F1EC !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .85);
+}
+
+.page-hero-full-photo .page-hero-main h1 {
+  max-width: 760px;
+  margin: 0;
+  color: #F4F1EC !important;
+  text-shadow: 0 4px 34px rgba(0, 0, 0, .82);
+}
+
+.page-hero-full-photo .page-hero-aside {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  min-height: 0 !important;
+  padding: 34px 28px 42px;
+  border: 0;
+  background: transparent !important;
+  pointer-events: none;
+}
+
+.page-hero-full-photo .page-code {
+  align-self: flex-end;
+  color: #D1AA68 !important;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .9);
+}
+
+.page-hero-full-photo .page-hero-aside p {
+  align-self: flex-end;
+  max-width: 360px;
+  color: #F4F1EC !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .95);
+}
+
 .page-hero:is(
   [data-smp-index="02"],
   [data-smp-index="02B"],
@@ -1046,6 +1118,20 @@ h1::first-letter,
 
   .page-hero.page-hero-with-photo {
     min-height: 500px;
+  }
+
+  .page-hero.page-hero-full-photo {
+    grid-template-columns: 1fr;
+    min-height: min(820px, calc(100svh - 76px));
+  }
+
+  .page-hero-full-photo .page-hero-main {
+    min-height: min(820px, calc(100svh - 76px));
+    padding: 44px 48px 52px;
+  }
+
+  .page-hero-full-photo .page-hero-aside {
+    padding: 44px 48px 52px;
   }
 
   .topic-grid {
