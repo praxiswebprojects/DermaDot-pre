@@ -534,10 +534,10 @@ h1::first-letter,
 .page-hero-aside-photo {
   background-color: #0A0A0A;
   background-image:
-    linear-gradient(180deg, rgba(10, 10, 10, .38) 0%, rgba(10, 10, 10, .2) 42%, rgba(10, 10, 10, .9) 100%),
-    linear-gradient(90deg, rgba(10, 10, 10, .24), rgba(10, 10, 10, .48)),
-    url("/smp-02-equipment.webp");
-  background-position: center;
+    linear-gradient(180deg, rgba(10, 10, 10, .56) 0%, rgba(10, 10, 10, .16) 42%, rgba(10, 10, 10, .94) 100%),
+    linear-gradient(90deg, rgba(10, 10, 10, .32), rgba(10, 10, 10, .16)),
+    var(--page-hero-image);
+  background-position: var(--page-hero-position, center);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -551,6 +551,19 @@ h1::first-letter,
 
 .page-hero-aside-photo p {
   color: #F4F1EC !important;
+}
+
+.page-hero:is(
+  [data-smp-index="02"],
+  [data-smp-index="02B"],
+  [data-smp-index="03"],
+  [data-smp-index="04"],
+  [data-smp-index="05"],
+  [data-smp-index="06"],
+  [data-smp-index="07"],
+  [data-smp-index="08"]
+) .page-hero-aside {
+  min-height: 400px;
 }
 
 .content-grid,
@@ -1004,6 +1017,19 @@ h1::first-letter,
     min-height: 100%;
     border-top: 0;
     border-left: 1px solid var(--line);
+  }
+
+  .page-hero:is(
+    [data-smp-index="02"],
+    [data-smp-index="02B"],
+    [data-smp-index="03"],
+    [data-smp-index="04"],
+    [data-smp-index="05"],
+    [data-smp-index="06"],
+    [data-smp-index="07"],
+    [data-smp-index="08"]
+  ) {
+    min-height: 560px;
   }
 
   .topic-grid {

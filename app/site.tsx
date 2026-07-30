@@ -278,6 +278,15 @@ function Footer({ lang }: { lang: Language }) {
   );
 }
 
+const pageHeroImages: Partial<Record<string, { src: string; position: string }>> = {
+  "02": { src: "/smp-02-equipment.webp", position: "50% 50%" },
+  "02B": { src: "/page-heroes/smp-02b-device.jpg", position: "50% 50%" },
+  "03": { src: "/page-heroes/smp-03-treatment.jpg", position: "50% 48%" },
+  "04": { src: "/page-heroes/smp-04-process.jpg", position: "56% 58%" },
+  "06": { src: "/page-heroes/smp-06-equipment.jpg", position: "50% 58%" },
+  "07": { src: "/page-heroes/smp-07-hairline.jpg", position: "50% 50%" },
+};
+
 function PageHero({
   index,
   title,
@@ -291,13 +300,21 @@ function PageHero({
   lang: Language;
   showCode?: boolean;
 }) {
+  const photo = pageHeroImages[index];
+
   return (
-    <section className="page-hero">
+    <section className="page-hero" data-smp-index={index}>
       <div className="page-hero-main">
         <p className="eyebrow"><span>Derma</span><span className="brand-inline-dot">Dot</span></p>
         <h1>{title[lang]}</h1>
       </div>
-      <aside className={`page-hero-aside ${showCode ? "" : "page-hero-aside-no-code"} ${index === "02" ? "page-hero-aside-photo" : ""}`}>
+      <aside
+        className={`page-hero-aside ${showCode ? "" : "page-hero-aside-no-code"} ${photo ? "page-hero-aside-photo" : ""}`}
+        style={photo ? {
+          "--page-hero-image": `url("${photo.src}")`,
+          "--page-hero-position": photo.position,
+        } as React.CSSProperties : undefined}
+      >
         {showCode ? <span className="page-code">SMP — {index}</span> : null}
         <p>{intro[lang]}</p>
       </aside>
