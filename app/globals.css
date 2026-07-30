@@ -414,6 +414,10 @@ h1::first-letter,
   margin-bottom: 52px;
 }
 
+.what-is-smp-head {
+  align-items: start;
+}
+
 .section h2 {
   max-width: 840px;
   margin-bottom: 0;
