@@ -303,7 +303,7 @@ function PageHero({
   const photo = pageHeroImages[index];
 
   return (
-    <section className="page-hero" data-smp-index={index}>
+    <section className={`page-hero ${photo ? "page-hero-with-photo" : ""}`} data-smp-index={index}>
       <div className="page-hero-main">
         <p className="eyebrow"><span>Derma</span><span className="brand-inline-dot">Dot</span></p>
         <h1>{title[lang]}</h1>

@@ -1017,6 +1017,14 @@ h1::first-letter,
     grid-template-columns: 1fr 420px;
   }
 
+  .page-hero.page-hero-with-photo {
+    grid-template-columns: minmax(0, 1.38fr) minmax(440px, 1fr);
+  }
+
+  .page-hero-with-photo .page-hero-main {
+    padding: 56px 34px 40px;
+  }
+
   .page-hero-aside {
     min-height: 100%;
     border-top: 0;
@@ -1034,6 +1042,10 @@ h1::first-letter,
     [data-smp-index="08"]
   ) {
     min-height: 560px;
+  }
+
+  .page-hero.page-hero-with-photo {
+    min-height: 500px;
   }
 
   .topic-grid {
@@ -3248,6 +3260,10 @@ p {
 @media (min-width: 1024px) {
   .page-hero h1 {
     font-size: clamp(46px, 6.2vw, 90px);
+  }
+
+  .page-hero.page-hero-with-photo h1 {
+    font-size: clamp(42px, 5.2vw, 78px);
   }
 }
 
