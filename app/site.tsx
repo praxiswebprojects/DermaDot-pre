@@ -282,12 +282,20 @@ function Footer({ lang }: { lang: Language }) {
 
 const pageHeroImages: Partial<Record<string, {
   src: string;
+  mobileSrc?: string;
   desktop: string;
   laptop: string;
   tablet: string;
   mobile: string;
 }>> = {
-  "02": { src: "/smp-02-equipment.webp", desktop: "50% 50%", laptop: "56% 50%", tablet: "62% 50%", mobile: "68% 48%" },
+  "02": {
+    src: "/page-heroes/smp-02-desktop.png",
+    mobileSrc: "/page-heroes/smp-02-mobile.png",
+    desktop: "50% 50%",
+    laptop: "55% 50%",
+    tablet: "62% 50%",
+    mobile: "50% 50%",
+  },
   "02B": { src: "/page-heroes/smp-02b-transplant.png", desktop: "50% 50%", laptop: "58% 50%", tablet: "68% 50%", mobile: "78% 48%" },
   "03": { src: "/page-heroes/smp-03-treatment.jpg", desktop: "50% 48%", laptop: "50% 52%", tablet: "50% 56%", mobile: "50% 60%" },
   "04": { src: "/page-heroes/smp-04-process.jpg", desktop: "56% 58%", laptop: "54% 60%", tablet: "52% 63%", mobile: "50% 67%" },
@@ -318,6 +326,7 @@ function PageHero({
       data-smp-index={index}
       style={isFullPhoto && photo ? {
         "--page-hero-image": `url("${photo.src}")`,
+        "--page-hero-image-mobile": `url("${photo.mobileSrc ?? photo.src}")`,
         "--page-hero-position": photo.desktop,
         "--page-hero-position-laptop": photo.laptop,
         "--page-hero-position-tablet": photo.tablet,
@@ -332,6 +341,7 @@ function PageHero({
         className={`page-hero-aside ${showCode ? "" : "page-hero-aside-no-code"} ${photo ? "page-hero-aside-photo" : ""}`}
         style={photo ? {
           "--page-hero-image": `url("${photo.src}")`,
+          "--page-hero-image-mobile": `url("${photo.mobileSrc ?? photo.src}")`,
           "--page-hero-position": photo.desktop,
           "--page-hero-position-laptop": photo.laptop,
           "--page-hero-position-tablet": photo.tablet,
