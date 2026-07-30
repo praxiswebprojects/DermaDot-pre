@@ -380,8 +380,6 @@ const infoCards = [
     images: {
       before: "/api/admin/images/file/male-before",
       after: "/api/admin/images/file/male-after",
-      detailBefore: "/api/admin/images/file/male-detail-before",
-      detailAfter: "/api/admin/images/file/male-detail-after",
     },
     text: c("Δημιουργεί την εικόνα ενός φυσικά ξυρισμένου τριχωτού και επαναπροσδιορίζει διακριτικά τη γραμμή των μαλλιών.", "Creates the appearance of a naturally shaved scalp and subtly redefines the hairline."),
     details: [
@@ -395,8 +393,6 @@ const infoCards = [
     images: {
       before: "/api/admin/images/file/female-before",
       after: "/api/admin/images/file/female-after",
-      detailBefore: "/api/admin/images/file/female-detail-before",
-      detailAfter: "/api/admin/images/file/female-detail-after",
     },
     text: c("Μειώνει την αντίθεση του ορατού δέρματος ανάμεσα στα υπάρχοντα μαλλιά, προσφέροντας την εντύπωση μεγαλύτερης πυκνότητας.", "Reduces the contrast of visible scalp between existing hairs, creating the impression of greater density."),
     details: [
@@ -410,8 +406,6 @@ const infoCards = [
     images: {
       before: "/api/admin/images/file/transplant-before",
       after: "/api/admin/images/file/transplant-after",
-      detailBefore: "/api/admin/images/file/transplant-detail-before",
-      detailAfter: "/api/admin/images/file/transplant-detail-after",
     },
     text: c("Ενσωματώνει οπτικά ώριμες ουλές FUE ή FUT στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
     details: [
@@ -425,8 +419,6 @@ const infoCards = [
     images: {
       before: "/api/admin/images/file/trauma-before",
       after: "/api/admin/images/file/trauma-after",
-      detailBefore: "/api/admin/images/file/trauma-detail-before",
-      detailAfter: "/api/admin/images/file/trauma-detail-after",
     },
     text: c("Μπορεί να καμουφλάρει επιλεγμένες, πλήρως επουλωμένες ουλές έπειτα από προσεκτική αξιολόγηση.", "Can camouflage selected, fully healed scars after careful assessment."),
     details: [
@@ -440,8 +432,6 @@ const infoCards = [
     images: {
       before: "/api/admin/images/file/alopecia-before",
       after: "/api/admin/images/file/alopecia-after",
-      detailBefore: "/api/admin/images/file/alopecia-detail-before",
-      detailAfter: "/api/admin/images/file/alopecia-detail-after",
     },
     text: c("Σε σταθεροποιημένες περιπτώσεις μπορεί να μειώσει οπτικά τη διαφορά ανάμεσα στις περιοχές με και χωρίς τρίχες.", "In stable cases, it can visually reduce the contrast between areas with and without hair."),
     details: [
@@ -455,8 +445,6 @@ const infoCards = [
     images: {
       before: "/api/admin/images/file/beard-before",
       after: "/api/admin/images/file/beard-after",
-      detailBefore: "/api/admin/images/file/beard-detail-before",
-      detailAfter: "/api/admin/images/file/beard-detail-after",
     },
     text: c("Προσθέτει την οπτική εντύπωση πυκνότητας ή βοηθά στην εξισορρόπηση κενών στην περιοχή των γενιών.", "Adds the visual impression of density or helps balance gaps within the beard area."),
     details: [
@@ -470,8 +458,6 @@ const infoCards = [
     images: {
       before: "/api/admin/images/file/correction-before",
       after: "/api/admin/images/file/correction-after",
-      detailBefore: "/api/admin/images/file/correction-detail-before",
-      detailAfter: "/api/admin/images/file/correction-detail-after",
     },
     text: c("Αξιολογούμε χρώμα, βάθος, σχήμα και κατάσταση του δέρματος πριν προτείνουμε ασφαλή διόρθωση ή ανασχεδιασμό.", "We assess colour, depth, shape and skin condition before recommending a safe correction or redesign."),
     details: [
@@ -518,28 +504,24 @@ function ApplicationComparison({
 function ApplicationImageToggle({
   card,
   lang,
-  detail = false,
 }: {
   card: (typeof infoCards)[number];
   lang: Language;
-  detail?: boolean;
 }) {
   const [showAfter, setShowAfter] = useState(false);
   const title = card.title[lang];
-  const beforeSrc = detail ? card.images.detailBefore : card.images.before;
-  const afterSrc = detail ? card.images.detailAfter : card.images.after;
 
   return (
     <div className="application-toggle">
       <div className="application-toggle-frame">
         <img
           className={!showAfter ? "is-visible" : ""}
-          src={beforeSrc}
+          src={card.images.before}
           alt={lang === "el" ? `${title}, πριν από την εφαρμογή` : `${title}, before treatment`}
         />
         <img
           className={showAfter ? "is-visible" : ""}
-          src={afterSrc}
+          src={card.images.after}
           alt={lang === "el" ? `${title}, μετά την εφαρμογή` : `${title}, after treatment`}
         />
         <button
@@ -658,7 +640,7 @@ function Applications({ lang }: { lang: Language }) {
         {infoCards.map((card, cardIndex) => (
           <article className="application-detail" id={card.slug} key={card.slug}>
             <div className="application-detail-image">
-              <ApplicationImageToggle card={card} lang={lang} detail />
+              <ApplicationImageToggle card={card} lang={lang} />
             </div>
             <div className="application-detail-copy">
               <span className="application-detail-number">0{cardIndex + 1} / 07</span>

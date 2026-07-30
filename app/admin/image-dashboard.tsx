@@ -205,7 +205,7 @@ export default function ImageDashboard() {
   return (
     <section className="image-admin-dashboard">
       <div className="image-admin-summary">
-        <div><strong>{images.length}</strong><span>editable image frames</span></div>
+        <div><strong>{images.length}</strong><span>active images</span></div>
         <p>Accepted formats: JPG, JPEG, PNG, WebP and SVG · Maximum 15 MB</p>
       </div>
       {loading ? <p className="image-admin-state">Loading image registry…</p> : null}
