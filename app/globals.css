@@ -3681,23 +3681,6 @@ p {
     background-position: var(--page-hero-position-mobile, var(--page-hero-position-tablet, center));
   }
 
-  .page-hero.page-hero-full-photo[data-smp-index="05"]::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image:
-      linear-gradient(180deg, rgba(10, 10, 10, .08) 0%, rgba(10, 10, 10, .04) 48%, rgba(10, 10, 10, .72) 100%),
-      var(--page-hero-image);
-    background-position:
-      center,
-      var(--page-hero-position-mobile, center);
-    background-repeat: no-repeat;
-    background-size:
-      100% 100%,
-      auto 50%;
-  }
-
   .application-toggle-frame img {
     object-position: var(--application-focus-mobile, var(--application-focus-tablet, center 34%));
   }
