@@ -282,7 +282,7 @@ function Footer({ lang }: { lang: Language }) {
 
 const pageHeroImages: Partial<Record<string, { src: string; position: string }>> = {
   "02": { src: "/smp-02-equipment.webp", position: "50% 50%" },
-  "02B": { src: "/page-heroes/smp-02b-device.jpg", position: "50% 50%" },
+  "02B": { src: "/page-heroes/smp-02b-transplant.png", position: "50% 50%" },
   "03": { src: "/page-heroes/smp-03-treatment.jpg", position: "50% 48%" },
   "04": { src: "/page-heroes/smp-04-process.jpg", position: "56% 58%" },
   "06": { src: "/page-heroes/smp-06-equipment.jpg", position: "50% 58%" },
@@ -303,7 +303,7 @@ function PageHero({
   showCode?: boolean;
 }) {
   const photo = pageHeroImages[index];
-  const isFullPhoto = index === "02";
+  const isFullPhoto = index === "02" || index === "02B";
 
   return (
     <section
@@ -736,6 +736,7 @@ function TreatmentGuide({ lang }: { lang: Language }) {
       <PageHero
         index="02B"
         lang={lang}
+        showCode={false}
         title={c("SMP ή μεταμόσχευση;", "SMP or a hair transplant?")}
         intro={c("Μια ειλικρινής σύγκριση, ώστε η επιλογή να βασίζεται στην πραγματική σας περίπτωση και όχι σε μία γενική υπόσχεση.", "An honest comparison so your choice reflects your individual circumstances, not a general promise.")}
       />
