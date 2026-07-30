@@ -303,9 +303,17 @@ function PageHero({
   showCode?: boolean;
 }) {
   const photo = pageHeroImages[index];
+  const isFullPhoto = index === "02";
 
   return (
-    <section className={`page-hero ${photo ? "page-hero-with-photo" : ""}`} data-smp-index={index}>
+    <section
+      className={`page-hero ${photo ? "page-hero-with-photo" : ""} ${isFullPhoto ? "page-hero-full-photo" : ""}`}
+      data-smp-index={index}
+      style={isFullPhoto && photo ? {
+        "--page-hero-image": `url("${photo.src}")`,
+        "--page-hero-position": photo.position,
+      } as React.CSSProperties : undefined}
+    >
       <div className="page-hero-main">
         <p className="eyebrow"><span>Derma</span><span className="brand-inline-dot">Dot</span></p>
         <h1>{title[lang]}</h1>
@@ -659,7 +667,7 @@ function WhatIsSmp({ lang }: { lang: Language }) {
   ];
   return (
     <>
-      <PageHero index="02" lang={lang} title={c("Τι είναι το SMP;", "What is SMP?")} intro={c("Μια εξειδικευμένη τεχνική που δημιουργεί την οπτική εντύπωση φυσικών θυλάκων τρίχας.", "A specialised technique that creates the visual impression of natural hair follicles.")} />
+      <PageHero index="02" lang={lang} showCode={false} title={c("Τι είναι το SMP;", "What is SMP?")} intro={c("Μια εξειδικευμένη τεχνική που δημιουργεί την οπτική εντύπωση φυσικών θυλάκων τρίχας.", "A specialised technique that creates the visual impression of natural hair follicles.")} />
       <section className="section">
         <div className="section-head what-is-smp-head"><h2 className="slim-title">{lang === "el" ? "Όλα όσα χρειάζεται να γνωρίζετε." : "Everything you need to know."}</h2><p className="section-intro">{lang === "el" ? "Η SMP αποτελεί μια σύγχρονη, μη χειρουργική τεχνική που έχει σχεδιαστεί για να βελτιώνει την εικόνα του τριχωτού με φυσικό και διακριτικό τρόπο. Παρακάτω θα βρείτε απαντήσεις στις πιο συχνές ερωτήσεις σχετικά με τη διαδικασία, την εφαρμογή και το αποτέλεσμα." : "SMP is a modern, non-surgical technique designed to improve the appearance of the scalp in a natural and subtle way. Below you will find answers to the most frequently asked questions about the procedure, its application and the result."}</p></div>
         <div className="content-grid essentials-grid">
