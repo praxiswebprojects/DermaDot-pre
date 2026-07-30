@@ -3695,7 +3695,7 @@ p {
     background-repeat: no-repeat;
     background-size:
       100% 100%,
-      auto 72%;
+      auto 50%;
   }
 
   .application-toggle-frame img {
