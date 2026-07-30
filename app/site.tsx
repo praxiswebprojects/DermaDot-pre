@@ -309,7 +309,7 @@ function PageHero({
   showCode?: boolean;
 }) {
   const photo = pageHeroImages[index];
-  const isFullPhoto = index === "02" || index === "02B";
+  const isFullPhoto = index === "02" || index === "02B" || index === "04";
 
   return (
     <section
@@ -918,7 +918,7 @@ function Procedure({ lang }: { lang: Language }) {
   ];
   return (
     <>
-      <PageHero index="04" lang={lang} title={c("Η διαδικασία", "The procedure")} intro={c("Σαφές πλάνο, ήρεμος ρυθμός και έλεγχος σε κάθε στάδιο.", "A clear plan, calm pace and control at every stage.")} />
+      <PageHero index="04" lang={lang} showCode={false} title={c("Η διαδικασία", "The procedure")} intro={c("Σαφές πλάνο, ήρεμος ρυθμός και έλεγχος σε κάθε στάδιο.", "A clear plan, calm pace and control at every stage.")} />
       <section className="section">
         <div className="section-head"><h2 className="slim-title">{lang === "el" ? "Από την ιδέα στο επουλωμένο αποτέλεσμα." : "From first idea to healed result."}</h2><p className="section-intro">{lang === "el" ? "Η θεραπεία ολοκληρώνεται σταδιακά, ώστε το δέρμα να επουλώνεται και το αποτέλεσμα να αξιολογείται αντικειμενικά." : "Treatment is completed gradually so the skin can heal and the result can be assessed objectively."}</p></div>
         <div className="steps">
