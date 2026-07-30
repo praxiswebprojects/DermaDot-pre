@@ -291,6 +291,7 @@ const pageHeroImages: Partial<Record<string, {
   "02B": { src: "/page-heroes/smp-02b-transplant.png", desktop: "50% 50%", laptop: "58% 50%", tablet: "68% 50%", mobile: "78% 48%" },
   "03": { src: "/page-heroes/smp-03-treatment.jpg", desktop: "50% 48%", laptop: "50% 52%", tablet: "50% 56%", mobile: "50% 60%" },
   "04": { src: "/page-heroes/smp-04-process.jpg", desktop: "56% 58%", laptop: "54% 60%", tablet: "52% 63%", mobile: "50% 67%" },
+  "05": { src: "/page-heroes/smp-05-aftercare.png", desktop: "50% 50%", laptop: "58% 50%", tablet: "68% 50%", mobile: "76% 50%" },
   "06": { src: "/page-heroes/smp-06-equipment.jpg", desktop: "50% 58%", laptop: "50% 60%", tablet: "50% 62%", mobile: "50% 65%" },
   "07": { src: "/page-heroes/smp-07-hairline.jpg", desktop: "50% 50%", laptop: "52% 50%", tablet: "55% 49%", mobile: "58% 48%" },
 };
@@ -309,7 +310,7 @@ function PageHero({
   showCode?: boolean;
 }) {
   const photo = pageHeroImages[index];
-  const isFullPhoto = index === "02" || index === "02B" || index === "04";
+  const isFullPhoto = index === "02" || index === "02B" || index === "04" || index === "05";
 
   return (
     <section
@@ -942,7 +943,7 @@ function Aftercare({ lang }: { lang: Language }) {
   ];
   return (
     <>
-      <PageHero index="05" lang={lang} title={c("Φροντίδα", "Aftercare")} intro={c("Λίγες απλές συνήθειες προστατεύουν την επούλωση και βοηθούν το αποτέλεσμα να σταθεροποιηθεί σωστά.", "A few simple habits protect healing and help the result settle correctly.")} />
+      <PageHero index="05" lang={lang} title={c("Φροντίδα", "Aftercare")} intro={c("Λίγες απλές συνήθειες προστατεύουν την επούλωση και βοηθούν το αποτέλεσμα να σταθεροποιηθεί σωστά.", "A few simple habits protect healing and help the result settle correctly.")} showCode={false} />
       <section className="section">
         <div className="section-head"><h2 className="slim-title">{lang === "el" ? "Η επούλωση είναι μέρος της θεραπείας." : "Healing is part of treatment."}</h2><p className="section-intro">{lang === "el" ? "Θα λάβετε ακριβείς, προσωπικές οδηγίες μετά από κάθε συνεδρία." : "You will receive precise, personal guidance after every session."}</p></div>
         <div className="content-grid">
