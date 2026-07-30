@@ -2441,7 +2441,7 @@ h1::first-letter,
   border-radius: 28px;
   background:
     linear-gradient(0deg, rgba(10, 10, 10, .3), rgba(10, 10, 10, .04)),
-    url("/hero.png") 82% center / cover no-repeat;
+    url("/personal-smp-choice.jpg") center / cover no-repeat;
 }
 
 .personal-smp-choice h2 {
