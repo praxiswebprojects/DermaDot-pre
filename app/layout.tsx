@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol =
     requestHeaders.get("x-forwarded-proto") ??
     (host.startsWith("localhost") ? "http" : "https");
-  const imageUrl = `${protocol}://${host}/api/admin/images/file/og`;
+  const imageUrl = `${protocol}://${host}/og.png`;
 
   return {
     title: {
