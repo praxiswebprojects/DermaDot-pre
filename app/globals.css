@@ -1010,7 +1010,7 @@ h1::first-letter,
   }
 
   .page-hero {
-    grid-template-columns: 1fr 340px;
+    grid-template-columns: 1fr 420px;
   }
 
   .page-hero-aside {
@@ -3239,6 +3239,12 @@ p {
   font-weight: 700;
   letter-spacing: -.045em;
   line-height: .96;
+}
+
+@media (min-width: 1024px) {
+  .page-hero h1 {
+    font-size: clamp(46px, 6.2vw, 90px);
+  }
 }
 
 .hero-lede,
