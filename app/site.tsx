@@ -117,6 +117,8 @@ function useLanguage() {
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     if (query.get("lang") === "en") {
+      // URL state is client-only and must be applied after hydration.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLang("en");
       document.documentElement.lang = "en";
     }
@@ -484,40 +486,6 @@ const infoCards = [
   },
 ];
 
-function ApplicationComparison({
-  card,
-  lang,
-}: {
-  card: (typeof infoCards)[number];
-  lang: Language;
-}) {
-  const title = card.title[lang];
-
-  return (
-    <div className="application-comparison">
-      <div className="application-comparison-pair">
-        <span className="application-comparison-image">
-          <img
-            src={card.images.before}
-            alt={lang === "el" ? `${title}, πριν από την εφαρμογή` : `${title}, before treatment`}
-          />
-          <span className="application-comparison-label">{lang === "el" ? "ΠΡΙΝ" : "BEFORE"}</span>
-        </span>
-        <span className="application-comparison-image">
-          <img
-            src={card.images.after}
-            alt={lang === "el" ? `${title}, μετά την ενδεικτική εφαρμογή` : `${title}, after the illustrative treatment`}
-          />
-          <span className="application-comparison-label">{lang === "el" ? "ΜΕΤΑ" : "AFTER"}</span>
-        </span>
-      </div>
-      <small className="application-ai-note">
-        {lang === "el" ? "Ενδεικτική απεικόνιση με AI" : "Illustrative AI visualisation"}
-      </small>
-    </div>
-  );
-}
-
 function ApplicationImageToggle({
   card,
   lang,
@@ -531,11 +499,15 @@ function ApplicationImageToggle({
   return (
     <div className="application-toggle">
       <div className="application-toggle-frame">
+        {/* Both images must remain mounted to preserve the instant before/after transition. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={!showAfter ? "is-visible" : ""}
           src={card.images.before}
           alt={lang === "el" ? `${title}, πριν από την εφαρμογή` : `${title}, before treatment`}
         />
+        {/* Both images must remain mounted to preserve the instant before/after transition. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={showAfter ? "is-visible" : ""}
           src={card.images.after}
