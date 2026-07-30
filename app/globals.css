@@ -3567,3 +3567,139 @@ p {
     padding-top: 28px;
   }
 }
+
+/* Responsive image focal points keep each subject visible at every viewport. */
+.page-hero-aside-photo,
+.page-hero.page-hero-full-photo {
+  background-position: var(--page-hero-position, center);
+}
+
+.application-toggle-frame img {
+  object-position: var(--application-focus, center 34%);
+}
+
+.template-hero {
+  background-position: 82% center;
+}
+
+.personal-smp-image {
+  background-position: 58% 62%;
+}
+
+.doctor-portrait {
+  background-position: 83% center;
+}
+
+@media (max-width: 1200px) {
+  .page-hero-aside-photo,
+  .page-hero.page-hero-full-photo {
+    background-position: var(--page-hero-position-laptop, var(--page-hero-position, center));
+  }
+
+  .application-toggle-frame img {
+    object-position: var(--application-focus-laptop, var(--application-focus, center 34%));
+  }
+
+  .template-hero {
+    background-position: 78% center;
+  }
+
+  .about-image-left {
+    background-position: 76% 56%;
+    background-size: 230%;
+  }
+
+  .about-image-wide {
+    background-position: 74% 54%;
+    background-size: 145%;
+  }
+
+  .about-image-right {
+    background-position: 88% 46%;
+    background-size: 225%;
+  }
+
+  .personal-smp-image {
+    background-position: 60% 61%;
+  }
+
+  .doctor-portrait {
+    background-position: 80% center;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-hero-aside-photo,
+  .page-hero.page-hero-full-photo {
+    background-position: var(--page-hero-position-tablet, var(--page-hero-position-laptop, center));
+  }
+
+  .application-toggle-frame img {
+    object-position: var(--application-focus-tablet, var(--application-focus-laptop, center 34%));
+  }
+
+  .template-hero {
+    background-position: 73% center;
+  }
+
+  .about-image-left {
+    background-position: 74% 55%;
+    background-size: 210%;
+  }
+
+  .about-image-wide {
+    background-position: 75% 53%;
+    background-size: 140%;
+  }
+
+  .about-image-right {
+    background-position: 85% 46%;
+    background-size: 205%;
+  }
+
+  .personal-smp-image {
+    background-position: 61% 60%;
+  }
+
+  .doctor-portrait {
+    background-position: 77% center;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-hero-aside-photo,
+  .page-hero.page-hero-full-photo {
+    background-position: var(--page-hero-position-mobile, var(--page-hero-position-tablet, center));
+  }
+
+  .application-toggle-frame img {
+    object-position: var(--application-focus-mobile, var(--application-focus-tablet, center 34%));
+  }
+
+  .template-hero {
+    background-position: 68% center;
+  }
+
+  .about-image-left {
+    background-position: 72% 54%;
+    background-size: 190%;
+  }
+
+  .about-image-wide {
+    background-position: 76% 52%;
+    background-size: 135%;
+  }
+
+  .about-image-right {
+    background-position: 82% 45%;
+    background-size: 185%;
+  }
+
+  .personal-smp-image {
+    background-position: 62% 58%;
+  }
+
+  .doctor-portrait {
+    background-position: 74% center;
+  }
+}

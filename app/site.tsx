@@ -280,13 +280,19 @@ function Footer({ lang }: { lang: Language }) {
   );
 }
 
-const pageHeroImages: Partial<Record<string, { src: string; position: string }>> = {
-  "02": { src: "/smp-02-equipment.webp", position: "50% 50%" },
-  "02B": { src: "/page-heroes/smp-02b-transplant.png", position: "50% 50%" },
-  "03": { src: "/page-heroes/smp-03-treatment.jpg", position: "50% 48%" },
-  "04": { src: "/page-heroes/smp-04-process.jpg", position: "56% 58%" },
-  "06": { src: "/page-heroes/smp-06-equipment.jpg", position: "50% 58%" },
-  "07": { src: "/page-heroes/smp-07-hairline.jpg", position: "50% 50%" },
+const pageHeroImages: Partial<Record<string, {
+  src: string;
+  desktop: string;
+  laptop: string;
+  tablet: string;
+  mobile: string;
+}>> = {
+  "02": { src: "/smp-02-equipment.webp", desktop: "50% 50%", laptop: "56% 50%", tablet: "62% 50%", mobile: "68% 48%" },
+  "02B": { src: "/page-heroes/smp-02b-transplant.png", desktop: "50% 50%", laptop: "58% 50%", tablet: "68% 50%", mobile: "78% 48%" },
+  "03": { src: "/page-heroes/smp-03-treatment.jpg", desktop: "50% 48%", laptop: "50% 52%", tablet: "50% 56%", mobile: "50% 60%" },
+  "04": { src: "/page-heroes/smp-04-process.jpg", desktop: "56% 58%", laptop: "54% 60%", tablet: "52% 63%", mobile: "50% 67%" },
+  "06": { src: "/page-heroes/smp-06-equipment.jpg", desktop: "50% 58%", laptop: "50% 60%", tablet: "50% 62%", mobile: "50% 65%" },
+  "07": { src: "/page-heroes/smp-07-hairline.jpg", desktop: "50% 50%", laptop: "52% 50%", tablet: "55% 49%", mobile: "58% 48%" },
 };
 
 function PageHero({
@@ -311,7 +317,10 @@ function PageHero({
       data-smp-index={index}
       style={isFullPhoto && photo ? {
         "--page-hero-image": `url("${photo.src}")`,
-        "--page-hero-position": photo.position,
+        "--page-hero-position": photo.desktop,
+        "--page-hero-position-laptop": photo.laptop,
+        "--page-hero-position-tablet": photo.tablet,
+        "--page-hero-position-mobile": photo.mobile,
       } as React.CSSProperties : undefined}
     >
       <div className="page-hero-main">
@@ -322,7 +331,10 @@ function PageHero({
         className={`page-hero-aside ${showCode ? "" : "page-hero-aside-no-code"} ${photo ? "page-hero-aside-photo" : ""}`}
         style={photo ? {
           "--page-hero-image": `url("${photo.src}")`,
-          "--page-hero-position": photo.position,
+          "--page-hero-position": photo.desktop,
+          "--page-hero-position-laptop": photo.laptop,
+          "--page-hero-position-tablet": photo.tablet,
+          "--page-hero-position-mobile": photo.mobile,
         } as React.CSSProperties : undefined}
       >
         {showCode ? <span className="page-code">SMP — {index}</span> : null}
@@ -408,6 +420,7 @@ const infoCards = [
       before: "/cases/male-hair-loss-before.webp",
       after: "/cases/male-hair-loss-after.webp",
     },
+    focus: { desktop: "50% 33%", laptop: "50% 32%", tablet: "50% 30%", mobile: "50% 28%" },
     text: c("Δημιουργεί την εικόνα ενός φυσικά ξυρισμένου τριχωτού και επαναπροσδιορίζει διακριτικά τη γραμμή των μαλλιών.", "Creates the appearance of a naturally shaved scalp and subtly redefines the hairline."),
     details: [
       c("Η εφαρμογή σχεδιάζεται σύμφωνα με το σχήμα του προσώπου, την ηλικία και το υπάρχον μοτίβο αραίωσης. Η γραμμή των μαλλιών χαράσσεται συντηρητικά ώστε να παραμένει φυσική με την πάροδο του χρόνου.", "Treatment is designed around facial structure, age and the existing pattern of hair loss. The hairline is kept deliberately conservative so it continues to look natural over time."),
@@ -421,6 +434,7 @@ const infoCards = [
       before: "/cases/female-thinning-before.webp",
       after: "/cases/female-thinning-after.webp",
     },
+    focus: { desktop: "50% 30%", laptop: "50% 29%", tablet: "50% 28%", mobile: "50% 27%" },
     text: c("Μειώνει την αντίθεση του ορατού δέρματος ανάμεσα στα υπάρχοντα μαλλιά, προσφέροντας την εντύπωση μεγαλύτερης πυκνότητας.", "Reduces the contrast of visible scalp between existing hairs, creating the impression of greater density."),
     details: [
       c("Το SMP τοποθετείται ανάμεσα στις υπάρχουσες τρίχες, με στόχο να μειώσει την έντονη αντίθεση ανάμεσα στο χρώμα των μαλλιών και το δέρμα.", "SMP is placed between existing hairs to reduce the strong contrast between hair colour and visible scalp."),
@@ -434,6 +448,7 @@ const infoCards = [
       before: "/cases/hair-transplant-scar-before.webp",
       after: "/cases/hair-transplant-scar-after.webp",
     },
+    focus: { desktop: "50% 44%", laptop: "50% 43%", tablet: "50% 42%", mobile: "50% 40%" },
     text: c("Ενσωματώνει οπτικά ώριμες ουλές FUE ή FUT στο γύρω τριχωτό, μειώνοντας την αντίθεσή τους.", "Visually blends mature FUE or FUT scars into the surrounding scalp, reducing their contrast."),
     details: [
       c("Οι πλήρως επουλωμένες ουλές FUE ή FUT αξιολογούνται ως προς το χρώμα, την υφή, το πάχος και τη θέση τους πριν ξεκινήσει οποιαδήποτε εφαρμογή.", "Fully healed FUE or FUT scars are assessed for colour, texture, thickness and position before any treatment begins."),
@@ -447,6 +462,7 @@ const infoCards = [
       before: "/cases/trauma-scar-before.webp",
       after: "/cases/trauma-scar-after.webp",
     },
+    focus: { desktop: "50% 38%", laptop: "50% 37%", tablet: "50% 36%", mobile: "50% 34%" },
     text: c("Μπορεί να καμουφλάρει επιλεγμένες, πλήρως επουλωμένες ουλές έπειτα από προσεκτική αξιολόγηση.", "Can camouflage selected, fully healed scars after careful assessment."),
     details: [
       c("Κάθε ουλή αντιδρά διαφορετικά στη χρωστική. Εξετάζουμε την ωριμότητα, την υφή και την αιμάτωσή της και προχωρούμε μόνο όταν η περιοχή είναι ασφαλής και σταθερή.", "Every scar responds differently to pigment. We examine maturity, texture and blood supply, proceeding only when the area is safe and stable."),
@@ -460,6 +476,7 @@ const infoCards = [
       before: "/cases/alopecia-areata-before.webp",
       after: "/cases/alopecia-areata-after.webp",
     },
+    focus: { desktop: "50% 34%", laptop: "50% 33%", tablet: "50% 31%", mobile: "50% 29%" },
     text: c("Σε σταθεροποιημένες περιπτώσεις μπορεί να μειώσει οπτικά τη διαφορά ανάμεσα στις περιοχές με και χωρίς τρίχες.", "In stable cases, it can visually reduce the contrast between areas with and without hair."),
     details: [
       c("Η εφαρμογή εξετάζεται μόνο όταν η κατάσταση είναι σταθερή και έχει προηγηθεί η κατάλληλη ιατρική καθοδήγηση. Το SMP προσφέρει αισθητική κάλυψη και όχι θεραπεία της αιτίας.", "Treatment is considered only when the condition is stable and appropriate medical guidance has been obtained. SMP provides cosmetic camouflage; it does not treat the underlying cause."),
@@ -473,6 +490,7 @@ const infoCards = [
       before: "/cases/beard-density-before.webp",
       after: "/cases/beard-density-after.webp",
     },
+    focus: { desktop: "50% 38%", laptop: "50% 37%", tablet: "50% 36%", mobile: "50% 34%" },
     text: c("Προσθέτει την οπτική εντύπωση πυκνότητας ή βοηθά στην εξισορρόπηση κενών στην περιοχή των γενιών.", "Adds the visual impression of density or helps balance gaps within the beard area."),
     details: [
       c("Η κατεύθυνση, το μέγεθος και η απόσταση των σημείων προσαρμόζονται στο φυσικό μοτίβο των γενιών και στη μορφολογία του προσώπου.", "Direction, size and spacing of impressions are adapted to the natural beard pattern and facial structure."),
@@ -486,6 +504,7 @@ const infoCards = [
       before: "/cases/failed-smp-correction-before.webp",
       after: "/cases/failed-smp-correction-after.webp",
     },
+    focus: { desktop: "50% 32%", laptop: "50% 31%", tablet: "50% 30%", mobile: "50% 28%" },
     text: c("Αξιολογούμε χρώμα, βάθος, σχήμα και κατάσταση του δέρματος πριν προτείνουμε ασφαλή διόρθωση ή ανασχεδιασμό.", "We assess colour, depth, shape and skin condition before recommending a safe correction or redesign."),
     details: [
       c("Πρώτα εξετάζουμε αν η προηγούμενη εφαρμογή είναι υπερβολικά σκούρα, βαθιά, ψυχρή σε τόνο ή λανθασμένη ως προς το σχήμα. Δεν είναι κάθε περίπτωση κατάλληλη για άμεση κάλυψη.", "We first assess whether the previous treatment is too dark, deep, cool-toned or incorrectly shaped. Not every case is suitable for immediate camouflage."),
@@ -506,7 +525,15 @@ function ApplicationImageToggle({
 
   return (
     <div className="application-toggle">
-      <div className="application-toggle-frame">
+      <div
+        className="application-toggle-frame"
+        style={{
+          "--application-focus": card.focus.desktop,
+          "--application-focus-laptop": card.focus.laptop,
+          "--application-focus-tablet": card.focus.tablet,
+          "--application-focus-mobile": card.focus.mobile,
+        } as React.CSSProperties}
+      >
         {/* Both images must remain mounted to preserve the instant before/after transition. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
