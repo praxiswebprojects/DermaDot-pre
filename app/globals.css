@@ -414,7 +414,7 @@ h1::first-letter,
   margin-bottom: 52px;
 }
 
-.what-is-smp-head {
+.section-head.what-is-smp-head {
   align-items: start;
 }
 
@@ -1045,7 +1045,7 @@ h1::first-letter,
   }
 
   .steps {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .step {
