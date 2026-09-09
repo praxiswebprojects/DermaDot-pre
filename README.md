@@ -16,7 +16,12 @@ npm run dev
 npm run build
 ```
 
-This starter does not use `wrangler.jsonc`.
+The repository includes `wrangler.jsonc` for direct Cloudflare Workers
+Builds deployment. Create the `dermadot-contact` D1 database and the
+`dermadot-media` R2 bucket in the target Cloudflare account before deploying.
+If the existing D1 database has a different name, update
+`DERMA_DOT_DATABASE_NAME` in `vite.config.ts` to match it; keep the supplied
+database ID unchanged.
 
 ## Production contact form
 
