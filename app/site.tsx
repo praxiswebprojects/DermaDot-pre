@@ -2,8 +2,8 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 
-type Language = "el" | "en";
-type Route =
+export type Language = "el" | "en";
+export type Route =
   | "home"
   | "info"
   | "applications"
@@ -22,6 +22,8 @@ type Copy = {
 };
 
 const c = (el: string, en: string): Copy => ({ el, en });
+const localizedPath = (lang: Language, href: string) =>
+  lang === "en" ? `/en${href === "/" ? "" : href}` : href;
 
 // Keep the full Before & After implementation available for a future relaunch.
 const RESULTS_ENABLED = false;
@@ -111,31 +113,6 @@ const faqAnswers = [
   ),
 ];
 
-function useLanguage() {
-  const [lang, setLang] = useState<Language>("el");
-
-  useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    if (query.get("lang") === "en") {
-      // URL state is client-only and must be applied after hydration.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setLang("en");
-      document.documentElement.lang = "en";
-    }
-  }, []);
-
-  const change = (next: Language) => {
-    setLang(next);
-    document.documentElement.lang = next;
-    const url = new URL(window.location.href);
-    if (next === "en") url.searchParams.set("lang", "en");
-    else url.searchParams.delete("lang");
-    window.history.replaceState({}, "", url);
-  };
-
-  return { lang, change };
-}
-
 function useScrollReveal() {
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-reveal]"));
@@ -163,11 +140,12 @@ function useScrollReveal() {
   }, []);
 }
 
-function Header({ lang, route, onLanguage }: { lang: Language; route: Route; onLanguage: (lang: Language) => void }) {
+function Header({ lang, route }: { lang: Language; route: Route }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const url = (href: string) => (lang === "en" ? `${href}?lang=en` : href);
+  const url = (href: string) => localizedPath(lang, href);
+  const languageUrl = localizedPath(lang === "el" ? "en" : "el", route === "home" ? "/" : `/${route}`);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -217,16 +195,15 @@ function Header({ lang, route, onLanguage }: { lang: Language; route: Route; onL
           </span>
         </a>
         <div className="header-actions">
-          <button
+          <a
             className="lang-toggle"
-            type="button"
-            onClick={() => onLanguage(lang === "el" ? "en" : "el")}
+            href={languageUrl}
             aria-label={lang === "el" ? "Switch to English" : "Αλλαγή στα Ελληνικά"}
           >
             <span className={lang === "el" ? "active" : ""}>ΕΛ</span>
             <span>/</span>
             <span className={lang === "en" ? "active" : ""}>EN</span>
-          </button>
+          </a>
           <a
             className="header-call"
             href="tel:+302100000000"
@@ -267,7 +244,7 @@ function Footer({ lang }: { lang: Language }) {
               ? "Μια προσωπική συνάντηση είναι η αρχή για να κατανοήσουμε τις ανάγκες σας και να δημιουργήσουμε ένα αποτέλεσμα που σας ταιριάζει."
               : "A personal consultation is the first step towards understanding your needs and creating a result that suits you."}
           </p>
-          <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
+          <a className="button" href={localizedPath(lang, "/contact")}>
             {lang === "el" ? "Κλείστε αξιολόγηση" : "Book a consultation"}
           </a>
         </div>
@@ -296,12 +273,48 @@ const pageHeroImages: Partial<Record<string, {
     tablet: "62% 50%",
     mobile: "50% 50%",
   },
-  "02B": { src: "/page-heroes/smp-02b-transplant.png", desktop: "50% 50%", laptop: "58% 50%", tablet: "68% 50%", mobile: "78% 48%" },
+  "02B": {
+    src: "/page-heroes/smp-02b-transplant.png",
+    mobileSrc: "/page-heroes/smp-02b-transplant-mobile.png",
+    desktop: "50% 50%",
+    laptop: "58% 50%",
+    tablet: "68% 50%",
+    mobile: "58% 50%",
+  },
   "03": { src: "/page-heroes/smp-03-treatment.jpg", desktop: "50% 48%", laptop: "50% 52%", tablet: "50% 56%", mobile: "50% 60%" },
   "04": { src: "/page-heroes/smp-04-process.jpg", desktop: "56% 58%", laptop: "54% 60%", tablet: "52% 63%", mobile: "50% 67%" },
-  "05": { src: "/page-heroes/smp-05-aftercare.png", desktop: "50% 50%", laptop: "58% 50%", tablet: "68% 50%", mobile: "76% 50%" },
-  "06": { src: "/page-heroes/smp-06-equipment.jpg", desktop: "50% 58%", laptop: "50% 60%", tablet: "50% 62%", mobile: "50% 65%" },
-  "07": { src: "/page-heroes/smp-07-hairline.jpg", desktop: "50% 50%", laptop: "52% 50%", tablet: "55% 49%", mobile: "58% 48%" },
+  "05": {
+    src: "/page-heroes/smp-05-aftercare.png",
+    mobileSrc: "/page-heroes/smp-05-aftercare-mobile.jpg",
+    desktop: "50% 50%",
+    laptop: "58% 50%",
+    tablet: "68% 50%",
+    mobile: "52% 50%",
+  },
+  "06": {
+    src: "/page-heroes/smp-06-contact-desktop.jpg",
+    mobileSrc: "/page-heroes/smp-06-contact-mobile.jpg",
+    desktop: "50% 50%",
+    laptop: "50% 50%",
+    tablet: "50% 50%",
+    mobile: "50% 50%",
+  },
+  "07": {
+    src: "/page-heroes/smp-07-faq-desktop.jpg",
+    mobileSrc: "/page-heroes/smp-07-faq-mobile.jpg",
+    desktop: "50% 50%",
+    laptop: "52% 50%",
+    tablet: "55% 49%",
+    mobile: "50% 45%",
+  },
+  "08": {
+    src: "/page-heroes/smp-08-andreas-desktop.jpg",
+    mobileSrc: "/page-heroes/smp-08-andreas-mobile.jpg",
+    desktop: "50% 50%",
+    laptop: "50% 50%",
+    tablet: "50% 50%",
+    mobile: "50% 50%",
+  },
 };
 
 function PageHero({
@@ -318,11 +331,12 @@ function PageHero({
   showCode?: boolean;
 }) {
   const photo = pageHeroImages[index];
-  const isFullPhoto = index === "02" || index === "02B" || index === "04" || index === "05";
+  const isPremiumPhoto = index === "06" || index === "07" || index === "08";
+  const isFullPhoto = index === "02" || index === "02B" || index === "04" || index === "05" || isPremiumPhoto;
 
   return (
     <section
-      className={`page-hero ${photo ? "page-hero-with-photo" : ""} ${isFullPhoto ? "page-hero-full-photo" : ""}`}
+      className={`page-hero ${photo ? "page-hero-with-photo" : ""} ${isFullPhoto ? "page-hero-full-photo" : ""} ${isPremiumPhoto ? "page-hero-premium-photo" : ""}`}
       data-smp-index={index}
       style={isFullPhoto && photo ? {
         "--page-hero-image": `url("${photo.src}")`,
@@ -356,7 +370,7 @@ function PageHero({
 }
 
 function Home({ lang }: { lang: Language }) {
-  const url = (href: string) => (lang === "en" ? `${href}?lang=en` : href);
+  const url = (href: string) => localizedPath(lang, href);
   useScrollReveal();
 
   return (
@@ -583,7 +597,7 @@ function ApplicationImageToggle({
 function Info({ lang }: { lang: Language }) {
   const [activeApplication, setActiveApplication] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const applicationUrl = (slug: string) => lang === "en" ? `/applications?lang=en#${slug}` : `/applications#${slug}`;
+  const applicationUrl = (slug: string) => `${localizedPath(lang, "/applications")}#${slug}`;
 
   const moveApplication = (direction: number) => {
     setActiveApplication((current) => {
@@ -660,7 +674,7 @@ function Info({ lang }: { lang: Language }) {
 }
 
 function Applications({ lang }: { lang: Language }) {
-  const infoUrl = lang === "en" ? "/info?lang=en" : "/info";
+  const infoUrl = localizedPath(lang, "/info");
   return (
     <>
       <PageHero
@@ -682,7 +696,7 @@ function Applications({ lang }: { lang: Language }) {
               <h2>{card.title[lang]}</h2>
               <p className="application-detail-intro">{card.text[lang]}</p>
               {card.details.map((paragraph) => <p key={paragraph.en}>{paragraph[lang]}</p>)}
-              <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
+              <a className="button" href={localizedPath(lang, "/contact")}>
                 {lang === "el" ? "Κλείστε αξιολόγηση" : "Book a consultation"} <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -725,7 +739,7 @@ function WhatIsSmp({ lang }: { lang: Language }) {
               ? "Δεν υπάρχει μία θεραπεία ιδανική για όλους. Δείτε πότε κάθε προσέγγιση μπορεί να έχει θέση και ποιοι παράγοντες πρέπει να αξιολογηθούν."
               : "No single treatment is right for everyone. Explore when each approach may have a place and which factors should be assessed."}
           </p>
-          <a className="button" href={lang === "en" ? "/treatment-guide?lang=en" : "/treatment-guide"}>
+          <a className="button" href={localizedPath(lang, "/treatment-guide")}>
             {lang === "el" ? "Δείτε τη σύγκριση" : "Explore the comparison"} <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -882,7 +896,7 @@ function TreatmentGuide({ lang }: { lang: Language }) {
               ? "Ο στόχος μου δεν είναι να σας κατευθύνω προς μία συγκεκριμένη θεραπεία. Είναι να σας ενημερώσω με ειλικρίνεια, να αξιολογήσουμε μαζί την περίπτωσή σας και να επιλέξουμε τη λύση που μπορεί να προσφέρει το πιο φυσικό και ρεαλιστικό αποτέλεσμα."
               : "My goal is not to direct you towards one specific treatment. It is to inform you honestly, assess your circumstances together and choose the option most likely to provide a natural and realistic result."}
           </p>
-          <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
+          <a className="button" href={localizedPath(lang, "/contact")}>
             {lang === "el" ? "Κλείστε προσωπική αξιολόγηση" : "Book a personal consultation"} <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -1104,7 +1118,7 @@ function Doctor({ lang }: { lang: Language }) {
       </section>
       <section className="section doctor-quote">
         <p>{lang === "el" ? "«Πιστεύω πως κάθε άνθρωπος αξίζει να νιώθει καλά με την εικόνα του. Το SMP για μένα είναι η δυνατότητα να συμβάλλω σε αυτή την αλλαγή.»" : "“I believe that everyone deserves to feel good about their appearance. For me, SMP is an opportunity to contribute to that change.”"}</p>
-        <a className="button" href={lang === "en" ? "/contact?lang=en" : "/contact"}>
+        <a className="button" href={localizedPath(lang, "/contact")}>
           {lang === "el" ? "Γνωρίστε μας από κοντά" : "Meet us in person"} <span aria-hidden="true">→</span>
         </a>
       </section>
@@ -1113,11 +1127,83 @@ function Doctor({ lang }: { lang: Language }) {
 }
 
 function Contact({ lang }: { lang: Language }) {
-  const [sent, setSent] = useState(false);
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState<Partial<Record<"name" | "email" | "phone" | "message", string>>>({});
+
+  const phoneError = (value: string) => {
+    if (!value.trim()) return lang === "el" ? "Το τηλέφωνο είναι υποχρεωτικό." : "Phone is required.";
+    if (!/^[0-9+().\s-]+$/.test(value)) {
+      return lang === "el"
+        ? "Χρησιμοποιήστε μόνο αριθμούς, κενά, +, παρενθέσεις, τελείες ή παύλες."
+        : "Use only digits, spaces, +, parentheses, dots or hyphens.";
+    }
+    const plusCount = value.match(/\+/g)?.length ?? 0;
+    if (plusCount > 1 || (plusCount === 1 && !value.trimStart().startsWith("+"))) {
+      return lang === "el" ? "Το + επιτρέπεται μόνο μία φορά, στην αρχή." : "The + sign is allowed only once, at the beginning.";
+    }
+    const digits = value.replace(/\D/g, "").length;
+    if (digits !== 10 && digits !== 14) {
+      return lang === "el"
+        ? "Το τηλέφωνο πρέπει να περιέχει ακριβώς 10 ή 14 ψηφία."
+        : "Phone must contain exactly 10 or 14 digits.";
+    }
+    return "";
+  };
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSent(true);
-    event.currentTarget.reset();
+    if (status === "sending") return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      phone: String(formData.get("phone") ?? "").trim(),
+      message: String(formData.get("message") ?? "").trim(),
+      website: String(formData.get("website") ?? "").trim(),
+    };
+
+    const nextErrors: typeof errors = {};
+    if (payload.name.length < 2 || payload.name.length > 100) {
+      nextErrors.name = lang === "el" ? "Το ονοματεπώνυμο πρέπει να έχει 2–100 χαρακτήρες." : "Full name must be 2–100 characters.";
+    }
+    if (payload.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+      nextErrors.email = lang === "el" ? "Εισαγάγετε μια έγκυρη διεύθυνση email." : "Enter a valid email address.";
+    }
+    const currentPhoneError = phoneError(payload.phone);
+    if (currentPhoneError) nextErrors.phone = currentPhoneError;
+    if (payload.message.length < 10 || payload.message.length > 2_000) {
+      nextErrors.message = lang === "el" ? "Το μήνυμα πρέπει να έχει 10–2.000 χαρακτήρες." : "Message must be 10–2,000 characters.";
+    }
+
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sending");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        setStatus("error");
+        return;
+      }
+
+      form.reset();
+      setPhone("");
+      setErrors({});
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
   return (
     <>
@@ -1138,13 +1224,57 @@ function Contact({ lang }: { lang: Language }) {
         </div>
         <div>
           <p className="eyebrow">{lang === "el" ? "Αίτημα αξιολόγησης" : "Consultation request"}</p>
-          <form className="contact-form" onSubmit={submit}>
-            <div className="field"><label htmlFor="name">{lang === "el" ? "Ονοματεπώνυμο" : "Full name"}</label><input id="name" name="name" autoComplete="name" required /></div>
-            <div className="field"><label htmlFor="contact">{lang === "el" ? "Τηλέφωνο ή email" : "Phone or email"}</label><input id="contact" name="contact" required /></div>
-            <div className="field"><label htmlFor="message">{lang === "el" ? "Πώς μπορούμε να βοηθήσουμε;" : "How can we help?"}</label><textarea id="message" name="message" required /></div>
-            <button className="button" type="submit">{lang === "el" ? "Αποστολή αιτήματος" : "Send request"}</button>
+          <form className="contact-form" onSubmit={submit} noValidate>
+            <div className="field">
+              <label htmlFor="name">{lang === "el" ? "Ονοματεπώνυμο" : "Full name"}</label>
+              <input id="name" name="name" autoComplete="name" minLength={2} maxLength={100} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} required />
+              {errors.name ? <p className="field-error" id="name-error" role="alert">{errors.name}</p> : null}
+            </div>
+            <div className="field">
+              <label htmlFor="email">Email</label>
+              <input id="email" name="email" type="email" autoComplete="email" maxLength={254} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "email-error" : undefined} required />
+              {errors.email ? <p className="field-error" id="email-error" role="alert">{errors.email}</p> : null}
+            </div>
+            <div className="field">
+              <label htmlFor="phone">{lang === "el" ? "Τηλέφωνο" : "Phone"}</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel"
+                inputMode="tel"
+                maxLength={40}
+                value={phone}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setPhone(value);
+                  setErrors((current) => ({ ...current, phone: value ? phoneError(value) || undefined : undefined }));
+                  if (status !== "sending") setStatus("idle");
+                }}
+                aria-invalid={Boolean(errors.phone)}
+                aria-describedby="phone-help phone-error"
+                required
+              />
+              <p className="field-help" id="phone-help">{lang === "el" ? "Ακριβώς 10 ψηφία ή 14 ψηφία με κωδικό χώρας." : "Exactly 10 digits, or 14 digits including country code."}</p>
+              {errors.phone ? <p className="field-error" id="phone-error" role="alert">{errors.phone}</p> : null}
+            </div>
+            <div className="field">
+              <label htmlFor="message">{lang === "el" ? "Πώς μπορούμε να βοηθήσουμε;" : "How can we help?"}</label>
+              <textarea id="message" name="message" minLength={10} maxLength={2000} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : undefined} required />
+              {errors.message ? <p className="field-error" id="message-error" role="alert">{errors.message}</p> : null}
+            </div>
+            <div className="contact-honeypot" aria-hidden="true">
+              <label htmlFor="website">Website</label>
+              <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
+            <button className="button" type="submit" disabled={status === "sending"}>
+              {status === "sending"
+                ? (lang === "el" ? "Αποστολή…" : "Sending…")
+                : (lang === "el" ? "Αποστολή αιτήματος" : "Send request")}
+            </button>
             <p className="form-note">{lang === "el" ? "Με την αποστολή συμφωνείτε να επικοινωνήσουμε μαζί σας σχετικά με το αίτημά σας." : "By sending, you agree that we may contact you about your request."}</p>
-            {sent && <div className="form-success" role="status">{lang === "el" ? "Ευχαριστούμε. Το αίτημά σας καταχωρήθηκε για αυτή την επίδειξη." : "Thank you. Your request has been recorded for this demonstration."}</div>}
+            {status === "success" ? <div className="form-success" role="status">{lang === "el" ? "Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία." : "Thank you. Your message was sent successfully."}</div> : null}
+            {status === "error" && Object.keys(errors).length === 0 ? <div className="form-error" role="alert">{lang === "el" ? "Δεν ήταν δυνατή η αποστολή. Δοκιμάστε ξανά αργότερα." : "Your message could not be sent. Please try again later."}</div> : null}
           </form>
         </div>
       </section>
@@ -1251,8 +1381,11 @@ function BackToTop({ lang }: { lang: Language }) {
   );
 }
 
-export default function DermaDotSite({ route }: { route: Route }) {
-  const { lang, change } = useLanguage();
+export default function DermaDotSite({ route, lang = "el" }: { route: Route; lang?: Language }) {
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   const activeRoute: Route = route === "results" && !RESULTS_ENABLED ? "home" : route;
   const pages: Record<Route, React.ReactNode> = {
     home: <Home lang={lang} />,
@@ -1269,7 +1402,7 @@ export default function DermaDotSite({ route }: { route: Route }) {
   };
   return (
     <div className="site-shell">
-      <Header lang={lang} route={activeRoute} onLanguage={change} />
+      <Header lang={lang} route={activeRoute} />
       <main className="page" key={`${activeRoute}-${lang}`}>{pages[activeRoute]}</main>
       <Footer lang={lang} />
       <BackToTop lang={lang} />

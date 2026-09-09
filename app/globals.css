@@ -859,6 +859,48 @@ h1::first-letter,
   font-size: 13px;
 }
 
+.form-error {
+  padding: 14px;
+  border: 1px solid #d67d7d;
+  color: #ffd0d0 !important;
+  font-size: 13px;
+}
+
+.field-help,
+.field-error {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.field-help {
+  color: var(--mid) !important;
+}
+
+.field-error {
+  color: #ffb3b3 !important;
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-bottom-color: #d67d7d;
+}
+
+.contact-honeypot {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.contact-form .button:disabled {
+  cursor: wait;
+  opacity: .62;
+}
+
 .map-card {
   display: flex;
   min-height: 310px;
@@ -1234,7 +1276,7 @@ h1::first-letter,
   margin: 0;
   overflow: hidden;
   border-radius: 28px;
-  background: #0A0A0A url("/hero.png") center right / cover no-repeat;
+  background: #0A0A0A url("/home-hero-desktop.jpg") center right / cover no-repeat;
 }
 
 .template-hero-shade {
@@ -1558,6 +1600,7 @@ h1::first-letter,
 
   .template-hero {
     min-height: 720px;
+    background-image: url("/home-hero-mobile.png");
     background-position: 68% center;
   }
 
@@ -3548,6 +3591,51 @@ p {
   text-shadow: 0 2px 20px rgba(0, 0, 0, .95);
 }
 
+/* Premium full-bleed covers for Contact, FAQ and Andreas. */
+.page-hero.page-hero-premium-photo {
+  width: 100%;
+  max-width: none;
+  min-height: clamp(640px, 88svh, 920px);
+  background-image:
+    radial-gradient(circle at 76% 34%, transparent 0%, rgba(7, 7, 7, .08) 35%, rgba(7, 7, 7, .38) 100%),
+    linear-gradient(180deg, rgba(7, 7, 7, .12) 0%, rgba(7, 7, 7, .08) 38%, rgba(7, 7, 7, .9) 100%),
+    linear-gradient(90deg, rgba(7, 7, 7, .72) 0%, rgba(7, 7, 7, .22) 55%, rgba(7, 7, 7, .05) 100%),
+    var(--page-hero-image);
+}
+
+.page-hero-premium-photo .page-hero-main .eyebrow {
+  color: #d5b477 !important;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.page-hero-premium-photo h1 {
+  max-width: 980px;
+  font-size: clamp(58px, 8.5vw, 138px);
+  font-weight: 510;
+  letter-spacing: -.065em;
+  line-height: .88;
+  text-wrap: balance;
+}
+
+.page-hero-premium-photo .page-hero-aside {
+  position: relative;
+  padding-left: 0;
+}
+
+.page-hero-premium-photo .page-code {
+  display: none;
+}
+
+.page-hero-premium-photo .page-hero-aside p {
+  max-width: 520px;
+  color: #f4f1ec !important;
+  font-size: clamp(17px, 1.45vw, 22px);
+  font-weight: 380;
+  line-height: 1.55;
+}
+
 @media (min-width: 1024px) {
   .page-hero.page-hero-full-photo {
     display: grid;
@@ -3589,6 +3677,46 @@ p {
   ) .page-hero-aside {
     max-width: 600px;
     padding-top: 28px;
+  }
+
+  .page-hero.page-hero-premium-photo {
+    min-height: clamp(680px, 82svh, 900px);
+    padding-right: clamp(44px, 5vw, 84px);
+    padding-left: clamp(44px, 5vw, 84px);
+    grid-template-columns: minmax(0, 1.4fr) minmax(330px, .6fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .page-hero.page-hero-full-photo:is(
+    [data-smp-index="02B"],
+    [data-smp-index="05"]
+  ) {
+    background-image:
+      linear-gradient(180deg, rgba(10, 10, 10, .18) 0%, rgba(10, 10, 10, .08) 35%, rgba(10, 10, 10, .9) 100%),
+      linear-gradient(90deg, rgba(10, 10, 10, .68) 0%, rgba(10, 10, 10, .22) 58%, rgba(10, 10, 10, .08) 100%),
+      var(--page-hero-image-mobile, var(--page-hero-image));
+    background-position: var(--page-hero-position-mobile, center);
+  }
+
+  .page-hero.page-hero-premium-photo {
+    min-height: min(820px, 88svh);
+    padding: 124px 22px 42px;
+    background-image:
+      linear-gradient(180deg, rgba(7, 7, 7, .1) 0%, rgba(7, 7, 7, .05) 28%, rgba(7, 7, 7, .9) 76%, rgba(7, 7, 7, .98) 100%),
+      linear-gradient(90deg, rgba(7, 7, 7, .42), rgba(7, 7, 7, .04)),
+      var(--page-hero-image-mobile, var(--page-hero-image));
+  }
+
+  .page-hero-premium-photo h1 {
+    font-size: clamp(48px, 14.5vw, 78px);
+    line-height: .91;
+  }
+
+  .page-hero-premium-photo .page-hero-aside {
+    margin-top: 28px;
+    padding: 22px 0 0;
+    border-top: 0;
   }
 }
 

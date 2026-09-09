@@ -1,4 +1,4 @@
-x# vinext-starter
+# DermaDot
 
 A clean full-stack starter running on
 [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
@@ -17,6 +17,23 @@ npm run build
 ```
 
 This starter does not use `wrangler.jsonc`.
+
+## Production contact form
+
+The contact form is handled by `POST /api/contact` in the Cloudflare Worker. It
+uses the `DB` D1 binding for the exact three-submissions-per-15-minutes rate
+limit and calls Resend only from the server.
+
+Configure these hosted runtime values before deploying:
+
+- `RESEND_API_KEY`: Resend server API key.
+- `CONTACT_RECIPIENT`: destination mailbox.
+- `CONTACT_SENDER`: sender on a domain verified in Resend.
+- `RATE_LIMIT_SALT`: a long random secret used to hash visitor identifiers.
+- `CANONICAL_HOST`: the production hostname without `https://` or `www`.
+
+For local development, copy `.env.example` to an ignored `.env.local` and use
+non-production values. Never prefix these values with `NEXT_PUBLIC_`.
 
 ## Included Shape
 

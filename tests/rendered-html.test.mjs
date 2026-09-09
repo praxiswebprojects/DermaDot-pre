@@ -53,3 +53,13 @@ test("keeps starter preview code out of the production project", async () => {
   await assert.rejects(access(previewRoot));
   await assert.rejects(access(new URL("public/_sites-preview", templateRoot)));
 });
+
+test("keeps contact secrets server-only and required fields separate", async () => {
+  const clientSource = await readFile(new URL("../app/site.tsx", import.meta.url), "utf8");
+
+  assert.match(clientSource, /name="email"\s+type="email"/);
+  assert.match(clientSource, /name="phone"[\s\S]*?type="tel"/);
+  assert.match(clientSource, /name="website"/);
+  assert.match(clientSource, /fetch\("\/api\/contact"/);
+  assert.doesNotMatch(clientSource, /RESEND_API_KEY|NEXT_PUBLIC_RESEND/i);
+});
