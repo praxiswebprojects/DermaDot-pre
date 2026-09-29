@@ -97,7 +97,13 @@ test("sitemap, robots, favicon and not-found routes are present", async () => {
   assert.equal(robotsResponse.status, 200);
   const robots = await robotsResponse.text();
   assert.match(robots, /Sitemap: https:\/\/dermadot\.plus\/sitemap\.xml/i);
+  assert.match(robots, /Disallow: \/admin\//i);
+  assert.match(robots, /Disallow: \/wp-admin\//i);
+  assert.match(robots, /Disallow: \/\*\?\*sessionid=/i);
   assert.match(robots, /Disallow: \/api\//i);
+  for (const bot of ["Googlebot", "Bingbot", "OAI-SearchBot", "ChatGPT-User", "GPTBot", "Claude-SearchBot", "Claude-User", "ClaudeBot", "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot", "Applebot-Extended", "CCBot"]) {
+    assert.match(robots, new RegExp(`User-agent: ${bot}\\s+Allow: \\/(?:\\r?\\n|$)`, "i"), `${bot} is allowed`);
+  }
 
   assert.equal(missingResponse.status, 404);
   assert.match(await missingResponse.text(), /404|δεν βρέθηκε/i);
