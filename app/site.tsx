@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { RESULTS_ENABLED } from "./site-features";
 
 export type Language = "el" | "en";
 export type Route =
@@ -24,9 +25,6 @@ type Copy = {
 const c = (el: string, en: string): Copy => ({ el, en });
 const localizedPath = (lang: Language, href: string) =>
   lang === "en" ? `/en${href === "/" ? "" : href}` : href;
-
-// Keep the full Before & After implementation available for a future relaunch.
-const RESULTS_ENABLED = false;
 
 const nav: { route: Route; href: string; label: Copy }[] = [
   { route: "home", href: "/", label: c("Αρχική", "Home") },
@@ -206,11 +204,11 @@ function Header({ lang, route }: { lang: Language; route: Route }) {
           </a>
           <a
             className="header-call"
-            href="tel:+302100000000"
-            aria-label={lang === "el" ? "Καλέστε τώρα" : "Call now"}
+            href={url("/contact")}
+            aria-label={lang === "el" ? "Ζητήστε αξιολόγηση" : "Request a consultation"}
           >
-            <span className="header-call-text">{lang === "el" ? "Καλέστε τώρα" : "Call now"}</span>
-            <span className="header-call-icon" aria-hidden="true">☎</span>
+            <span className="header-call-text">{lang === "el" ? "Ζητήστε αξιολόγηση" : "Request a consultation"}</span>
+            <span className="header-call-icon" aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
@@ -245,7 +243,7 @@ function Footer({ lang }: { lang: Language }) {
               : "A personal consultation is the first step towards understanding your needs and creating a result that suits you."}
           </p>
           <a className="button" href={localizedPath(lang, "/contact")}>
-            {lang === "el" ? "Κλείστε αξιολόγηση" : "Book a consultation"}
+            {lang === "el" ? "Ζητήστε αξιολόγηση" : "Request a consultation"}
           </a>
         </div>
       </div>
@@ -266,50 +264,50 @@ const pageHeroImages: Partial<Record<string, {
   mobile: string;
 }>> = {
   "02": {
-    src: "/page-heroes/smp-02-desktop.png",
-    mobileSrc: "/page-heroes/smp-02-mobile.png",
+    src: "/page-heroes/smp-02-desktop.webp",
+    mobileSrc: "/page-heroes/smp-02-mobile.webp",
     desktop: "50% 50%",
     laptop: "55% 50%",
     tablet: "62% 50%",
     mobile: "50% 50%",
   },
   "02B": {
-    src: "/page-heroes/smp-02b-transplant.png",
-    mobileSrc: "/page-heroes/smp-02b-transplant-mobile.png",
+    src: "/page-heroes/smp-02b-transplant.webp",
+    mobileSrc: "/page-heroes/smp-02b-transplant-mobile.webp",
     desktop: "50% 50%",
     laptop: "58% 50%",
     tablet: "68% 50%",
     mobile: "58% 50%",
   },
-  "03": { src: "/page-heroes/smp-03-treatment.jpg", desktop: "50% 48%", laptop: "50% 52%", tablet: "50% 56%", mobile: "50% 60%" },
-  "04": { src: "/page-heroes/smp-04-process.jpg", desktop: "56% 58%", laptop: "54% 60%", tablet: "52% 63%", mobile: "50% 67%" },
+  "03": { src: "/page-heroes/smp-03-treatment.webp", desktop: "50% 48%", laptop: "50% 52%", tablet: "50% 56%", mobile: "50% 60%" },
+  "04": { src: "/page-heroes/smp-04-process.webp", desktop: "56% 58%", laptop: "54% 60%", tablet: "52% 63%", mobile: "50% 67%" },
   "05": {
-    src: "/page-heroes/smp-05-aftercare.png",
-    mobileSrc: "/page-heroes/smp-05-aftercare-mobile.jpg",
+    src: "/page-heroes/smp-05-aftercare.webp",
+    mobileSrc: "/page-heroes/smp-05-aftercare-mobile.webp",
     desktop: "50% 50%",
     laptop: "58% 50%",
     tablet: "68% 50%",
     mobile: "52% 50%",
   },
   "06": {
-    src: "/page-heroes/smp-06-contact-desktop.jpg",
-    mobileSrc: "/page-heroes/smp-06-contact-mobile.jpg",
+    src: "/page-heroes/smp-06-contact-desktop.webp",
+    mobileSrc: "/page-heroes/smp-06-contact-mobile.webp",
     desktop: "50% 50%",
     laptop: "50% 50%",
     tablet: "50% 50%",
     mobile: "50% 50%",
   },
   "07": {
-    src: "/page-heroes/smp-07-faq-desktop.jpg",
-    mobileSrc: "/page-heroes/smp-07-faq-mobile.jpg",
+    src: "/page-heroes/smp-07-faq-desktop.webp",
+    mobileSrc: "/page-heroes/smp-07-faq-mobile.webp",
     desktop: "50% 50%",
     laptop: "52% 50%",
     tablet: "55% 49%",
     mobile: "50% 45%",
   },
   "08": {
-    src: "/page-heroes/smp-08-andreas-desktop.jpg",
-    mobileSrc: "/page-heroes/smp-08-andreas-mobile.jpg",
+    src: "/page-heroes/smp-08-andreas-desktop.webp",
+    mobileSrc: "/page-heroes/smp-08-andreas-mobile.webp",
     desktop: "50% 50%",
     laptop: "50% 50%",
     tablet: "50% 50%",
@@ -389,7 +387,7 @@ function Home({ lang }: { lang: Language }) {
           </p>
           <div className="hero-actions">
             <a className="button" href={url("/contact")}>
-              {lang === "el" ? "Κλείστε ραντεβού" : "Book appointment"} <span aria-hidden="true">→</span>
+              {lang === "el" ? "Ζητήστε αξιολόγηση" : "Request a consultation"} <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
@@ -404,7 +402,7 @@ function Home({ lang }: { lang: Language }) {
               ? "Με ακρίβεια στον σχεδιασμό, εξειδικευμένη τεχνική και απόλυτη προσήλωση στη λεπτομέρεια, δημιουργούμε ένα φυσικό αποτέλεσμα SMP που αναδεικνύει την εικόνα σας και ανταποκρίνεται στις προσωπικές σας ανάγκες."
               : "With precision in design, specialist technique and an unwavering attention to detail, we create a natural SMP result that enhances your appearance and responds to your individual needs."}
           </p>
-          <a className="button" href={url("/info")}>
+          <a className="button secondary" href={url("/info")}>
             {lang === "el" ? "Μάθετε περισσότερα" : "Learn more"} <span aria-hidden="true">→</span>
           </a>
           <div className="about-image about-image-wide" role="img" aria-label={lang === "el" ? "Φυσικό αποτέλεσμα SMP" : "Natural SMP result"} />
@@ -697,7 +695,7 @@ function Applications({ lang }: { lang: Language }) {
               <p className="application-detail-intro">{card.text[lang]}</p>
               {card.details.map((paragraph) => <p key={paragraph.en}>{paragraph[lang]}</p>)}
               <a className="button" href={localizedPath(lang, "/contact")}>
-                {lang === "el" ? "Κλείστε αξιολόγηση" : "Book a consultation"} <span aria-hidden="true">→</span>
+                {lang === "el" ? "Ζητήστε αξιολόγηση" : "Request a consultation"} <span aria-hidden="true">→</span>
               </a>
             </div>
           </article>
@@ -739,7 +737,7 @@ function WhatIsSmp({ lang }: { lang: Language }) {
               ? "Δεν υπάρχει μία θεραπεία ιδανική για όλους. Δείτε πότε κάθε προσέγγιση μπορεί να έχει θέση και ποιοι παράγοντες πρέπει να αξιολογηθούν."
               : "No single treatment is right for everyone. Explore when each approach may have a place and which factors should be assessed."}
           </p>
-          <a className="button" href={localizedPath(lang, "/treatment-guide")}>
+          <a className="button secondary" href={localizedPath(lang, "/treatment-guide")}>
             {lang === "el" ? "Δείτε τη σύγκριση" : "Explore the comparison"} <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -897,7 +895,7 @@ function TreatmentGuide({ lang }: { lang: Language }) {
               : "My goal is not to direct you towards one specific treatment. It is to inform you honestly, assess your circumstances together and choose the option most likely to provide a natural and realistic result."}
           </p>
           <a className="button" href={localizedPath(lang, "/contact")}>
-            {lang === "el" ? "Κλείστε προσωπική αξιολόγηση" : "Book a personal consultation"} <span aria-hidden="true">→</span>
+            {lang === "el" ? "Ζητήστε αξιολόγηση" : "Request a consultation"} <span aria-hidden="true">→</span>
           </a>
         </div>
       </section>
@@ -1119,7 +1117,7 @@ function Doctor({ lang }: { lang: Language }) {
       <section className="section doctor-quote">
         <p>{lang === "el" ? "«Πιστεύω πως κάθε άνθρωπος αξίζει να νιώθει καλά με την εικόνα του. Το SMP για μένα είναι η δυνατότητα να συμβάλλω σε αυτή την αλλαγή.»" : "“I believe that everyone deserves to feel good about their appearance. For me, SMP is an opportunity to contribute to that change.”"}</p>
         <a className="button" href={localizedPath(lang, "/contact")}>
-          {lang === "el" ? "Γνωρίστε μας από κοντά" : "Meet us in person"} <span aria-hidden="true">→</span>
+          {lang === "el" ? "Ζητήστε αξιολόγηση" : "Request a consultation"} <span aria-hidden="true">→</span>
         </a>
       </section>
     </>

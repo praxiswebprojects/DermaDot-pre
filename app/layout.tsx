@@ -1,66 +1,51 @@
 import type { Metadata } from "next";
-import { Montserrat, Noto_Sans, Open_Sans } from "next/font/google";
-import { headers } from "next/headers";
+import Script from "next/script";
+import { SITE_URL } from "./seo";
 import "./globals.css";
 
-const notoSans = Noto_Sans({
-  variable: "--font-geist",
-  subsets: ["latin", "greek"],
-});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
-
-const openSans = Open_Sans({
-  variable: "--font-open-sans",
-  subsets: ["latin", "greek"],
-  weight: ["400", "600", "700"],
-});
-
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "localhost:3000";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ??
-    (host.startsWith("localhost") ? "http" : "https");
-  const imageUrl = `${protocol}://${host}/og.png`;
-
-  return {
-    title: {
-      default: "DermaDot — Scalp Micropigmentation Αθήνα",
-      template: "%s — DermaDot",
-    },
-    description:
-      "Κλινική μικροχρωμάτωσης τριχωτού κεφαλής στην Αθήνα. Φυσικό, εξατομικευμένο αποτέλεσμα με κλινική ακρίβεια.",
-    openGraph: {
-      title: "DermaDot — Scalp Micropigmentation",
-      description: "Precision that looks natural. Confidence that feels yours.",
-      type: "website",
-      images: [{ url: imageUrl, width: 1536, height: 1024, alt: "DermaDot — Precision that looks natural." }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "DermaDot — Scalp Micropigmentation",
-      description: "Precision that looks natural. Confidence that feels yours.",
-      images: [imageUrl],
-    },
-  };
-}
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "DermaDot — Scalp Micropigmentation Αθήνα",
+    template: "%s — DermaDot",
+  },
+  description:
+    "Κλινική μικροχρωμάτωσης τριχωτού κεφαλής στην Αθήνα. Φυσικό, εξατομικευμένο αποτέλεσμα με κλινική ακρίβεια.",
+  openGraph: {
+    title: "DermaDot — Scalp Micropigmentation",
+    description: "Precision that looks natural. Confidence that feels yours.",
+    type: "website",
+    images: [{ url: `${SITE_URL}/og.jpg`, width: 1200, height: 800, alt: "DermaDot — Scalp Micropigmentation in Athens" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DermaDot — Scalp Micropigmentation",
+    description: "Precision that looks natural. Confidence that feels yours.",
+    images: [`${SITE_URL}/og.jpg`],
+  },
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const analyticsToken = process.env.NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN?.trim();
+
   return (
     <html lang="el">
-      <body className={`${notoSans.variable} ${montserrat.variable} ${openSans.variable}`}>{children}</body>
+      <body>
+        {children}
+        {analyticsToken ? (
+          <Script
+            id="cloudflare-web-analytics"
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            type="module"
+            data-cf-beacon={JSON.stringify({ token: analyticsToken })}
+            strategy="afterInteractive"
+          />
+        ) : null}
+      </body>
     </html>
   );
 }

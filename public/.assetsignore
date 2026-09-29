@@ -1,0 +1,27 @@
+# Keep original client photos in the repository, but don't upload duplicates.
+crown-thinning.png
+hero.png
+home-hero-desktop.jpg
+home-hero-mobile.png
+og.png
+personal-smp-choice.jpg
+page-heroes/smp-02-desktop.png
+page-heroes/smp-02-mobile.png
+page-heroes/smp-02b-transplant-mobile.png
+page-heroes/smp-02b-transplant.png
+page-heroes/smp-02b-device.jpg
+page-heroes/smp-03-treatment.jpg
+page-heroes/smp-04-process.jpg
+page-heroes/smp-05-aftercare-mobile.jpg
+page-heroes/smp-05-aftercare.png
+page-heroes/smp-06-contact-desktop.jpg
+page-heroes/smp-06-contact-mobile.jpg
+page-heroes/smp-06-equipment.jpg
+page-heroes/smp-07-faq-desktop.jpg
+page-heroes/smp-07-faq-mobile.jpg
+page-heroes/smp-07-hairline.jpg
+page-heroes/smp-08-andreas-desktop.jpg
+page-heroes/smp-08-andreas-mobile.jpg
+page-heroes/smp-08-andreas-mobile.png
+# Vite's cache can leave unused font subsets in the generated client directory.
+assets/_vinext_fonts/**

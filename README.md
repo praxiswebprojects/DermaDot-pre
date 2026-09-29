@@ -40,6 +40,22 @@ Configure these hosted runtime values before deploying:
 For local development, copy `.env.example` to an ignored `.env.local` and use
 non-production values. Never prefix these values with `NEXT_PUBLIC_`.
 
+The public site hostname is `dermadot.plus`. Set `CANONICAL_HOST=dermadot.plus`
+in the Cloudflare Worker runtime variables before attaching the custom domain.
+The `.env.example` value is only for local setup; do not commit `.env` files.
+
+### Cloudflare Web Analytics
+
+The app supports Cloudflare's privacy-focused Web Analytics beacon. In the
+Cloudflare dashboard, add `dermadot.plus` under **Web Analytics**. If the site is
+proxied through Cloudflare, you can enable automatic beacon injection there. For
+manual setup (including a `workers.dev` hostname), copy the site's token into
+the Cloudflare Builds environment variable
+`NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN`, then redeploy. This analytics token is a
+public site identifier, not a secret; do not put email API keys or other secrets
+in `NEXT_PUBLIC_*` variables. The app's CSP allows the Cloudflare beacon and its
+reporting endpoint.
+
 ## Included Shape
 
 - edit site code under `app/`
@@ -111,7 +127,8 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 
 - `npm run dev`: start local development
 - `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
+- `npm test`: build the site and verify routes, metadata, security headers,
+  contact abuse controls, internal links, and rendered content
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
 ## Learn More

@@ -1,5 +1,98 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/noto-sans-greek.woff2") format("woff2");
+  unicode-range: U+0370-03FF, U+1F00-1FFF;
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/noto-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/montserrat-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/montserrat-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/montserrat-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/open-sans-greek.woff2") format("woff2");
+  unicode-range: U+0370-03FF, U+1F00-1FFF;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/open-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("/fonts/open-sans-greek.woff2") format("woff2");
+  unicode-range: U+0370-03FF, U+1F00-1FFF;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+  src: url("/fonts/open-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   --ink: #0a0a0a;
   --paper: #fbf6eb;
@@ -8,9 +101,12 @@
   --mid: #9b9388;
   --line: #dcd2c3;
   --bordeaux: #721b32;
+  --font-geist: "Noto Sans";
+  --font-montserrat: "Montserrat";
+  --font-open-sans: "Open Sans";
   --font: var(--font-geist), Arial, sans-serif;
   --font-display: var(--font-montserrat), var(--font-geist), Arial, sans-serif;
-  --font-subheading: var(--font-open-sans), Arial, sans-serif;
+  --font-subheading: var(--font-open-sans), var(--font-geist), Arial, sans-serif;
 }
 
 * {
@@ -57,6 +153,54 @@ a {
 
 .site-shell {
   min-height: 100vh;
+}
+
+.not-found-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.not-found-brand {
+  display: inline-flex;
+  gap: 3px;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.06em;
+}
+
+.not-found-brand span:last-child {
+  color: var(--bordeaux);
+}
+
+.not-found-code {
+  margin: 64px 0 12px;
+  color: var(--bordeaux);
+  font-family: var(--font-display);
+  font-size: clamp(72px, 14vw, 156px);
+  font-weight: 500;
+  line-height: .85;
+  letter-spacing: -.08em;
+}
+
+.not-found-page h1 {
+  max-width: 720px;
+  margin: 18px 0 12px;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.12;
+}
+
+.not-found-page > p:not(.not-found-code) {
+  max-width: 440px;
+  margin: 0 0 28px;
+  color: #605a52;
+  line-height: 1.7;
 }
 
 .site-header {
@@ -662,7 +806,7 @@ h1::first-letter,
 
 .case-visual-crown {
   background-color: #181817;
-  background-image: url("/crown-thinning.png");
+  background-image: url("/crown-thinning.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -1276,7 +1420,7 @@ h1::first-letter,
   margin: 0;
   overflow: hidden;
   border-radius: 28px;
-  background: #0A0A0A url("/home-hero-desktop.jpg") center right / cover no-repeat;
+  background: #0A0A0A url("/home-hero-desktop.webp") center right / cover no-repeat;
 }
 
 .template-hero-shade {
@@ -1351,7 +1495,7 @@ h1::first-letter,
   border: 1px solid #2c2c2c;
   border-radius: 18px;
   background-color: #080808;
-  background-image: url("/hero.png");
+  background-image: url("/hero.webp");
   background-repeat: no-repeat;
   filter: grayscale(1);
 }
@@ -1600,7 +1744,7 @@ h1::first-letter,
 
   .template-hero {
     min-height: 720px;
-    background-image: url("/home-hero-mobile.png");
+  background-image: url("/home-hero-mobile.webp");
     background-position: 68% center;
   }
 
@@ -2484,7 +2628,7 @@ h1::first-letter,
   border-radius: 28px;
   background:
     linear-gradient(0deg, rgba(10, 10, 10, .3), rgba(10, 10, 10, .04)),
-    url("/personal-smp-choice.jpg") center / cover no-repeat;
+    url("/personal-smp-choice.webp") center / cover no-repeat;
 }
 
 .personal-smp-choice h2 {
@@ -2591,7 +2735,7 @@ h1::first-letter,
   border-radius: 30px;
   background:
     linear-gradient(0deg, rgba(5, 5, 5, .42), rgba(5, 5, 5, .02) 55%),
-    url("/hero.png") 83% center / cover no-repeat;
+    url("/hero.webp") 83% center / cover no-repeat;
 }
 
 .doctor-portrait span {
