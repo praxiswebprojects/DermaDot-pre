@@ -12,6 +12,7 @@ export type SitePage =
   | "procedure"
   | "aftercare"
   | "contact"
+  | "thank-you"
   | "faq";
 
 export const SITE_URL = "https://dermadot.plus";
@@ -57,6 +58,10 @@ const pageCopy: Record<SitePage, { el: [string, string]; en: [string, string] }>
     el: ["Επικοινωνία και αξιολόγηση", "Επικοινωνήστε με το DermaDot στην Αθήνα για να συζητήσετε μια εξατομικευμένη αξιολόγηση SMP."],
     en: ["Contact and Consultation", "Contact DermaDot in Athens to discuss an individual scalp micropigmentation consultation."],
   },
+  "thank-you": {
+    el: ["Ευχαριστούμε για το αίτημά σας", "Λάβαμε το αίτημά σας για αξιολόγηση SMP. Επιστρέψτε στην αρχική σελίδα του DermaDot."],
+    en: ["Thank You for Your Request", "Your consultation request has been received. Return to the DermaDot home page."],
+  },
   faq: {
     el: ["Συχνές ερωτήσεις για SMP", "Απαντήσεις σε συχνές ερωτήσεις σχετικά με τη διαδικασία, τη φροντίδα και το SMP."],
     en: ["SMP Frequently Asked Questions", "Answers to common questions about scalp micropigmentation, the procedure and aftercare."],
@@ -75,6 +80,7 @@ export function pageMetadata(page: SitePage, language: SiteLanguage = "el"): Met
   return {
     title,
     description,
+    ...(page === "thank-you" ? { robots: { index: false, follow: false } } : {}),
     alternates: {
       canonical,
       languages: {

@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { SITE_URL } from "./seo";
 import { RESULTS_ENABLED } from "./site-features";
 
 export type Language = "el" | "en";
@@ -15,6 +17,7 @@ export type Route =
   | "procedure"
   | "aftercare"
   | "contact"
+  | "thank-you"
   | "faq";
 
 type Copy = {
@@ -38,6 +41,21 @@ const nav: { route: Route; href: string; label: Copy }[] = [
   { route: "faq", href: "/faq", label: c("Συχνές Ερωτήσεις", "FAQ") },
   { route: "doctor", href: "/doctor", label: c("Ανδρέας Πετρόπουλος", "About Andreas") },
 ];
+
+const breadcrumbLabels: Record<Route, Copy> = {
+  home: c("Αρχική", "Home"),
+  info: c("Πληροφορίες", "Info"),
+  applications: c("Εφαρμογές", "Applications"),
+  doctor: c("Ανδρέας Πετρόπουλος", "About Andreas"),
+  "what-is-smp": c("Τι είναι το SMP", "What is SMP"),
+  "treatment-guide": c("SMP ή μεταμόσχευση", "SMP or Hair Transplant"),
+  results: c("Αποτελέσματα", "Results"),
+  procedure: c("Διαδικασία", "Procedure"),
+  aftercare: c("Φροντίδα", "Aftercare"),
+  contact: c("Επικοινωνία", "Contact"),
+  "thank-you": c("Ευχαριστούμε", "Thank you"),
+  faq: c("Συχνές ερωτήσεις", "FAQ"),
+};
 
 const topicCards = [
   {
@@ -1125,7 +1143,8 @@ function Doctor({ lang }: { lang: Language }) {
 }
 
 function Contact({ lang }: { lang: Language }) {
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const router = useRouter();
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<Partial<Record<"name" | "email" | "phone" | "message", string>>>({});
 
@@ -1198,7 +1217,7 @@ function Contact({ lang }: { lang: Language }) {
       form.reset();
       setPhone("");
       setErrors({});
-      setStatus("success");
+      router.replace(localizedPath(lang, "/thank-you"));
     } catch {
       setStatus("error");
     }
@@ -1209,16 +1228,11 @@ function Contact({ lang }: { lang: Language }) {
       <section className="section contact-layout">
         <div>
           <div className="contact-details">
-            <div className="contact-row"><span className="contact-label">{lang === "el" ? "Ώρες λειτουργίας" : "Hours"}</span><span className="contact-value appointment-only">{lang === "el" ? "Κατόπιν ραντεβού" : "By appointment only"}</span></div>
-            <div className="contact-row"><span className="contact-label">{lang === "el" ? "Τηλέφωνο" : "Phone"}</span><span className="contact-value"><a href="tel:+302100000000">+30 210 000 0000</a></span></div>
-            <div className="contact-row"><span className="contact-label">Email</span><span className="contact-value"><a href="mailto:hello@dermadot.gr">hello@dermadot.gr</a></span></div>
-            <div className="contact-row"><span className="contact-label">{lang === "el" ? "Διεύθυνση" : "Address"}</span><span className="contact-value">{lang === "el" ? "Κολωνάκι, Αθήνα 106 73" : "Kolonaki, Athens 106 73"}</span></div>
+            <div className="contact-row">
+              <span className="contact-label">{lang === "el" ? "Πρώτη επικοινωνία" : "Get in touch"}</span>
+              <p className="contact-value">{lang === "el" ? "Στείλτε το αίτημά σας από τη φόρμα και θα επικοινωνήσουμε μαζί σας για την αξιολόγηση." : "Send your request using the form and we will contact you about a consultation."}</p>
+            </div>
           </div>
-          <a className="map-card" href="https://maps.google.com/?q=Kolonaki+Athens" target="_blank" rel="noreferrer" aria-label={lang === "el" ? "Άνοιγμα χάρτη" : "Open map"}>
-            <span className="contact-label">{lang === "el" ? "Προβολή στον χάρτη" : "View on map"} ↗</span>
-            <span className="map-dot" />
-            <p>37.9794° N / 23.7415° E</p>
-          </a>
         </div>
         <div>
           <p className="eyebrow">{lang === "el" ? "Αίτημα αξιολόγησης" : "Consultation request"}</p>
@@ -1271,7 +1285,6 @@ function Contact({ lang }: { lang: Language }) {
                 : (lang === "el" ? "Αποστολή αιτήματος" : "Send request")}
             </button>
             <p className="form-note">{lang === "el" ? "Με την αποστολή συμφωνείτε να επικοινωνήσουμε μαζί σας σχετικά με το αίτημά σας." : "By sending, you agree that we may contact you about your request."}</p>
-            {status === "success" ? <div className="form-success" role="status">{lang === "el" ? "Ευχαριστούμε. Το μήνυμά σας στάλθηκε με επιτυχία." : "Thank you. Your message was sent successfully."}</div> : null}
             {status === "error" && Object.keys(errors).length === 0 ? <div className="form-error" role="alert">{lang === "el" ? "Δεν ήταν δυνατή η αποστολή. Δοκιμάστε ξανά αργότερα." : "Your message could not be sent. Please try again later."}</div> : null}
           </form>
         </div>
@@ -1379,6 +1392,62 @@ function BackToTop({ lang }: { lang: Language }) {
   );
 }
 
+function ThankYou({ lang }: { lang: Language }) {
+  return (
+    <section className="section thank-you-panel">
+      <p className="eyebrow">DermaDot</p>
+      <h1>{lang === "el" ? "Ευχαριστούμε για το αίτημά σας." : "Thank you for your request."}</h1>
+      <p>{lang === "el" ? "Λάβαμε το αίτημά σας και θα επικοινωνήσουμε μαζί σας για τα επόμενα βήματα." : "Your request has been received. We will contact you about the next steps."}</p>
+      <a className="button" href={localizedPath(lang, "/")}>{lang === "el" ? "Επιστροφή στην αρχική" : "Return to home"}<span aria-hidden="true"> →</span></a>
+    </section>
+  );
+}
+
+function StructuredData({ data }: { data: Record<string, unknown> }) {
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
+}
+
+function Breadcrumbs({ lang, route }: { lang: Language; route: Route }) {
+  if (route === "home") return null;
+
+  const homeHref = localizedPath(lang, "/");
+  const currentHref = localizedPath(lang, `/${route}`);
+  const homeLabel = breadcrumbLabels.home[lang];
+  const currentLabel = breadcrumbLabels[route][lang];
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: homeLabel, item: `${SITE_URL}${homeHref}` },
+      { "@type": "ListItem", position: 2, name: currentLabel, item: `${SITE_URL}${currentHref}` },
+    ],
+  };
+
+  return (
+    <>
+      <nav className="breadcrumbs" aria-label={lang === "el" ? "Διαδρομή" : "Breadcrumb"}>
+        <ol>
+          <li><a href={homeHref}>{homeLabel}</a></li>
+          <li aria-current="page">{currentLabel}</li>
+        </ol>
+      </nav>
+      <StructuredData data={breadcrumbSchema} />
+    </>
+  );
+}
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE_URL}/#business`,
+  name: "DermaDot",
+  url: SITE_URL,
+  image: `${SITE_URL}/og.jpg`,
+  description: "Scalp micropigmentation consultations and treatments in Athens, Greece.",
+  areaServed: { "@type": "City", name: "Athens" },
+};
+
 export default function DermaDotSite({ route, lang = "el" }: { route: Route; lang?: Language }) {
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -1396,12 +1465,17 @@ export default function DermaDotSite({ route, lang = "el" }: { route: Route; lan
     procedure: <Procedure lang={lang} />,
     aftercare: <Aftercare lang={lang} />,
     contact: <Contact lang={lang} />,
+    "thank-you": <ThankYou lang={lang} />,
     faq: <FAQ lang={lang} />,
   };
   return (
-    <div className="site-shell">
+    <div className="site-shell" lang={lang}>
       <Header lang={lang} route={activeRoute} />
-      <main className="page" key={`${activeRoute}-${lang}`}>{pages[activeRoute]}</main>
+      <main className="page" key={`${activeRoute}-${lang}`}>
+        {activeRoute === "home" ? <StructuredData data={localBusinessSchema} /> : null}
+        <Breadcrumbs lang={lang} route={activeRoute} />
+        {pages[activeRoute]}
+      </main>
       <Footer lang={lang} />
       <BackToTop lang={lang} />
     </div>

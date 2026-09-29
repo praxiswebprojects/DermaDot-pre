@@ -34,6 +34,7 @@ test("server-renders the DermaDot site", async () => {
   const html = await response.text();
   assert.match(html, /<title>Scalp Micropigmentation στην Αθήνα — DermaDot<\/title>/i);
   assert.match(html, /Scalp Micropigmentation/);
+  assert.doesNotMatch(html, /Vite\s*\+\s*React|\/\@vite\/client|vite\.svg|react\.svg/i);
   assert.doesNotMatch(html, /\/Users\/[^\s"']+\.vinext\/fonts/i);
   assert.equal([...html.matchAll(/<link rel="preload"[^>]+as="font"/gi)].length, 0, "font subsets should not be blanket-preloaded");
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
@@ -50,6 +51,7 @@ test("all public Greek and English pages render with page-specific metadata", as
     ["/procedure", "Η διαδικασία SMP"],
     ["/aftercare", "Φροντίδα μετά το SMP"],
     ["/contact", "Επικοινωνία και αξιολόγηση"],
+    ["/thank-you", "Ευχαριστούμε για το αίτημά σας"],
     ["/faq", "Συχνές ερωτήσεις για SMP"],
     ["/en", "Scalp Micropigmentation in Athens"],
     ["/en/info", "SMP Treatment Information"],
@@ -60,14 +62,20 @@ test("all public Greek and English pages render with page-specific metadata", as
     ["/en/procedure", "The SMP Procedure"],
     ["/en/aftercare", "SMP Aftercare"],
     ["/en/contact", "Contact and Consultation"],
+    ["/en/thank-you", "Thank You for Your Request"],
     ["/en/faq", "SMP Frequently Asked Questions"],
   ];
+  const titles = new Set();
 
   for (const [path, title] of routes) {
     const response = await render(path);
     assert.equal(response.status, 200, `${path} should render`);
     const html = await response.text();
     assert.match(html, new RegExp(`<title>[^<]*${title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}[^<]*</title>`), path);
+    const titleTag = html.match(/<title>([^<]+)<\/title>/i)?.[1];
+    assert.ok(titleTag, `${path} should expose its title in the source HTML`);
+    assert.ok(!titles.has(titleTag), `${path} should have a unique title, duplicate: ${titleTag}`);
+    titles.add(titleTag);
     assert.match(html, /<meta name="description" content="[^"]+"/i, `${path} has a description`);
     assert.match(html, /<link rel="canonical" href="https:\/\/dermadot\.plus/i, `${path} has the canonical domain`);
     assert.match(html, /<meta property="og:image" content="https:\/\/dermadot\.plus\/og\.jpg"\/?\s*>/i, `${path} has a social preview image`);
@@ -87,12 +95,37 @@ test("sitemap, robots, favicon and not-found routes are present", async () => {
     render("/results"),
     render("/en/results"),
   ]);
+  const [thankYouGreek, thankYouEnglish, llmsSource] = await Promise.all([
+    render("/thank-you"),
+    render("/en/thank-you"),
+    readFile(new URL("../public/llms.txt", import.meta.url), "utf8"),
+  ]);
 
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
   assert.match(sitemap, /https:\/\/dermadot\.plus\//);
   assert.match(sitemap, /https:\/\/dermadot\.plus\/en\/faq/);
   assert.doesNotMatch(sitemap, /\/results(?:<|\/)/);
+  assert.doesNotMatch(sitemap, /thank-you/i, "thank-you pages should not be listed for indexing");
+
+  for (const [path, response, expectedTitle] of [
+    ["/thank-you", thankYouGreek, "Ευχαριστούμε για το αίτημά σας"],
+    ["/en/thank-you", thankYouEnglish, "Thank You for Your Request"],
+  ]) {
+    assert.equal(response.status, 200, `${path} should render`);
+    const html = await response.text();
+    assert.match(html, new RegExp(`<title>[^<]*${expectedTitle}[^<]*<\\/title>`), path);
+    assert.match(html, /name="robots" content="noindex, ?nofollow"/i, `${path} should not be indexed`);
+    assert.match(html, /aria-label="(?:Breadcrumb|Διαδρομή)"/i, `${path} should have breadcrumbs`);
+  }
+
+  assert.match(llmsSource, /^# DermaDot/m);
+  assert.match(llmsSource, /https:\/\/dermadot\.plus\/sitemap\.xml/);
+  for (const page of ["doctor", "what-is-smp", "treatment-guide"]) {
+    assert.match(llmsSource, new RegExp(`https:\\/\\/dermadot\\.plus\\/${page}(?:\\r?\\n|$)`));
+    assert.match(llmsSource, new RegExp(`https:\\/\\/dermadot\\.plus\\/en\\/${page}(?:\\r?\\n|$)`));
+  }
+  await access(new URL("../dist/client/llms.txt", import.meta.url));
 
   assert.equal(robotsResponse.status, 200);
   const robots = await robotsResponse.text();
@@ -110,6 +143,20 @@ test("sitemap, robots, favicon and not-found routes are present", async () => {
   assert.equal(disabledResultsGreek.status, 404);
   assert.equal(disabledResultsEnglish.status, 404);
   assert.match(await disabledResultsEnglish.text(), /This page could not be found\./);
+  const homeHtml = await (await render("/")).text();
+  const homeStructuredData = [...homeHtml.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+    .map(([, json]) => JSON.parse(json));
+  assert.ok(homeStructuredData.some((value) => value["@type"] === "LocalBusiness"), "home page source should contain local business schema");
+  const detailHtml = await (await render("/en/faq")).text();
+  assert.match(detailHtml, /aria-label="Breadcrumb"/i);
+  assert.ok(
+    [...detailHtml.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+      .map(([, json]) => JSON.parse(json))
+      .some((value) => value["@type"] === "BreadcrumbList"),
+    "detail page source should contain breadcrumb schema",
+  );
+  const contactHtml = await (await render("/contact")).text();
+  assert.doesNotMatch(contactHtml, /\+30 210 000 0000|hello@dermadot\.gr|37\.9794|Kolonaki, Athens 106 73/i);
   await access(new URL("../app/icon.svg", import.meta.url));
 });
 
@@ -258,6 +305,19 @@ test("Cloudflare analytics is optional and CSP permits only its required endpoin
   for (const file of clientFiles.filter((name) => String(name).endsWith(".js"))) {
     const bundle = await readFile(new URL(String(file), clientRoot), "utf8");
     assert.doesNotMatch(bundle, /RESEND_API_KEY|CONTACT_RECIPIENT|CONTACT_SENDER|RATE_LIMIT_SALT|ADMIN_PASSWORD|ADMIN_SESSION_SECRET/);
+  }
+});
+
+test("production browser assets omit source maps and Vite dev-client references", async () => {
+  const clientRoot = new URL("../dist/client/", import.meta.url);
+  const clientFiles = await readdir(clientRoot, { recursive: true });
+  const sourceMaps = clientFiles.filter((file) => String(file).endsWith(".map"));
+  assert.deepEqual(sourceMaps, [], "production assets should not include source maps");
+
+  for (const file of clientFiles.filter((name) => String(name).endsWith(".js"))) {
+    const bundle = await readFile(new URL(String(file), clientRoot), "utf8");
+    assert.doesNotMatch(bundle, /sourceMappingURL=/, `${file} should not refer to a source map`);
+    assert.doesNotMatch(bundle, /\/\@vite\/client|Vite\s*\+\s*React/i, `${file} should not contain Vite starter or dev-client code`);
   }
 });
 

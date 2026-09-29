@@ -1,0 +1,32 @@
+# DermaDot
+
+> DermaDot offers scalp micropigmentation (SMP) consultations and treatments in Athens, Greece.
+
+The website provides information in Greek and English about SMP, its applications, treatment planning, the procedure, aftercare, and consultation requests.
+
+## Main pages
+
+- Greek home: https://dermadot.plus/
+- English home: https://dermadot.plus/en
+- Greek SMP information: https://dermadot.plus/info
+- English SMP information: https://dermadot.plus/en/info
+- Greek applications: https://dermadot.plus/applications
+- English applications: https://dermadot.plus/en/applications
+- Greek SMP technique: https://dermadot.plus/what-is-smp
+- English SMP technique: https://dermadot.plus/en/what-is-smp
+- Greek SMP or hair transplant guide: https://dermadot.plus/treatment-guide
+- English SMP or hair transplant guide: https://dermadot.plus/en/treatment-guide
+- Greek practitioner information: https://dermadot.plus/doctor
+- English practitioner information: https://dermadot.plus/en/doctor
+- Greek procedure: https://dermadot.plus/procedure
+- English procedure: https://dermadot.plus/en/procedure
+- Greek aftercare: https://dermadot.plus/aftercare
+- English aftercare: https://dermadot.plus/en/aftercare
+- Greek consultation: https://dermadot.plus/contact
+- English consultation: https://dermadot.plus/en/contact
+- Frequently asked questions: https://dermadot.plus/faq
+- English frequently asked questions: https://dermadot.plus/en/faq
+
+## Site map
+
+https://dermadot.plus/sitemap.xml

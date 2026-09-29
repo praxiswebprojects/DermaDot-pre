@@ -14,6 +14,7 @@ const englishRoutes: Record<string, Route> = {
   procedure: "procedure",
   aftercare: "aftercare",
   contact: "contact",
+  "thank-you": "thank-you",
   faq: "faq",
 };
 
