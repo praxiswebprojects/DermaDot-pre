@@ -1229,13 +1229,11 @@ function Contact({ lang }: { lang: Language }) {
         <div>
           <div className="contact-details">
             <div className="contact-row">
-              <span className="contact-label">{lang === "el" ? "Πρώτη επικοινωνία" : "Get in touch"}</span>
               <p className="contact-value">{lang === "el" ? "Στείλτε το αίτημά σας από τη φόρμα και θα επικοινωνήσουμε μαζί σας για την αξιολόγηση." : "Send your request using the form and we will contact you about a consultation."}</p>
             </div>
           </div>
         </div>
         <div>
-          <p className="eyebrow">{lang === "el" ? "Αίτημα αξιολόγησης" : "Consultation request"}</p>
           <form className="contact-form" onSubmit={submit} noValidate>
             <div className="field">
               <label htmlFor="name">{lang === "el" ? "Ονοματεπώνυμο" : "Full name"}</label>

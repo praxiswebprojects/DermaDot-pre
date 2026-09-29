@@ -921,13 +921,6 @@ h1::first-letter,
   border-bottom: 1px solid var(--line);
 }
 
-.contact-label {
-  color: var(--mid);
-  font-size: 10px;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-}
-
 .contact-value {
   font-size: 17px;
 }

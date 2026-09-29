@@ -157,6 +157,8 @@ test("sitemap, robots, favicon and not-found routes are present", async () => {
   );
   const contactHtml = await (await render("/contact")).text();
   assert.doesNotMatch(contactHtml, /\+30 210 000 0000|hello@dermadot\.gr|37\.9794|Kolonaki, Athens 106 73/i);
+  assert.doesNotMatch(contactHtml, /ΠΡΩΤΗ ΕΠΙΚΟΙΝΩΝΙΑ|ΑΙΤΗΜΑ ΑΞΙΟΛΟΓΗΣΗΣ|Get in touch|Consultation request/i);
+  assert.match(contactHtml, /Στείλτε το αίτημά σας από τη φόρμα/);
   await access(new URL("../app/icon.svg", import.meta.url));
 });
 
