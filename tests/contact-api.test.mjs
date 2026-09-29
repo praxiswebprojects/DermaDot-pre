@@ -234,3 +234,14 @@ test("HTTP and www requests permanently redirect to canonical HTTPS", async () =
   assert.equal(response.status, 308);
   assert.equal(response.headers.get("location"), "https://example.com/contact?source=test");
 });
+
+test("workers.dev preview requests are not redirected to the production domain when no canonical host is configured", async () => {
+  const response = await worker.fetch(
+    new Request("https://dermadot-pre.example.workers.dev/api/contact", { method: "GET" }),
+    createEnv({ CANONICAL_HOST: undefined }),
+    {},
+  );
+
+  assert.equal(response.status, 405);
+  assert.equal(response.headers.get("location"), null);
+});
