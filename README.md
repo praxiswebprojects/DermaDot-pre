@@ -11,17 +11,16 @@ Drizzle support.
 ## Quick Start
 
 ```bash
-npm install
+npm ci
 npm run dev
 npm run build
 ```
 
 The repository includes `wrangler.jsonc` for direct Cloudflare Workers
-Builds deployment. Create the `dermadot-contact` D1 database and the
-`dermadot-media` R2 bucket in the target Cloudflare account before deploying.
-If the existing D1 database has a different name, update
-`DERMA_DOT_DATABASE_NAME` in `vite.config.ts` to match it; keep the supplied
-database ID unchanged.
+Builds deployment. Create the `dermadot-contact` D1 database and configure its
+`DB` binding in Cloudflare before deploying. The app currently does not use R2,
+so an R2 bucket is not required. The Vite config contains the local D1 database
+name and ID used by `npm run dev`.
 
 ## Production contact form
 
@@ -35,14 +34,13 @@ Configure these hosted runtime values before deploying:
 - `CONTACT_RECIPIENT`: destination mailbox.
 - `CONTACT_SENDER`: sender on a domain verified in Resend.
 - `RATE_LIMIT_SALT`: a long random secret used to hash visitor identifiers.
-- `CANONICAL_HOST`: the production hostname without `https://` or `www`.
 
 For local development, copy `.env.example` to an ignored `.env.local` and use
 non-production values. Never prefix these values with `NEXT_PUBLIC_`.
 
-The public site hostname is `dermadot.plus`. Set `CANONICAL_HOST=dermadot.plus`
-in the Cloudflare Worker runtime variables before attaching the custom domain.
-The `.env.example` value is only for local setup; do not commit `.env` files.
+Keep `CANONICAL_HOST` unset until the custom domain is attached: setting it
+redirects the `workers.dev` preview to that hostname. The `.env.example` value
+is only for local setup; do not commit `.env` files.
 
 ### Cloudflare Web Analytics
 
@@ -61,7 +59,8 @@ reporting endpoint.
 - edit site code under `app/`
 - `.openai/hosting.json` declares optional Sites D1 and R2 bindings
 - `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
+- `db/schema.ts` defines the contact-form rate-limit table. Expired rows are
+  pruned hourly by a Worker Cron Trigger.
 - `examples/d1/` contains an optional D1 example surface
 - `drizzle.config.ts` supports local migration generation when needed
 

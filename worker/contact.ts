@@ -59,7 +59,7 @@ export function validatePhone(phone: string): boolean {
   if (plusMatches > 1 || (plusMatches === 1 && !phone.trimStart().startsWith("+"))) return false;
 
   const digitCount = phone.replace(/\D/g, "").length;
-  return digitCount === 10 || digitCount === 14;
+  return digitCount >= 7 && digitCount <= 15;
 }
 
 export function validateContactPayload(value: unknown):
@@ -227,6 +227,11 @@ export async function handleContactRequest(request: Request, env: ContactEnv): P
     return json({ ok: true, message: "Message received." });
   }
 
+  const idempotencyKey = request.headers.get("idempotency-key")?.trim() ?? "";
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(idempotencyKey)) {
+    return json({ ok: false, error: "Invalid request." }, 400);
+  }
+
   if (!env.DB || !env.RATE_LIMIT_SALT) {
     return json({ ok: false, error: "Contact service is temporarily unavailable." }, 503);
   }
@@ -256,7 +261,7 @@ export async function handleContactRequest(request: Request, env: ContactEnv): P
     headers: {
       authorization: `Bearer ${env.RESEND_API_KEY}`,
       "content-type": "application/json",
-      "idempotency-key": `contact/${crypto.randomUUID()}`,
+      "idempotency-key": `contact/${idempotencyKey}`,
     },
     body: JSON.stringify({
       from: env.CONTACT_SENDER,

@@ -295,10 +295,18 @@ test("Cloudflare analytics is optional and CSP permits only its required endpoin
   const html = await response.text();
   const layout = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
   const csp = response.headers.get("content-security-policy") ?? "";
+  const nonce = csp.match(/'nonce-([^']+)'/)?.[1];
   assert.match(layout, /NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN/);
   assert.match(layout, /data-cf-beacon/);
   assert.match(layout, /type="module"/);
   assert.match(csp, /script-src[^;]*https:\/\/static\.cloudflareinsights\.com/);
+  assert.ok(nonce, "script CSP includes a per-response nonce");
+  assert.doesNotMatch(csp, /script-src[^;]*'unsafe-inline'/);
+  const scriptTags = [...html.matchAll(/<script\b([^>]*)>/gi)];
+  assert.ok(scriptTags.length > 0, "rendered HTML contains its expected scripts");
+  for (const [, attributes] of scriptTags) {
+    assert.match(attributes, new RegExp(`\\bnonce="${nonce}"`), "every rendered script carries the CSP nonce");
+  }
   assert.match(csp, /connect-src[^;]*https:\/\/cloudflareinsights\.com/);
   assert.doesNotMatch(html, /beacon\.min\.js/);
 

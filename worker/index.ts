@@ -29,6 +29,7 @@ interface ExecutionContext {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    const scriptNonce = createScriptNonce();
 
     const isLocal = url.hostname === "localhost" || url.hostname === "127.0.0.1";
     if (!isLocal) {
@@ -37,12 +38,12 @@ const worker = {
         url.protocol = "https:";
         url.hostname = canonicalHost;
         url.port = "";
-        return withSecurityHeaders(Response.redirect(url.toString(), 308), request);
+        return withSecurityHeaders(Response.redirect(url.toString(), 308), request, scriptNonce);
       }
     }
 
     if (url.pathname === "/api/contact") {
-      return withSecurityHeaders(await handleContactRequest(request, env), request);
+      return withSecurityHeaders(await handleContactRequest(request, env), request, scriptNonce);
     }
 
     if (url.pathname === "/_vinext/image") {
@@ -54,14 +55,25 @@ const worker = {
           return result.response();
         },
       }, allowedWidths);
-      return withSecurityHeaders(response, request);
+      return withSecurityHeaders(response, request, scriptNonce);
     }
 
-    return withSecurityHeaders(await handler.fetch(request, env, ctx), request);
+    const appRequest = new Request(request, { headers: new Headers(request.headers) });
+    appRequest.headers.set("content-security-policy", `script-src 'nonce-${scriptNonce}'`);
+    return withSecurityHeaders(await handler.fetch(appRequest, env, ctx), request, scriptNonce);
+  },
+
+  scheduled(_controller: ScheduledController, env: Env, ctx: ExecutionContext): void {
+    if (env.DB) ctx.waitUntil(pruneRateLimitRows(env.DB));
   },
 };
 
-function withSecurityHeaders(response: Response, request: Request): Response {
+function createScriptNonce(): string {
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return btoa(String.fromCharCode(...bytes));
+}
+
+function withSecurityHeaders(response: Response, request: Request, scriptNonce: string): Response {
   const secured = new Response(response.body, response);
   const headers = secured.headers;
   headers.set("content-security-policy", [
@@ -70,7 +82,7 @@ function withSecurityHeaders(response: Response, request: Request): Response {
     "object-src 'none'",
     "frame-ancestors 'none'",
     "form-action 'self'",
-    "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
+    `script-src 'self' 'nonce-${scriptNonce}' https://static.cloudflareinsights.com`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob:",
     "font-src 'self' data:",
@@ -87,6 +99,13 @@ function withSecurityHeaders(response: Response, request: Request): Response {
   }
 
   return secured;
+}
+
+async function pruneRateLimitRows(db: D1Database): Promise<void> {
+  await db.prepare(`
+    DELETE FROM contact_rate_limits
+    WHERE window_started_at <= ?
+  `).bind(Math.floor(Date.now() / 1_000) - 15 * 60).run();
 }
 
 export default worker;

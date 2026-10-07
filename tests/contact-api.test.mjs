@@ -56,7 +56,7 @@ class MockResend {
 const validPayload = {
   name: "Maria Example",
   email: "maria@example.com",
-  phone: "+30 1234 5678 9012",
+  phone: "+30 6912345678",
   message: "I would like to arrange a private consultation.",
   website: "",
 };
@@ -81,6 +81,7 @@ function contactRequest(payload = validPayload, overrides = {}) {
       "content-type": "application/json",
       origin: "https://example.com",
       "cf-connecting-ip": "198.51.100.24",
+      "idempotency-key": "123e4567-e89b-42d3-a456-426614174000",
       ...overrides.headers,
     },
     body: overrides.rawBody ?? JSON.stringify(payload),
@@ -96,7 +97,7 @@ test("valid contact request is delivered through Resend", async () => {
 
   const delivery = resend.requests[0];
   assert.equal(delivery.request.headers.get("authorization"), "Bearer re_super_secret_server_key");
-  assert.match(delivery.request.headers.get("idempotency-key") ?? "", /^contact\/[0-9a-f-]{36}$/i);
+  assert.equal(delivery.request.headers.get("idempotency-key"), "contact/123e4567-e89b-42d3-a456-426614174000");
   assert.equal(delivery.body.reply_to, validPayload.email);
   assert.deepEqual(delivery.body.to, ["clinic@example.com"]);
   assert.match(delivery.body.text, /Maria Example/);
@@ -115,15 +116,15 @@ test("invalid email is rejected", async () => {
   assert.equal(resend.requests.length, 0);
 });
 
-test("9-digit and malformed phone numbers are rejected", async () => {
-  for (const phone of ["123 456 789", "210-123-ABCD"]) {
+test("phone numbers below seven digits and malformed values are rejected", async () => {
+  for (const phone of ["123456", "210-123-ABCD"]) {
     const response = await worker.fetch(contactRequest({ ...validPayload, phone }), createEnv(), {});
     assert.equal(response.status, 400, phone);
   }
 });
 
-test("10-digit and 14-digit phone numbers are accepted", async () => {
-  for (const phone of ["210 123 4567", "+30 1234 5678 9012"]) {
+test("Greek international, 10-digit, and 15-digit phone numbers are accepted", async () => {
+  for (const phone of ["210 123 4567", "+30 6912345678", "+1 212 555 0100 123"]) {
     const resend = new MockResend();
     const response = await worker.fetch(
       contactRequest({ ...validPayload, phone }),
@@ -133,6 +134,17 @@ test("10-digit and 14-digit phone numbers are accepted", async () => {
     assert.equal(response.status, 200, phone);
     assert.equal(resend.requests.length, 1, phone);
   }
+});
+
+test("contact requests require a valid retry-stable idempotency key", async () => {
+  const resend = new MockResend();
+  const missing = await worker.fetch(
+    contactRequest(validPayload, { headers: { "idempotency-key": "" } }),
+    createEnv({ RESEND_API: resend }),
+    {},
+  );
+  assert.equal(missing.status, 400);
+  assert.equal(resend.requests.length, 0);
 });
 
 test("honeypot submissions are silently accepted without delivery", async () => {
@@ -174,6 +186,29 @@ test("contact endpoint rate limits the fourth submission for 15 minutes", async 
   assert.equal(limited.status, 429);
   assert.equal(limited.headers.get("retry-after"), "900");
   assert.equal(resend.requests.length, 3);
+});
+
+test("hourly scheduled cleanup removes expired rate-limit records", async () => {
+  let sql = "";
+  let cutoff = 0;
+  let scheduledWork;
+  const DB = {
+    prepare(statement) {
+      sql = statement;
+      return {
+        bind(value) {
+          cutoff = value;
+          return { run: async () => ({ success: true }) };
+        },
+      };
+    },
+  };
+
+  worker.scheduled({}, { DB }, { waitUntil(promise) { scheduledWork = promise; } });
+  await scheduledWork;
+  assert.match(sql, /DELETE FROM contact_rate_limits/);
+  assert.match(sql, /window_started_at <= \?/);
+  assert.ok(cutoff <= Math.floor(Date.now() / 1_000) - 900);
 });
 
 test("provider errors and API keys are never exposed to the client", async () => {

@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Script from "next/script";
 import { SITE_URL } from "./seo";
 import { RESULTS_ENABLED } from "./site-features";
 
@@ -1144,6 +1145,7 @@ function Doctor({ lang }: { lang: Language }) {
 
 function Contact({ lang }: { lang: Language }) {
   const router = useRouter();
+  const idempotency = useRef<{ signature: string; key: string } | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<Partial<Record<"name" | "email" | "phone" | "message", string>>>({});
@@ -1160,10 +1162,10 @@ function Contact({ lang }: { lang: Language }) {
       return lang === "el" ? "Το + επιτρέπεται μόνο μία φορά, στην αρχή." : "The + sign is allowed only once, at the beginning.";
     }
     const digits = value.replace(/\D/g, "").length;
-    if (digits !== 10 && digits !== 14) {
+    if (digits < 7 || digits > 15) {
       return lang === "el"
-        ? "Το τηλέφωνο πρέπει να περιέχει ακριβώς 10 ή 14 ψηφία."
-        : "Phone must contain exactly 10 or 14 digits.";
+        ? "Το τηλέφωνο πρέπει να περιέχει 7–15 ψηφία."
+        : "Phone must contain 7–15 digits.";
     }
     return "";
   };
@@ -1203,9 +1205,16 @@ function Contact({ lang }: { lang: Language }) {
 
     setStatus("sending");
     try {
+      const signature = JSON.stringify(payload);
+      if (idempotency.current?.signature !== signature) {
+        idempotency.current = { signature, key: crypto.randomUUID() };
+      }
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: {
+          "content-type": "application/json",
+          "idempotency-key": idempotency.current.key,
+        },
         body: JSON.stringify(payload),
       });
 
@@ -1215,6 +1224,7 @@ function Contact({ lang }: { lang: Language }) {
       }
 
       form.reset();
+      idempotency.current = null;
       setPhone("");
       setErrors({});
       router.replace(localizedPath(lang, "/thank-you"));
@@ -1265,7 +1275,7 @@ function Contact({ lang }: { lang: Language }) {
                 aria-describedby="phone-help phone-error"
                 required
               />
-              <p className="field-help" id="phone-help">{lang === "el" ? "Ακριβώς 10 ψηφία ή 14 ψηφία με κωδικό χώρας." : "Exactly 10 digits, or 14 digits including country code."}</p>
+              <p className="field-help" id="phone-help">{lang === "el" ? "Εισαγάγετε 7–15 ψηφία, με ή χωρίς κωδικό χώρας." : "Enter 7–15 digits, with or without a country code."}</p>
               {errors.phone ? <p className="field-error" id="phone-error" role="alert">{errors.phone}</p> : null}
             </div>
             <div className="field">
@@ -1403,7 +1413,8 @@ function ThankYou({ lang }: { lang: Language }) {
 
 function StructuredData({ data }: { data: Record<string, unknown> }) {
   const json = JSON.stringify(data).replace(/</g, "\\u003c");
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
+  const id = `structured-data-${String(data["@type"] ?? "schema").replace(/[^a-z0-9-]/gi, "-")}`;
+  return <Script id={id} type="application/ld+json" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: json }} />;
 }
 
 function Breadcrumbs({ lang, route }: { lang: Language; route: Route }) {
