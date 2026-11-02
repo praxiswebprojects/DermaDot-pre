@@ -18,6 +18,7 @@ export type Route =
   | "procedure"
   | "aftercare"
   | "contact"
+  | "accommodation"
   | "thank-you"
   | "faq";
 
@@ -54,6 +55,7 @@ const breadcrumbLabels: Record<Route, Copy> = {
   procedure: c("Διαδικασία", "Procedure"),
   aftercare: c("Φροντίδα", "Aftercare"),
   contact: c("Επικοινωνία", "Contact"),
+  accommodation: c("Διαμονή", "Accommodation"),
   "thank-you": c("Ευχαριστούμε", "Thank you"),
   faq: c("Συχνές ερωτήσεις", "FAQ"),
 };
@@ -450,7 +452,279 @@ function Home({ lang }: { lang: Language }) {
           ))}
         </div>
       </section>
+      <AccommodationSection lang={lang} />
     </>
+  );
+}
+
+function AccommodationSection({ lang }: { lang: Language }) {
+  return (
+    <section className="section accommodation-section home-reveal" data-scroll-reveal aria-labelledby="accommodation-title">
+      <div className="accommodation-copy">
+        <div className="accommodation-copy-intro">
+          <p className="eyebrow">{lang === "el" ? "ΔΙΑΜΟΝΗ ΣΤΟ ΙΑΤΡΕΙΟ" : "ON-SITE ACCOMMODATION"}</p>
+          <h2 id="accommodation-title">
+            {lang === "el" ? "Διαμονή στον χώρο του ιατρείου." : "Stay at the clinic."}
+          </h2>
+        </div>
+        <div className="accommodation-copy-details">
+          <p>
+            {lang === "el"
+              ? "Για όσους ταξιδεύουν στην Αθήνα για τη θεραπεία τους, το ιατρείο προσφέρει δυνατότητα διαμονής στον χώρο του. Επικοινωνήστε μαζί μας για λεπτομέρειες και διαθεσιμότητα."
+              : "For clients travelling to Athens for treatment, accommodation is available within the clinic. Contact us for details and availability."}
+          </p>
+          <a
+            className="button secondary accommodation-cta"
+            href={localizedPath(lang, "/accommodation")}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={lang === "el" ? "Περισσότερα για τη διαμονή, ανοίγει σε νέα καρτέλα" : "More about accommodation, opens in a new tab"}
+          >
+            {lang === "el" ? "Περισσότερα" : "More"}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AccommodationPage({ lang }: { lang: Language }) {
+  return (
+    <section className="section accommodation-detail">
+      <div className="accommodation-detail-head">
+        <div className="accommodation-detail-copy">
+          <p className="eyebrow">{lang === "el" ? "ΔΙΑΜΟΝΗ · ΔΩΜΑΤΙΟ 1" : "ACCOMMODATION · ROOM ONE"}</p>
+          <h1>{lang === "el" ? "Δωμάτιο 1" : "Room One"}</h1>
+          <p>
+            {lang === "el"
+              ? "Μια πιο αναλυτική ματιά στον χώρο διαμονής του ιατρείου. Επικοινωνήστε μαζί μας για λεπτομέρειες και διαθεσιμότητα."
+              : "A closer look at the accommodation offered at the clinic. Contact us for details and availability."}
+          </p>
+        </div>
+        <a className="button secondary accommodation-cta" href={localizedPath(lang, "/contact")}>
+          {lang === "el" ? "Ρωτήστε για διαθεσιμότητα" : "Ask about availability"}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <AccommodationGallery lang={lang} />
+      <section className="accommodation-room-two" aria-labelledby="room-two-title">
+        <div className="accommodation-detail-head accommodation-room-two-head">
+          <div className="accommodation-detail-copy">
+            <p className="eyebrow">{lang === "el" ? "ΔΙΑΜΟΝΗ · ΔΩΜΑΤΙΟ 2" : "ACCOMMODATION · ROOM TWO"}</p>
+            <h2 id="room-two-title">{lang === "el" ? "Δωμάτιο 2" : "Room Two"}</h2>
+            <p>
+              {lang === "el"
+                ? "Δείτε τον δεύτερο χώρο διαμονής και τις παροχές του. Επικοινωνήστε μαζί μας για λεπτομέρειες και διαθεσιμότητα."
+                : "Take a look at the second accommodation room and its facilities. Contact us for details and availability."}
+            </p>
+          </div>
+        </div>
+        <RoomTwoGallery lang={lang} />
+      </section>
+      <section className="accommodation-room-three" aria-labelledby="room-three-title">
+        <div className="accommodation-detail-head accommodation-room-three-head">
+          <div className="accommodation-detail-copy">
+            <p className="eyebrow">{lang === "el" ? "ΔΙΑΜΟΝΗ · ΔΩΜΑΤΙΟ 3" : "ACCOMMODATION · ROOM THREE"}</p>
+            <h2 id="room-three-title">{lang === "el" ? "Δωμάτιο 3" : "Room Three"}</h2>
+            <p>
+              {lang === "el"
+                ? "Δείτε τον τρίτο χώρο διαμονής και επικοινωνήστε μαζί μας για πληροφορίες και διαθεσιμότητα."
+                : "Explore the third accommodation room and contact us for information and availability."}
+            </p>
+          </div>
+        </div>
+        <RoomThreeGallery lang={lang} />
+      </section>
+    </section>
+  );
+}
+
+type AccommodationPhotoProps = {
+  lang: Language;
+  className: string;
+  src: string;
+  srcSet: string;
+  sizes: string;
+  width: number;
+  height: number;
+  alt: string;
+};
+
+function AccommodationPhoto({ lang, className, src, srcSet, sizes, width, height, alt }: AccommodationPhotoProps) {
+  const [open, setOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (open && !dialog.open) dialog.showModal();
+    if (!open && dialog.open) dialog.close();
+  }, [open]);
+
+  return (
+    <>
+      <figure className={`accommodation-photo ${className}`}>
+        <button
+          className="accommodation-photo-open"
+          type="button"
+          aria-label={lang === "el" ? `Μεγέθυνση φωτογραφίας: ${alt}` : `Enlarge photo: ${alt}`}
+          onClick={() => setOpen(true)}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={src} srcSet={srcSet} sizes={sizes} width={width} height={height} loading="lazy" decoding="async" alt={alt} />
+        </button>
+      </figure>
+      <dialog
+        ref={dialogRef}
+        className="accommodation-lightbox"
+        aria-label={lang === "el" ? "Μεγεθυμένη φωτογραφία διαμονής" : "Enlarged accommodation photo"}
+        onClose={() => setOpen(false)}
+        onClick={(event) => { if (event.target === event.currentTarget) setOpen(false); }}
+      >
+        <button
+          className="accommodation-lightbox-close"
+          type="button"
+          aria-label={lang === "el" ? "Κλείσιμο φωτογραφίας" : "Close photo"}
+          onClick={() => setOpen(false)}
+        >×</button>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt={alt} />
+        <p>{alt}</p>
+      </dialog>
+    </>
+  );
+}
+
+function AccommodationGallery({ lang }: { lang: Language }) {
+  return (
+    <div className="accommodation-gallery accommodation-detail-gallery" role="group" aria-label={lang === "el" ? "Φωτογραφίες του δωματίου 1" : "Photos of Room One"}>
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-photo-overview"
+        src="/accommodation/room-overview-1440.webp"
+        srcSet="/accommodation/room-overview-720.webp 720w, /accommodation/room-overview-1440.webp 1440w"
+        sizes="(max-width: 760px) calc(100vw - 60px), (max-width: 1020px) 52vw, 43vw"
+        width={1440}
+        height={810}
+        alt={lang === "el" ? "Το κρεβάτι του χώρου διαμονής, δίπλα σε πέτρινο τοίχο και τοξωτό παράθυρο." : "The accommodation bed beside the stone wall and arched window."}
+      />
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-photo-detail"
+        src="/accommodation/room-detail-900.webp"
+        srcSet="/accommodation/room-detail-480.webp 480w, /accommodation/room-detail-900.webp 900w"
+        sizes="(max-width: 760px) calc(100vw - 60px), 36vw"
+        width={900}
+        height={507}
+        alt={lang === "el" ? "Ντουλάπα και πέτρινος τοίχος δίπλα στο κρεβάτι." : "Wardrobe and stone wall beside the bed."}
+      />
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-photo-bathroom"
+        src="/accommodation/bathroom-760.webp"
+        srcSet="/accommodation/bathroom-480.webp 480w, /accommodation/bathroom-760.webp 760w"
+        sizes="(max-width: 760px) calc(50vw - 32px), 30vw"
+        width={760}
+        height={1350}
+        alt={lang === "el" ? "Η τουαλέτα και το παράθυρο του μπάνιου." : "Toilet and window in the room's bathroom."}
+      />
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-photo-vanity"
+        src="/accommodation/vanity-760.webp"
+        srcSet="/accommodation/vanity-480.webp 480w, /accommodation/vanity-760.webp 760w"
+        sizes="(max-width: 760px) calc(50vw - 32px), 30vw"
+        width={760}
+        height={1350}
+        alt={lang === "el" ? "Ο νιπτήρας, ο καθρέφτης και ο πάγκος του μπάνιου." : "Washbasin, mirror and counter in the bathroom."}
+      />
+    </div>
+  );
+}
+
+function RoomTwoGallery({ lang }: { lang: Language }) {
+  return (
+    <div className="accommodation-room-two-gallery" role="group" aria-label={lang === "el" ? "Φωτογραφίες του δωματίου 2" : "Photos of Room Two"}>
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-room-two-overview"
+        src="/accommodation/room-two-overview-1440.webp"
+        srcSet="/accommodation/room-two-overview-720.webp 720w, /accommodation/room-two-overview-1440.webp 1440w"
+        sizes="(max-width: 760px) calc(100vw - 40px), 92vw"
+        width={1440}
+        height={810}
+        alt={lang === "el" ? "Το κρεβάτι και η συρταριέρα του δεύτερου δωματίου." : "Bed and dresser in Room Two."}
+      />
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-room-two-bathroom"
+        src="/accommodation/room-two-bathroom-760.webp"
+        srcSet="/accommodation/room-two-bathroom-480.webp 480w, /accommodation/room-two-bathroom-760.webp 760w"
+        sizes="(max-width: 760px) calc(50vw - 26px), 44vw"
+        width={760}
+        height={1350}
+        alt={lang === "el" ? "Ο νιπτήρας, ο καθρέφτης και η τουαλέτα στο μπάνιο του δεύτερου δωματίου." : "Washbasin, mirror and toilet in the bathroom of Room Two."}
+      />
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-room-two-bathtub"
+        src="/accommodation/room-two-bathtub-760.webp"
+        srcSet="/accommodation/room-two-bathtub-480.webp 480w, /accommodation/room-two-bathtub-760.webp 760w"
+        sizes="(max-width: 760px) calc(50vw - 26px), 44vw"
+        width={760}
+        height={1350}
+        alt={lang === "el" ? "Η μπανιέρα και η καμπίνα του δεύτερου δωματίου." : "Bathtub and shower screen in the bathroom of Room Two."}
+      />
+    </div>
+  );
+}
+
+
+function RoomThreeGallery({ lang }: { lang: Language }) {
+  return (
+    <div className="accommodation-room-three-gallery" role="group" aria-label={lang === "el" ? "Φωτογραφίες του δωματίου 3" : "Photos of Room Three"}>
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-room-three-overview"
+        src="/accommodation/room-three-overview-1440.webp"
+        srcSet="/accommodation/room-three-overview-720.webp 720w, /accommodation/room-three-overview-1440.webp 1440w"
+        sizes="(max-width: 760px) calc(100vw - 40px), 92vw"
+        width={1440}
+        height={810}
+        alt={lang === "el" ? "Το κρεβάτι με ξύλινο ουρανό στο τρίτο δωμάτιο." : "Four-poster bed in Room Three."}
+      />
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-room-three-detail-one"
+        src="/accommodation/room-three-detail-one-900.webp"
+        srcSet="/accommodation/room-three-detail-one-480.webp 480w, /accommodation/room-three-detail-one-900.webp 900w"
+        sizes="(max-width: 760px) calc(50vw - 26px), 44vw"
+        width={900}
+        height={507}
+        alt={lang === "el" ? "Συρταριέρα και καθρέφτης με θέα προς το κρεβάτι." : "Dresser and mirror looking toward the bed."}
+      />
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-room-three-detail-two"
+        src="/accommodation/room-three-detail-two-900.webp"
+        srcSet="/accommodation/room-three-detail-two-480.webp 480w, /accommodation/room-three-detail-two-900.webp 900w"
+        sizes="(max-width: 760px) calc(50vw - 26px), 44vw"
+        width={900}
+        height={507}
+        alt={lang === "el" ? "Ντουλάπα και πάγκος στο τρίτο δωμάτιο." : "Wardrobe and counter in Room Three."}
+      />
+      <AccommodationPhoto
+        lang={lang}
+        className="accommodation-room-three-bathroom"
+        src="/accommodation/room-three-bathroom-760.webp"
+        srcSet="/accommodation/room-three-bathroom-480.webp 480w, /accommodation/room-three-bathroom-760.webp 760w"
+        sizes="(max-width: 760px) calc(100vw - 40px), 92vw"
+        width={760}
+        height={1350}
+        alt={lang === "el" ? "Καμπίνα ντους και νιπτήρας στο μπάνιο του τρίτου δωματίου." : "Shower enclosure and basin in Room Three's bathroom."}
+      />
+    </div>
   );
 }
 
@@ -1077,8 +1351,19 @@ function Doctor({ lang }: { lang: Language }) {
         intro={c("Η προσωπική ιστορία, η εκπαίδευση και η φιλοσοφία πίσω από κάθε εφαρμογή SMP.", "The personal story, training and philosophy behind every SMP treatment.")}
       />
       <section className="section doctor-profile">
-        <div className="doctor-portrait" role="img" aria-label={lang === "el" ? "Ανδρέας Πετρόπουλος — DermaDot" : "Andreas Petropoulos — DermaDot"}>
-          <span>DERMA<span className="brand-inline-dot">DOT</span></span>
+        <div className="doctor-portrait">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/doctor/doctor-portrait-1440.webp"
+            srcSet="/doctor/doctor-portrait-480.webp 480w, /doctor/doctor-portrait-960.webp 960w, /doctor/doctor-portrait-1440.webp 1440w"
+            sizes="(max-width: 700px) calc(100vw - 44px), (max-width: 1200px) 42vw, 38vw"
+            width={1440}
+            height={1920}
+            loading="lazy"
+            decoding="async"
+            alt={lang === "el" ? "Ο Ανδρέας Πετρόπουλος πραγματοποιεί συνεδρία μικροχρωμάτωσης τριχωτού." : "Andreas Petropoulos performing a scalp micropigmentation session."}
+          />
+          <span aria-hidden="true">DERMA<span className="brand-inline-dot">DOT</span></span>
         </div>
         <div className="doctor-introduction">
           <p className="eyebrow">{lang === "el" ? "Προσωπικό προφίλ" : "Personal profile"}</p>
@@ -1433,17 +1718,7 @@ function Breadcrumbs({ lang, route }: { lang: Language; route: Route }) {
     ],
   };
 
-  return (
-    <>
-      <nav className="breadcrumbs" aria-label={lang === "el" ? "Διαδρομή" : "Breadcrumb"}>
-        <ol>
-          <li><a href={homeHref}>{homeLabel}</a></li>
-          <li aria-current="page">{currentLabel}</li>
-        </ol>
-      </nav>
-      <StructuredData data={breadcrumbSchema} />
-    </>
-  );
+  return <StructuredData data={breadcrumbSchema} />;
 }
 
 const localBusinessSchema = {
@@ -1474,6 +1749,7 @@ export default function DermaDotSite({ route, lang = "el" }: { route: Route; lan
     procedure: <Procedure lang={lang} />,
     aftercare: <Aftercare lang={lang} />,
     contact: <Contact lang={lang} />,
+    accommodation: <AccommodationPage lang={lang} />,
     "thank-you": <ThankYou lang={lang} />,
     faq: <FAQ lang={lang} />,
   };

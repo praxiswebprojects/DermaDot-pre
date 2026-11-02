@@ -10,6 +10,7 @@ const routes = [
   "/procedure",
   "/aftercare",
   "/contact",
+  "/accommodation",
   "/faq",
 ];
 
