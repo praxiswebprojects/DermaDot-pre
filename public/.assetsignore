@@ -24,4 +24,4 @@ page-heroes/smp-08-andreas-desktop.jpg
 page-heroes/smp-08-andreas-mobile.jpg
 page-heroes/smp-08-andreas-mobile.png
 # Vite's cache can leave unused font subsets in the generated client directory.
-assets/_vinext_fonts/**
+_next/static/_vinext_fonts/**

@@ -40,6 +40,34 @@ test("server-renders the DermaDot site", async () => {
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/i);
 });
 
+test("homepage links to the accommodation page with all three enlargable room galleries", async () => {
+  const greek = await (await render("/")).text();
+  const english = await (await render("/en")).text();
+
+  assert.match(greek, /<section[^>]+aria-labelledby="accommodation-title"/);
+  assert.match(greek, /Διαμονή στον χώρο του ιατρείου/);
+  assert.match(english, /Stay at the clinic/);
+  assert.match(greek, /href="\/accommodation"[^>]*target="_blank"/);
+  assert.match(english, /href="\/en\/accommodation"[^>]*target="_blank"/);
+  assert.doesNotMatch(greek, /<img\b[^>]*src="\/accommodation\//);
+
+  for (const [path, roomOneName, roomTwoName, roomThreeName] of [
+    ["/accommodation", "Δωμάτιο 1", "Δωμάτιο 2", "Δωμάτιο 3"],
+    ["/en/accommodation", "Room One", "Room Two", "Room Three"],
+  ]) {
+    const html = await (await render(path)).text();
+    for (const roomName of [roomOneName, roomTwoName, roomThreeName]) assert.match(html, new RegExp(roomName));
+    const photos = [...html.matchAll(/<button\b[^>]*class="accommodation-photo-open"[^>]*>[\s\S]*?<img\b[^>]*>/g)].map(([, button]) => button);
+    assert.equal(photos.length, 11, `${path} should show four, three and four client-provided views`);
+    for (const image of photos) {
+      assert.match(image, /\bloading="lazy"/);
+      assert.match(image, /\bdecoding="async"/);
+      assert.match(image, /\bsrcSet="[^"]+"/);
+      assert.match(image, /\balt="[^"]+"/);
+    }
+  }
+});
+
 test("all public Greek and English pages render with page-specific metadata", async () => {
   const routes = [
     ["/", "Scalp Micropigmentation στην Αθήνα"],
@@ -51,6 +79,7 @@ test("all public Greek and English pages render with page-specific metadata", as
     ["/procedure", "Η διαδικασία SMP"],
     ["/aftercare", "Φροντίδα μετά το SMP"],
     ["/contact", "Επικοινωνία και αξιολόγηση"],
+    ["/accommodation", "Διαμονή στο ιατρείο"],
     ["/thank-you", "Ευχαριστούμε για το αίτημά σας"],
     ["/faq", "Συχνές ερωτήσεις για SMP"],
     ["/en", "Scalp Micropigmentation in Athens"],
@@ -62,6 +91,7 @@ test("all public Greek and English pages render with page-specific metadata", as
     ["/en/procedure", "The SMP Procedure"],
     ["/en/aftercare", "SMP Aftercare"],
     ["/en/contact", "Contact and Consultation"],
+    ["/en/accommodation", "Clinic Accommodation"],
     ["/en/thank-you", "Thank You for Your Request"],
     ["/en/faq", "SMP Frequently Asked Questions"],
   ];
@@ -116,7 +146,7 @@ test("sitemap, robots, favicon and not-found routes are present", async () => {
     const html = await response.text();
     assert.match(html, new RegExp(`<title>[^<]*${expectedTitle}[^<]*<\\/title>`), path);
     assert.match(html, /name="robots" content="noindex, ?nofollow"/i, `${path} should not be indexed`);
-    assert.match(html, /aria-label="(?:Breadcrumb|Διαδρομή)"/i, `${path} should have breadcrumbs`);
+    assert.doesNotMatch(html, /<nav[^>]+class="breadcrumbs"/i, `${path} should not display breadcrumb text`);
   }
 
   assert.match(llmsSource, /^# DermaDot/m);
@@ -148,7 +178,7 @@ test("sitemap, robots, favicon and not-found routes are present", async () => {
     .map(([, json]) => JSON.parse(json));
   assert.ok(homeStructuredData.some((value) => value["@type"] === "LocalBusiness"), "home page source should contain local business schema");
   const detailHtml = await (await render("/en/faq")).text();
-  assert.match(detailHtml, /aria-label="Breadcrumb"/i);
+  assert.doesNotMatch(detailHtml, /<nav[^>]+class="breadcrumbs"/i);
   assert.ok(
     [...detailHtml.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
       .map(([, json]) => JSON.parse(json))
@@ -275,11 +305,11 @@ test("legacy image originals stay in source but deployment redirects to optimize
 test("unused generated font subsets are excluded from the Cloudflare asset upload", async () => {
   const ignore = await readFile(new URL("../dist/client/.assetsignore", import.meta.url), "utf8");
   const headers = await readFile(new URL("../dist/client/_headers", import.meta.url), "utf8");
-  const clientAssets = new URL("../dist/client/assets/", import.meta.url);
+  const clientAssets = new URL("../dist/client/_next/static/", import.meta.url);
   const files = await readdir(clientAssets, { recursive: true });
   const cssFiles = files.filter((file) => String(file).endsWith(".css"));
 
-  assert.match(ignore, /assets\/_vinext_fonts\/\*\*/);
+  assert.match(ignore, /_next\/static\/_vinext_fonts\/\*\*/);
   assert.match(headers, /\/assets\/\*[\s\S]*?max-age=31536000, immutable/);
   assert.match(headers, /\/fonts\/\*[\s\S]*?max-age=604800, stale-while-revalidate=86400/);
   assert.match(headers, /\/\*\.webp[\s\S]*?max-age=604800, stale-while-revalidate=86400/);
@@ -305,7 +335,7 @@ test("Cloudflare analytics is optional and CSP permits only its required endpoin
   const scriptTags = [...html.matchAll(/<script\b([^>]*)>/gi)];
   assert.ok(scriptTags.length > 0, "rendered HTML contains its expected scripts");
   for (const [, attributes] of scriptTags) {
-    assert.match(attributes, new RegExp(`\\bnonce="${nonce}"`), "every rendered script carries the CSP nonce");
+    assert.ok(attributes.includes(`nonce="${nonce}"`), "every rendered script carries the CSP nonce");
   }
   assert.match(csp, /connect-src[^;]*https:\/\/cloudflareinsights\.com/);
   assert.doesNotMatch(html, /beacon\.min\.js/);
@@ -363,7 +393,6 @@ test("keeps contact secrets server-only and required fields separate", async () 
   assert.match(gitignore, /^\.env\*/m, "local environment files should be ignored");
   assert.match(gitignore, /^!\.env\.example$/m, "only the safe example file should be committable");
   assert.match(envExample, /^RESEND_API_KEY=re_your_resend_api_key$/m);
-  assert.match(envExample, /^ADMIN_PASSWORD=replace-with-a-strong-password$/m);
-  assert.match(envExample, /^ADMIN_SESSION_SECRET=replace-with-a-long-random-secret$/m);
+  assert.doesNotMatch(envExample, /^ADMIN_(?:PASSWORD|SESSION_SECRET)=/m, "unused admin credentials should not be suggested");
   assert.match(envExample, /^RATE_LIMIT_SALT=replace-with-an-independent-long-random-value$/m);
 });

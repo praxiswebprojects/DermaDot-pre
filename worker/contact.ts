@@ -146,6 +146,43 @@ async function ensureRateLimitSchema(db: D1Database): Promise<void> {
   }
 }
 
+async function readBoundedRequestBody(request: Request, maxBytes: number): Promise<string | null> {
+  if (!request.body) return "";
+
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let byteLength = 0;
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      byteLength += value.byteLength;
+      if (byteLength > maxBytes) {
+        try {
+          await reader.cancel();
+        } catch {
+          // The request is already rejected; cancellation is best-effort.
+        }
+        return null;
+      }
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  const bytes = new Uint8Array(byteLength);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+}
+
 async function consumeRateLimit(db: D1Database, key: string, nowSeconds: number): Promise<boolean> {
   const cutoff = nowSeconds - RATE_LIMIT_WINDOW_SECONDS;
   const row = await db.prepare(`
@@ -203,16 +240,21 @@ export async function handleContactRequest(request: Request, env: ContactEnv): P
   }
 
   const contentType = request.headers.get("content-type")?.toLowerCase() ?? "";
-  const contentLength = Number(request.headers.get("content-length") ?? "0");
-  if (!contentType.startsWith("application/json") || (Number.isFinite(contentLength) && contentLength > MAX_REQUEST_BYTES)) {
+  const contentLengthHeader = request.headers.get("content-length");
+  const contentLength = contentLengthHeader === null ? null : Number(contentLengthHeader);
+  if (
+    !contentType.startsWith("application/json") ||
+    (contentLength !== null && (!Number.isSafeInteger(contentLength) || contentLength < 0 || contentLength > MAX_REQUEST_BYTES))
+  ) {
     return json({ ok: false, error: "Invalid request." }, 400);
   }
 
   let raw = "";
   let body: unknown;
   try {
-    raw = await request.text();
-    if (!raw || new TextEncoder().encode(raw).byteLength > MAX_REQUEST_BYTES) throw new Error("invalid size");
+    const boundedBody = await readBoundedRequestBody(request, MAX_REQUEST_BYTES);
+    if (boundedBody === null || !boundedBody) throw new Error("invalid size");
+    raw = boundedBody;
     body = JSON.parse(raw);
   } catch {
     return json({ ok: false, error: "Invalid JSON request." }, 400);

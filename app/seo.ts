@@ -12,6 +12,7 @@ export type SitePage =
   | "procedure"
   | "aftercare"
   | "contact"
+  | "accommodation"
   | "thank-you"
   | "faq";
 
@@ -58,6 +59,10 @@ const pageCopy: Record<SitePage, { el: [string, string]; en: [string, string] }>
     el: ["Επικοινωνία και αξιολόγηση", "Επικοινωνήστε με το DermaDot στην Αθήνα για να συζητήσετε μια εξατομικευμένη αξιολόγηση SMP."],
     en: ["Contact and Consultation", "Contact DermaDot in Athens to discuss an individual scalp micropigmentation consultation."],
   },
+  accommodation: {
+    el: ["Διαμονή στο ιατρείο — Δωμάτια 1, 2 και 3", "Δείτε τους χώρους διαμονής που προσφέρει το DermaDot στην Αθήνα και επικοινωνήστε για λεπτομέρειες και διαθεσιμότητα."],
+    en: ["Clinic Accommodation — Rooms One, Two and Three", "View the accommodation rooms offered at DermaDot in Athens and contact the clinic for details and availability."],
+  },
   "thank-you": {
     el: ["Ευχαριστούμε για το αίτημά σας", "Λάβαμε το αίτημά σας για αξιολόγηση SMP. Επιστρέψτε στην αρχική σελίδα του DermaDot."],
     en: ["Thank You for Your Request", "Your consultation request has been received. Return to the DermaDot home page."],
@@ -78,7 +83,7 @@ export function pageMetadata(page: SitePage, language: SiteLanguage = "el"): Met
   const canonical = `${SITE_URL}${pathFor(page, language)}`;
 
   return {
-    title,
+    title: `${title} — DermaDot`,
     description,
     ...(page === "thank-you" ? { robots: { index: false, follow: false } } : {}),
     alternates: {

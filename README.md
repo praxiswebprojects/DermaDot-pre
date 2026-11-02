@@ -16,11 +16,11 @@ npm run dev
 npm run build
 ```
 
-The repository includes `wrangler.jsonc` for direct Cloudflare Workers
-Builds deployment. Create the `dermadot-contact` D1 database and configure its
-`DB` binding in Cloudflare before deploying. The app currently does not use R2,
-so an R2 bucket is not required. The Vite config contains the local D1 database
-name and ID used by `npm run dev`.
+The repository includes `wrangler.jsonc` for Cloudflare Workers Builds. It
+declares the `DB` binding and the supplied database ID. Confirm that this D1
+database exists in the connected Cloudflare account before deploying. The app
+does not currently store media in R2; its `MEDIA` binding is reserved for future
+use. Local development reads the same D1 binding from Wrangler.
 
 ## Production contact form
 
@@ -39,8 +39,8 @@ For local development, copy `.env.example` to an ignored `.env.local` and use
 non-production values. Never prefix these values with `NEXT_PUBLIC_`.
 
 Keep `CANONICAL_HOST` unset until the custom domain is attached: setting it
-redirects the `workers.dev` preview to that hostname. The `.env.example` value
-is only for local setup; do not commit `.env` files.
+redirects the `workers.dev` preview to that hostname. Only set it when the
+custom-domain Worker is ready; do not commit `.env` files.
 
 ### Cloudflare Web Analytics
 
@@ -57,8 +57,9 @@ reporting endpoint.
 ## Included Shape
 
 - edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
+- `wrangler.jsonc` declares the production D1 binding and required Worker secrets
+- `.openai/hosting.json` records the D1/R2 binding names for the hosting control plane
+- `vite.config.ts` supplies the optional R2 binding for local development; D1 comes from Wrangler
 - `db/schema.ts` defines the contact-form rate-limit table. Expired rows are
   pruned hourly by a Worker Cron Trigger.
 - `examples/d1/` contains an optional D1 example surface

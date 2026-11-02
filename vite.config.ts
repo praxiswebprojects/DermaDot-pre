@@ -3,27 +3,15 @@ import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 import { sites } from "./build/sites-vite-plugin";
 
-const DERMA_DOT_DATABASE_ID =
-  "6bdc4129-edd7-4f12-a0ae-83bd6cd9a366";
-const DERMA_DOT_DATABASE_NAME = "dermadot-contact";
 const DERMA_DOT_R2_BUCKET_NAME = "dermadot-media";
 
-const { d1, r2 } = hostingConfig;
+const { r2 } = hostingConfig;
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
 
 const localBindingConfig = {
   main: "./worker/index.ts",
-  d1_databases: d1
-    ? [
-        {
-          binding: d1,
-          database_name: DERMA_DOT_DATABASE_NAME,
-          database_id: DERMA_DOT_DATABASE_ID,
-        },
-      ]
-    : [],
   r2_buckets: r2
     ? [
         {

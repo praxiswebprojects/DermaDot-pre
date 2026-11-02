@@ -5,10 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default: "DermaDot — Scalp Micropigmentation Αθήνα",
-    template: "%s — DermaDot",
-  },
+  title: "DermaDot — Scalp Micropigmentation Αθήνα",
   description:
     "Κλινική μικροχρωμάτωσης τριχωτού κεφαλής στην Αθήνα. Φυσικό, εξατομικευμένο αποτέλεσμα με κλινική ακρίβεια.",
   openGraph: {
