@@ -242,6 +242,40 @@ test("invalid JSON and wrong methods are rejected safely", async () => {
   assert.equal(wrongMethod.headers.get("allow"), "POST");
 });
 
+test("oversized streamed bodies are cancelled even when Content-Length is absent or understated", async () => {
+  for (const declaredLength of [null, "1"]) {
+    let cancelled = false;
+    let chunkIndex = 0;
+    const body = new ReadableStream({
+      pull(controller) {
+        if (chunkIndex === 0) controller.enqueue(new TextEncoder().encode("x".repeat(7_000)));
+        else if (chunkIndex === 1) controller.enqueue(new TextEncoder().encode("y".repeat(6_000)));
+        else controller.close();
+        chunkIndex += 1;
+      },
+      cancel() {
+        cancelled = true;
+      },
+    });
+    const headers = new Headers({
+      "content-type": "application/json",
+      origin: "https://example.com",
+      "idempotency-key": "123e4567-e89b-42d3-a456-426614174000",
+    });
+    if (declaredLength !== null) headers.set("content-length", declaredLength);
+    const resend = new MockResend();
+    const response = await worker.fetch(
+      new Request("https://example.com/api/contact", { method: "POST", headers, body, duplex: "half" }),
+      createEnv({ RESEND_API: resend }),
+      {},
+    );
+
+    assert.equal(response.status, 400);
+    assert.equal(cancelled, true);
+    assert.equal(resend.requests.length, 0);
+  }
+});
+
 test("HTML values are escaped and production responses carry security headers", async () => {
   const resend = new MockResend();
   const response = await worker.fetch(

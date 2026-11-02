@@ -78,7 +78,7 @@ export function pageMetadata(page: SitePage, language: SiteLanguage = "el"): Met
   const canonical = `${SITE_URL}${pathFor(page, language)}`;
 
   return {
-    title,
+    title: `${title} — DermaDot`,
     description,
     ...(page === "thank-you" ? { robots: { index: false, follow: false } } : {}),
     alternates: {

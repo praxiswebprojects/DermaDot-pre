@@ -4,13 +4,22 @@
   "main": "dist/server/index.js",
   "compatibility_date": "2026-05-22",
   "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "dermadot-contact",
+      "database_id": "6bdc4129-edd7-4f12-a0ae-83bd6cd9a366"
+    }
+  ],
+  "secrets": {
+    "required": ["RESEND_API_KEY", "RATE_LIMIT_SALT"]
+  },
   "triggers": {
     "crons": ["0 * * * *"]
   },
   "vars": {
     "CONTACT_RECIPIENT": "aaweb.projects@gmail.com",
-    "CONTACT_SENDER": "DermaDot <onboarding@resend.dev>",
-    "NEXT_PUBLIC_SITE_URL": "https://dermadot.plus"
+    "CONTACT_SENDER": "DermaDot <onboarding@resend.dev>"
   },
   "assets": {
     "binding": "ASSETS",

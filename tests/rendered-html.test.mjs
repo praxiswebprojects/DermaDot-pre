@@ -275,11 +275,11 @@ test("legacy image originals stay in source but deployment redirects to optimize
 test("unused generated font subsets are excluded from the Cloudflare asset upload", async () => {
   const ignore = await readFile(new URL("../dist/client/.assetsignore", import.meta.url), "utf8");
   const headers = await readFile(new URL("../dist/client/_headers", import.meta.url), "utf8");
-  const clientAssets = new URL("../dist/client/assets/", import.meta.url);
+  const clientAssets = new URL("../dist/client/_next/static/", import.meta.url);
   const files = await readdir(clientAssets, { recursive: true });
   const cssFiles = files.filter((file) => String(file).endsWith(".css"));
 
-  assert.match(ignore, /assets\/_vinext_fonts\/\*\*/);
+  assert.match(ignore, /_next\/static\/_vinext_fonts\/\*\*/);
   assert.match(headers, /\/assets\/\*[\s\S]*?max-age=31536000, immutable/);
   assert.match(headers, /\/fonts\/\*[\s\S]*?max-age=604800, stale-while-revalidate=86400/);
   assert.match(headers, /\/\*\.webp[\s\S]*?max-age=604800, stale-while-revalidate=86400/);
@@ -363,7 +363,6 @@ test("keeps contact secrets server-only and required fields separate", async () 
   assert.match(gitignore, /^\.env\*/m, "local environment files should be ignored");
   assert.match(gitignore, /^!\.env\.example$/m, "only the safe example file should be committable");
   assert.match(envExample, /^RESEND_API_KEY=re_your_resend_api_key$/m);
-  assert.match(envExample, /^ADMIN_PASSWORD=replace-with-a-strong-password$/m);
-  assert.match(envExample, /^ADMIN_SESSION_SECRET=replace-with-a-long-random-secret$/m);
+  assert.doesNotMatch(envExample, /^ADMIN_(?:PASSWORD|SESSION_SECRET)=/m, "unused admin credentials should not be suggested");
   assert.match(envExample, /^RATE_LIMIT_SALT=replace-with-an-independent-long-random-value$/m);
 });
